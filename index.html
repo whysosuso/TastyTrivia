@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tasty Trivia – Loading</title>
+  <title>Tasty Trivia – Delicious Trivia Events!</title>
   <link rel="icon" href="https://emoji.gg/assets/emoji/7699-pepperoni-pizza.png" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
@@ -15,7 +15,9 @@
 
     body {
       font-family: 'Inter', 'Segoe UI', sans-serif;
-      background-color: #111;
+      background: radial-gradient(circle at center, #1a1a1a 0%, #111 100%);
+      background-size: 200% 200%;
+      animation: ambient 20s ease-in-out infinite;
       color: #eee;
       display: flex;
       flex-direction: column;
@@ -24,6 +26,13 @@
       min-height: 100vh;
       padding: 2rem 1rem;
       overflow-x: hidden;
+      text-align: center;
+    }
+
+    @keyframes ambient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .fade-in {
@@ -56,7 +65,6 @@
       font-size: 1.05rem;
       color: #aaa;
       margin-bottom: 2rem;
-      text-align: center;
       max-width: 500px;
     }
 
@@ -65,7 +73,6 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 1.2rem;
       margin-bottom: 2rem;
-      text-align: center;
     }
 
     .time-unit {
@@ -106,7 +113,7 @@
       display: block;
     }
 
-    .confetti-button {
+    .confetti-button, .music-button {
       background-color: transparent;
       border: 1px solid #00ffc3;
       color: #00ffc3;
@@ -114,10 +121,11 @@
       font-size: 1rem;
       border-radius: 8px;
       cursor: pointer;
+      margin: 0.5rem;
       transition: background-color 0.2s, color 0.2s;
     }
 
-    .confetti-button:hover {
+    .confetti-button:hover, .music-button:hover {
       background-color: #00ffc3;
       color: #111;
     }
@@ -133,7 +141,7 @@
 <body>
   <div class="fade-in">
     <div class="brand-box">Tasty Trivia</div>
-    <p class="subtitle">Loading your next flavour of fun...</p>
+    <p class="subtitle">Delicious Trivia Events!</p>
 
     <div class="timer-box" id="countdown">
       <div class="time-unit">
@@ -162,6 +170,12 @@
     </div>
 
     <button class="confetti-button" onclick="launchConfetti()">Celebrate 🎉</button>
+    <button class="music-button" onclick="toggleMusic()">🔊 Play Music</button>
+
+    <audio id="bgMusic" loop>
+      <source src="https://cdn.pixabay.com/download/audio/2022/10/20/audio_d30a2dbab3.mp3?filename=soft-ambient-110563.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
   </div>
 
   <script>
@@ -171,6 +185,15 @@
         spread: 70,
         origin: { y: 0.6 }
       });
+    }
+
+    function toggleMusic() {
+      const audio = document.getElementById('bgMusic');
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
     }
 
     setTimeout(launchConfetti, 1000);
@@ -190,7 +213,8 @@
       const distance = targetDate - now;
 
       if (distance < 0) {
-        document.getElementById("countdown").innerHTML = "<p style='color:#0f0;'>Launching soon!</p>";
+        document.getElementById("countdown").innerHTML = "<p style='color:#0f0;'>We\'re live! 🎉</p>";
+        launchConfetti();
         return;
       }
 
