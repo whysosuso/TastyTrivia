@@ -7,26 +7,19 @@
   <link rel="icon" href="https://emoji.gg/assets/emoji/7699-pepperoni-pizza.png" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
+    html, body {
+      height: 100%;
       font-family: 'Inter', 'Segoe UI', sans-serif;
       background: radial-gradient(circle at center, #1a1a1a 0%, #111 100%);
       background-size: 200% 200%;
       animation: ambient 20s ease-in-out infinite;
       color: #eee;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      padding: 2rem 1rem;
-      overflow-x: hidden;
-      text-align: center;
+      justify-content: center;
+      overflow: hidden;
     }
 
     @keyframes ambient {
@@ -35,93 +28,92 @@
       100% { background-position: 0% 50%; }
     }
 
-    .fade-in {
-      opacity: 0;
-      transform: translateY(10px);
-      animation: fadeIn 1.2s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .container {
+      text-align: center;
+      max-width: 95vw;
+      max-height: 95vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
     }
 
     .brand-box {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
       border: 1px solid #444;
       border-radius: 10px;
       background: #1a1a1a;
-      font-size: 2rem;
+      padding: 1rem 2rem;
+    }
+
+    .brand-box h1 {
+      font-size: 1.8rem;
       font-weight: 700;
       color: #00ffc3;
-      margin-bottom: 0.5rem;
       letter-spacing: 0.8px;
     }
 
-    .subtitle {
-      font-size: 1.05rem;
+    .brand-box p {
+      font-size: 1rem;
       color: #aaa;
-      margin-bottom: 2rem;
-      max-width: 500px;
+      margin-top: 0.3rem;
     }
 
     .timer-box {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.2rem;
-      margin-bottom: 2rem;
+      gap: 0.6rem;
+      font-size: 0.9rem;
     }
 
     .time-unit {
       background: #1a1a1a;
       border: 1px solid #333;
-      border-radius: 12px;
-      padding: 1rem 0.5rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+      border-radius: 8px;
+      padding: 0.5rem;
+      width: 60px;
     }
 
     .time-value {
-      font-size: 2rem;
+      font-size: 1.2rem;
       font-weight: 600;
       color: #00ffc3;
     }
 
     .time-label {
-      font-size: 0.75rem;
+      font-size: 0.65rem;
       text-transform: uppercase;
       color: #aaa;
-      margin-top: 0.3rem;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
     }
 
     .image-box {
-      border: 2px solid #444;
-      border-radius: 12px;
+      max-width: 200px;
+      border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
-      margin-bottom: 2rem;
-      max-width: 600px;
-      width: 100%;
+      border: 1px solid #333;
     }
 
-    img {
+    .image-box img {
       width: 100%;
-      height: auto;
       display: block;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .confetti-button, .music-button {
       background-color: transparent;
       border: 1px solid #00ffc3;
       color: #00ffc3;
-      padding: 0.6rem 1.2rem;
-      font-size: 1rem;
-      border-radius: 8px;
+      padding: 0.4rem 1rem;
+      font-size: 0.9rem;
+      border-radius: 6px;
       cursor: pointer;
-      margin: 0.5rem;
       transition: background-color 0.2s, color 0.2s;
     }
 
@@ -129,19 +121,14 @@
       background-color: #00ffc3;
       color: #111;
     }
-
-    @media (max-width: 500px) {
-      .timer-box {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-      }
-    }
   </style>
 </head>
 <body>
-  <div class="fade-in">
-    <div class="brand-box">Tasty Trivia</div>
-    <p class="subtitle">Delicious Trivia Events!</p>
+  <div class="container fade-in">
+    <div class="brand-box">
+      <h1>Tasty Trivia</h1>
+      <p>Delicious Trivia Events!</p>
+    </div>
 
     <div class="timer-box" id="countdown">
       <div class="time-unit">
@@ -163,14 +150,13 @@
     </div>
 
     <div class="image-box">
-      <img 
-        src="https://i.ibb.co/BVGhgh4q/Chat-GPT-Image-May-28-2025-10-28-46-PM.png" 
-        alt="Tasty Trivia Loading Screen" 
-      />
+      <img src="https://i.ibb.co/BVGhgh4q/Chat-GPT-Image-May-28-2025-10-28-46-PM.png" alt="Tasty Trivia Loading Screen" />
     </div>
 
-    <button class="confetti-button" onclick="launchConfetti()">Celebrate 🎉</button>
-    <button class="music-button" onclick="toggleMusic()">🔊 Play Music</button>
+    <div class="buttons">
+      <button class="confetti-button" onclick="launchConfetti()">Celebrate 🎉</button>
+      <button class="music-button" onclick="toggleMusic()">🔊 Play Music</button>
+    </div>
 
     <audio id="bgMusic" loop>
       <source src="https://cdn.pixabay.com/download/audio/2022/10/20/audio_d30a2dbab3.mp3?filename=soft-ambient-110563.mp3" type="audio/mpeg" />
@@ -180,20 +166,13 @@
 
   <script>
     function launchConfetti() {
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
+      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
     }
 
     function toggleMusic() {
       const audio = document.getElementById('bgMusic');
-      if (audio.paused) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
+      if (audio.paused) audio.play();
+      else audio.pause();
     }
 
     setTimeout(launchConfetti, 1000);
@@ -213,7 +192,7 @@
       const distance = targetDate - now;
 
       if (distance < 0) {
-        document.getElementById("countdown").innerHTML = "<p style='color:#0f0;'>We\'re live! 🎉</p>";
+        document.getElementById("countdown").innerHTML = "<p style='color:#0f0;'>We're live! 🎉</p>";
         launchConfetti();
         return;
       }
