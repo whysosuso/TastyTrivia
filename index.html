@@ -12,8 +12,9 @@
       box-sizing: border-box;
     }
     body {
-      font-family: sans-serif;
-      background: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      background: #111;
+      color: #eee;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -26,29 +27,74 @@
       max-width: 600px;
       text-align: center;
     }
+    .title {
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: 1.2rem;
+    }
+    .timer-box {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+      border: 1px solid #444;
+      border-radius: 10px;
+      background-color: #1a1a1a;
+      margin-bottom: 1.5rem;
+    }
+    .time-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 60px;
+    }
+    .time-value {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #00ffc3;
+    }
+    .time-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-top: 0.2rem;
+      letter-spacing: 0.5px;
+    }
     .image-box {
-      border: 2px solid #ccc;
+      border: 2px solid #444;
       border-radius: 12px;
       overflow: hidden;
-      margin-top: 1.5rem;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
     }
     img {
       width: 100%;
       height: auto;
       display: block;
     }
-    .countdown {
-      font-size: 1.2rem;
-      color: #555;
-      margin-top: 1rem;
-    }
   </style>
 </head>
 <body>
   <div class="wrapper">
-    <p style="font-size: 1.5rem; color: #333;">Tasty Trivia is loading...</p>
+    <p class="title">Tasty Trivia is loading...</p>
 
-    <div class="countdown" id="countdown">Loading time left: ...</div>
+    <div class="timer-box" id="countdown">
+      <div class="time-unit">
+        <div class="time-value" id="days">0</div>
+        <div class="time-label">Days</div>
+      </div>
+      <div class="time-unit">
+        <div class="time-value" id="hours">0</div>
+        <div class="time-label">Hours</div>
+      </div>
+      <div class="time-unit">
+        <div class="time-value" id="minutes">0</div>
+        <div class="time-label">Minutes</div>
+      </div>
+      <div class="time-unit">
+        <div class="time-value" id="seconds">0</div>
+        <div class="time-label">Seconds</div>
+      </div>
+    </div>
 
     <div class="image-box">
       <img 
@@ -59,7 +105,6 @@
   </div>
 
   <script>
-    // Confetti burst every few seconds
     function launchConfetti() {
       confetti({
         particleCount: 80,
@@ -70,39 +115,10 @@
     setInterval(launchConfetti, 4000);
     launchConfetti();
 
-    // Countdown timer until this Sunday 11:59 PM local time
     function getNextSundayMidnight() {
       const now = new Date();
       const day = now.getDay();
-      const diff = 7 - day; // Days until next Sunday
+      const diff = (7 - day) % 7 || 7;
       const sunday = new Date(now);
       sunday.setDate(now.getDate() + diff);
-      sunday.setHours(23, 59, 59, 999);
-      return sunday;
-    }
-
-    const targetDate = getNextSundayMidnight();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate.getTime() - now;
-
-      if (distance < 0) {
-        document.getElementById("countdown").innerText = "Launching soon!";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("countdown").innerText = 
-        `Loading time left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
-</body>
-</html>
+      sunday.setHours(23, 59, 59, 9
