@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tasty Trivia Loading</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     * {
       margin: 0;
@@ -18,30 +19,37 @@
       align-items: center;
       justify-content: flex-start;
       min-height: 100vh;
+      padding: 2rem 1rem;
     }
     .wrapper {
       width: 100%;
       max-width: 600px;
-      padding: 2rem 1rem;
       text-align: center;
     }
     .image-box {
       border: 2px solid #ccc;
       border-radius: 12px;
       overflow: hidden;
+      margin-top: 1.5rem;
     }
     img {
       width: 100%;
       height: auto;
       display: block;
     }
+    .countdown {
+      font-size: 1.2rem;
+      color: #555;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
   <div class="wrapper">
-    <p style="font-size: 1.5rem; color: #333; margin-bottom: 1.5rem;">
-      Tasty Trivia is loading...
-    </p>
+    <p style="font-size: 1.5rem; color: #333;">Tasty Trivia is loading...</p>
+
+    <div class="countdown" id="countdown">Loading time left: ...</div>
+
     <div class="image-box">
       <img 
         src="https://i.ibb.co/BVGhgh4q/Chat-GPT-Image-May-28-2025-10-28-46-PM.png" 
@@ -49,5 +57,52 @@
       />
     </div>
   </div>
+
+  <script>
+    // Confetti burst every few seconds
+    function launchConfetti() {
+      confetti({
+        particleCount: 80,
+        spread: 60,
+        origin: { y: 0.6 }
+      });
+    }
+    setInterval(launchConfetti, 4000);
+    launchConfetti();
+
+    // Countdown timer until this Sunday 11:59 PM local time
+    function getNextSundayMidnight() {
+      const now = new Date();
+      const day = now.getDay();
+      const diff = 7 - day; // Days until next Sunday
+      const sunday = new Date(now);
+      sunday.setDate(now.getDate() + diff);
+      sunday.setHours(23, 59, 59, 999);
+      return sunday;
+    }
+
+    const targetDate = getNextSundayMidnight();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate.getTime() - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerText = "Launching soon!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerText = 
+        `Loading time left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
 </body>
 </html>
