@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tasty Trivia – Loading</title>
   <link rel="icon" href="https://emoji.gg/assets/emoji/7699-pepperoni-pizza.png" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -15,7 +15,7 @@
 
     body {
       font-family: 'Inter', 'Segoe UI', sans-serif;
-      background: #111;
+      background-color: #111;
       color: #eee;
       display: flex;
       flex-direction: column;
@@ -39,17 +39,16 @@
       }
     }
 
-    .wrapper {
-      width: 100%;
-      max-width: 600px;
-      text-align: center;
-    }
-
-    .brand {
-      font-size: 2rem;
-      font-weight: 700;
+    .brand-box {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid #444;
+      border-radius: 10px;
+      background: #1a1a1a;
+      font-size: 1.8rem;
+      font-weight: 600;
       color: #00ffc3;
-      margin-bottom: 0.3rem;
+      margin-bottom: 1rem;
       letter-spacing: 0.5px;
     }
 
@@ -59,36 +58,37 @@
       margin-bottom: 2rem;
     }
 
-    .timer-box {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      padding: 1rem;
-      border: 1px solid #444;
-      border-radius: 10px;
-      background-color: #1a1a1a;
+    .timer {
+      position: relative;
+      width: 300px;
+      height: 300px;
       margin-bottom: 2rem;
     }
 
-    .time-unit {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-width: 60px;
+    .circle {
+      fill: none;
+      stroke-width: 18;
+      stroke-linecap: round;
     }
 
-    .time-value {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #00ffc3;
+    .background {
+      stroke: #333;
     }
 
-    .time-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
+    .foreground {
+      stroke: #00ffc3;
+      transform: rotate(-90deg);
+      transform-origin: center;
+    }
+
+    .label {
+      position: absolute;
+      width: 100%;
+      text-align: center;
       color: #aaa;
-      margin-top: 0.2rem;
-      letter-spacing: 0.5px;
+      font-size: 0.9rem;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     .image-box {
@@ -96,6 +96,9 @@
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      width: 100%;
     }
 
     img {
@@ -103,30 +106,44 @@
       height: auto;
       display: block;
     }
+
+    .confetti-button {
+      background-color: transparent;
+      border: 1px solid #00ffc3;
+      color: #00ffc3;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .confetti-button:hover {
+      background-color: #00ffc3;
+      color: #111;
+    }
   </style>
 </head>
 <body>
-  <div class="wrapper fade-in">
-    <p class="brand">Tasty Trivia</p>
+  <div class="fade-in">
+    <div class="brand-box">Tasty Trivia</div>
     <p class="subtitle">Loading your next flavour of fun...</p>
 
-    <div class="timer-box" id="countdown">
-      <div class="time-unit">
-        <div class="time-value" id="days">0</div>
-        <div class="time-label">Days</div>
-      </div>
-      <div class="time-unit">
-        <div class="time-value" id="hours">0</div>
-        <div class="time-label">Hours</div>
-      </div>
-      <div class="time-unit">
-        <div class="time-value" id="minutes">0</div>
-        <div class="time-label">Minutes</div>
-      </div>
-      <div class="time-unit">
-        <div class="time-value" id="seconds">0</div>
-        <div class="time-label">Seconds</div>
-      </div>
+    <div class="timer">
+      <svg width="100%" height="100%" viewBox="0 0 200 200">
+        <circle r="90" cx="100" cy="100" class="circle background"></circle>
+        <circle r="90" cx="100" cy="100" class="circle foreground" id="daysArc"></circle>
+
+        <circle r="70" cx="100" cy="100" class="circle background"></circle>
+        <circle r="70" cx="100" cy="100" class="circle foreground" id="hoursArc"></circle>
+
+        <circle r="50" cx="100" cy="100" class="circle background"></circle>
+        <circle r="50" cx="100" cy="100" class="circle foreground" id="minutesArc"></circle>
+
+        <circle r="30" cx="100" cy="100" class="circle background"></circle>
+        <circle r="30" cx="100" cy="100" class="circle foreground" id="secondsArc"></circle>
+      </svg>
+      <div class="label" id="label">Tasty Trivia Launching...</div>
     </div>
 
     <div class="image-box">
@@ -135,20 +152,22 @@
         alt="Tasty Trivia Loading Screen" 
       />
     </div>
+
+    <button class="confetti-button" onclick="launchConfetti()">Celebrate 🎉</button>
   </div>
 
   <script>
-    // 🎉 Confetti burst once
-    setTimeout(() => {
+    function launchConfetti() {
       confetti({
-        particleCount: 80,
-        spread: 60,
+        particleCount: 100,
+        spread: 70,
         origin: { y: 0.6 }
       });
-    }, 1000);
+    }
 
-    // ⏱ Countdown logic
-    function getNextSundayMidnight() {
+    setTimeout(launchConfetti, 1000);
+
+    const targetDate = (() => {
       const now = new Date();
       const day = now.getDay();
       const diff = (7 - day) % 7 || 7;
@@ -156,32 +175,38 @@
       sunday.setDate(now.getDate() + diff);
       sunday.setHours(23, 59, 59, 999);
       return sunday;
+    })();
+
+    const circleLength = r => 2 * Math.PI * r;
+
+    const arcs = [
+      { id: 'daysArc', r: 90, unit: 7 * 24 * 60 * 60 * 1000 },
+      { id: 'hoursArc', r: 70, unit: 24 * 60 * 60 * 1000 },
+      { id: 'minutesArc', r: 50, unit: 60 * 60 * 1000 },
+      { id: 'secondsArc', r: 30, unit: 60 * 1000 },
+    ];
+
+    arcs.forEach(({ id, r }) => {
+      const el = document.getElementById(id);
+      const len = circleLength(r);
+      el.style.strokeDasharray = `${len}`;
+      el.style.strokeDashoffset = `${len}`;
+    });
+
+    function updateTimer() {
+      const now = new Date();
+      const distance = targetDate - now;
+
+      arcs.forEach(({ id, r, unit }) => {
+        const el = document.getElementById(id);
+        const len = circleLength(r);
+        const value = 1 - ((distance % unit) / unit);
+        el.style.strokeDashoffset = `${len * (1 - value)}`;
+      });
     }
 
-    const targetDate = getNextSundayMidnight();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate.getTime() - now;
-
-      if (distance < 0) {
-        document.getElementById("countdown").innerHTML = "<p style='color:#0f0;'>Launching soon!</p>";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("days").textContent = days;
-      document.getElementById("hours").textContent = hours;
-      document.getElementById("minutes").textContent = minutes;
-      document.getElementById("seconds").textContent = seconds;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+    setInterval(updateTimer, 1000);
+    updateTimer();
   </script>
 </body>
 </html>
