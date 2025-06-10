@@ -36,7 +36,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
+      gap: 1.2rem;
     }
 
     .brand-box {
@@ -59,11 +59,22 @@
       margin-top: 0.3rem;
     }
 
-    .typographic-timer {
-      font-size: 1.2rem;
-      font-weight: 600;
+    .flip-clock {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      font-family: monospace;
+      font-size: 1.6rem;
+      font-weight: bold;
       color: #00ffc3;
-      margin: 0.5rem 0 0.5rem;
+    }
+
+    .flip-clock span {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      min-width: 3ch;
     }
 
     .image-box {
@@ -80,23 +91,21 @@
 
     .buttons {
       display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
       justify-content: center;
     }
 
-    .confetti-button, .music-button {
+    .confetti-button {
       background-color: transparent;
       border: 1px solid #00ffc3;
       color: #00ffc3;
-      padding: 0.4rem 1rem;
-      font-size: 0.9rem;
+      padding: 0.4rem 1.2rem;
+      font-size: 1rem;
       border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.2s, color 0.2s;
     }
 
-    .confetti-button:hover, .music-button:hover {
+    .confetti-button:hover {
       background-color: #00ffc3;
       color: #111;
     }
@@ -109,8 +118,11 @@
       <p>Delicious Trivia Events!</p>
     </div>
 
-    <div class="typographic-timer" id="countdown">
-      00d : 00h : 00m : 00s
+    <div class="flip-clock" id="countdown">
+      <span id="days">00</span>d :
+      <span id="hours">00</span>h :
+      <span id="minutes">00</span>m :
+      <span id="seconds">00</span>s
     </div>
 
     <div class="image-box">
@@ -119,24 +131,12 @@
 
     <div class="buttons">
       <button class="confetti-button" onclick="launchConfetti()">Celebrate 🎉</button>
-      <button class="music-button" onclick="toggleMusic()">🔊 Play Music</button>
     </div>
-
-    <audio id="bgMusic" loop>
-      <source src="https://drive.google.com/uc?export=download&id=10qFb7AoXkgzT2bU-OQINg59GDH9z_RFZ" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
   </div>
 
   <script>
     function launchConfetti() {
       confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-    }
-
-    function toggleMusic() {
-      const audio = document.getElementById('bgMusic');
-      if (audio.paused) audio.play();
-      else audio.pause();
     }
 
     setTimeout(launchConfetti, 1000);
@@ -166,11 +166,10 @@
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      document.getElementById("countdown").textContent =
-        `${days.toString().padStart(2, '0')}d : ` +
-        `${hours.toString().padStart(2, '0')}h : ` +
-        `${minutes.toString().padStart(2, '0')}m : ` +
-        `${seconds.toString().padStart(2, '0')}s`;
+      document.getElementById("days").textContent = days.toString().padStart(2, '0');
+      document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+      document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+      document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
     }
 
     setInterval(updateCountdown, 1000);
