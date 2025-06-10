@@ -59,36 +59,15 @@
       margin-top: 0.3rem;
     }
 
-    .timer-box {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.6rem;
-      font-size: 0.9rem;
-    }
-
-    .time-unit {
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 8px;
-      padding: 0.5rem;
-      width: 60px;
-    }
-
-    .time-value {
+    .typographic-timer {
       font-size: 1.2rem;
       font-weight: 600;
       color: #00ffc3;
-    }
-
-    .time-label {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      color: #aaa;
-      letter-spacing: 0.4px;
+      margin: 0.5rem 0 0.5rem;
     }
 
     .image-box {
-      max-width: 200px;
+      max-width: 240px;
       border-radius: 10px;
       overflow: hidden;
       border: 1px solid #333;
@@ -130,23 +109,8 @@
       <p>Delicious Trivia Events!</p>
     </div>
 
-    <div class="timer-box" id="countdown">
-      <div class="time-unit">
-        <div class="time-value" id="days">0</div>
-        <div class="time-label">Days</div>
-      </div>
-      <div class="time-unit">
-        <div class="time-value" id="hours">0</div>
-        <div class="time-label">Hours</div>
-      </div>
-      <div class="time-unit">
-        <div class="time-value" id="minutes">0</div>
-        <div class="time-label">Minutes</div>
-      </div>
-      <div class="time-unit">
-        <div class="time-value" id="seconds">0</div>
-        <div class="time-label">Seconds</div>
-      </div>
+    <div class="typographic-timer" id="countdown">
+      00d : 00h : 00m : 00s
     </div>
 
     <div class="image-box">
@@ -159,7 +123,7 @@
     </div>
 
     <audio id="bgMusic" loop>
-      <source src="https://cdn.pixabay.com/download/audio/2022/10/20/audio_d30a2dbab3.mp3?filename=soft-ambient-110563.mp3" type="audio/mpeg" />
+      <source src="https://drive.google.com/uc?export=download&id=10qFb7AoXkgzT2bU-OQINg59GDH9z_RFZ" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
   </div>
@@ -192,7 +156,7 @@
       const distance = targetDate - now;
 
       if (distance < 0) {
-        document.getElementById("countdown").innerHTML = "<p style='color:#0f0;'>We're live! 🎉</p>";
+        document.getElementById("countdown").innerHTML = "We're live! 🎉";
         launchConfetti();
         return;
       }
@@ -202,10 +166,11 @@
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      document.getElementById("days").textContent = days;
-      document.getElementById("hours").textContent = hours;
-      document.getElementById("minutes").textContent = minutes;
-      document.getElementById("seconds").textContent = seconds;
+      document.getElementById("countdown").textContent =
+        `${days.toString().padStart(2, '0')}d : ` +
+        `${hours.toString().padStart(2, '0')}h : ` +
+        `${minutes.toString().padStart(2, '0')}m : ` +
+        `${seconds.toString().padStart(2, '0')}s`;
     }
 
     setInterval(updateCountdown, 1000);
