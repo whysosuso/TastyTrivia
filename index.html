@@ -36,49 +36,35 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 1.2rem;
+      gap: 1.5rem;
     }
 
     .brand-box {
-      border: 1px solid #444;
-      border-radius: 10px;
-      background: #1a1a1a;
       padding: 1rem 2rem;
     }
 
     .brand-box h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
+      font-size: 2rem;
+      font-weight: 600;
       color: #00ffc3;
-      letter-spacing: 0.8px;
+      margin-bottom: 0.3rem;
     }
 
     .brand-box p {
       font-size: 1rem;
       color: #aaa;
-      margin-top: 0.3rem;
     }
 
     .flip-clock {
-      display: flex;
-      gap: 0.5rem;
-      justify-content: center;
       font-family: monospace;
       font-size: 1.6rem;
       font-weight: bold;
       color: #00ffc3;
-    }
-
-    .flip-clock span {
-      background: #1a1a1a;
-      border: 1px solid #333;
-      padding: 0.5rem 0.75rem;
-      border-radius: 8px;
-      min-width: 3ch;
+      letter-spacing: 0.1em;
     }
 
     .image-box {
-      max-width: 240px;
+      max-width: 250px;
       border-radius: 10px;
       overflow: hidden;
       border: 1px solid #333;
@@ -96,33 +82,28 @@
 
     .confetti-button {
       background-color: transparent;
-      border: 1px solid #00ffc3;
+      border: none;
       color: #00ffc3;
-      padding: 0.4rem 1.2rem;
       font-size: 1rem;
-      border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.2s, color 0.2s;
+      padding: 0.4rem 1rem;
+      text-decoration: underline;
     }
 
     .confetti-button:hover {
-      background-color: #00ffc3;
-      color: #111;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
-  <div class="container fade-in">
+  <div class="container">
     <div class="brand-box">
       <h1>Tasty Trivia</h1>
       <p>Delicious Trivia Events!</p>
     </div>
 
     <div class="flip-clock" id="countdown">
-      <span id="days">00</span>d :
-      <span id="hours">00</span>h :
-      <span id="minutes">00</span>m :
-      <span id="seconds">00</span>s
+      00d : 00h : 00m : 00s
     </div>
 
     <div class="image-box">
@@ -156,7 +137,7 @@
       const distance = targetDate - now;
 
       if (distance < 0) {
-        document.getElementById("countdown").innerHTML = "We're live! 🎉";
+        document.getElementById("countdown").textContent = "We're live! 🎉";
         launchConfetti();
         return;
       }
@@ -166,10 +147,9 @@
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      document.getElementById("days").textContent = days.toString().padStart(2, '0');
-      document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
-      document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
-      document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+      const timeString = `${days.toString().padStart(2, '0')}d : ${hours.toString().padStart(2, '0')}h : ${minutes.toString().padStart(2, '0')}m : ${seconds.toString().padStart(2, '0')}s`;
+
+      document.getElementById("countdown").textContent = timeString;
     }
 
     setInterval(updateCountdown, 1000);
