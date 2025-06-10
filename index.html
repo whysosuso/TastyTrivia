@@ -56,11 +56,20 @@
     }
 
     .flip-clock {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .flip-unit {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 0.6rem 0.8rem;
       font-family: monospace;
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       font-weight: bold;
       color: #00ffc3;
-      letter-spacing: 0.1em;
     }
 
     .image-box {
@@ -82,16 +91,17 @@
 
     .confetti-button {
       background-color: transparent;
-      border: none;
+      border: 1px solid #00ffc3;
       color: #00ffc3;
       font-size: 1rem;
       cursor: pointer;
       padding: 0.4rem 1rem;
-      text-decoration: underline;
+      border-radius: 6px;
     }
 
     .confetti-button:hover {
-      opacity: 0.8;
+      background-color: #00ffc3;
+      color: #111;
     }
   </style>
 </head>
@@ -102,8 +112,11 @@
       <p>Delicious Trivia Events!</p>
     </div>
 
-    <div class="flip-clock" id="countdown">
-      00d : 00h : 00m : 00s
+    <div class="flip-clock">
+      <div class="flip-unit" id="days">00d</div>
+      <div class="flip-unit" id="hours">00h</div>
+      <div class="flip-unit" id="minutes">00m</div>
+      <div class="flip-unit" id="seconds">00s</div>
     </div>
 
     <div class="image-box">
@@ -137,7 +150,7 @@
       const distance = targetDate - now;
 
       if (distance < 0) {
-        document.getElementById("countdown").textContent = "We're live! 🎉";
+        document.querySelector(".flip-clock").innerHTML = "<div class='flip-unit'>We're live! 🎉</div>";
         launchConfetti();
         return;
       }
@@ -147,9 +160,10 @@
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      const timeString = `${days.toString().padStart(2, '0')}d : ${hours.toString().padStart(2, '0')}h : ${minutes.toString().padStart(2, '0')}m : ${seconds.toString().padStart(2, '0')}s`;
-
-      document.getElementById("countdown").textContent = timeString;
+      document.getElementById("days").textContent = `${days.toString().padStart(2, '0')}d`;
+      document.getElementById("hours").textContent = `${hours.toString().padStart(2, '0')}h`;
+      document.getElementById("minutes").textContent = `${minutes.toString().padStart(2, '0')}m`;
+      document.getElementById("seconds").textContent = `${seconds.toString().padStart(2, '0')}s`;
     }
 
     setInterval(updateCountdown, 1000);
