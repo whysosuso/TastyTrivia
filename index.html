@@ -6,7 +6,6 @@
   <title>Tasty Trivia – Delicious Trivia Events!</title>
   <link rel="icon" href="https://emoji.gg/assets/emoji/7699-pepperoni-pizza.png" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -18,9 +17,11 @@
       animation: ambient 20s ease-in-out infinite;
       color: #eee;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       overflow: hidden;
+      padding-top: 2rem;
     }
 
     @keyframes ambient {
@@ -45,6 +46,7 @@
       border: 1px solid #333;
       border-radius: 10px;
       background: #1a1a1a;
+      margin-bottom: 1.5rem;
     }
 
     .brand-box h1 {
@@ -82,8 +84,10 @@
       color: #00ffc3;
     }
 
-    .luma-box {
-      max-width: 250px;
+    .luma-embed iframe {
+      max-width: 90vw;
+      border: 1px solid #bfcbda88;
+      border-radius: 4px;
     }
 
     .buttons {
@@ -100,21 +104,29 @@
       padding: 0.4rem 1rem;
       border-radius: 6px;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
     .confetti-button:hover {
       background-color: #00ffc3;
       color: #111;
     }
+
+    .whatsapp-icon {
+      width: 18px;
+      height: 18px;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="brand-box">
-      <h1>Tasty Trivia</h1>
-      <p>Delicious Trivia Events!</p>
-    </div>
+  <div class="brand-box">
+    <h1>Tasty Trivia</h1>
+    <p>Delicious Trivia Events!</p>
+  </div>
 
+  <div class="container">
     <div class="timer-label">Registration ends in</div>
 
     <div class="flip-clock">
@@ -124,19 +136,23 @@
       <div class="flip-unit" id="seconds">00s</div>
     </div>
 
-    <div class="luma-box">
-      <a
-        href="https://lu.ma/event/evt-2ENw35WE2cEVr26"
-        class="luma-checkout--button"
-        data-luma-action="checkout"
-        data-luma-event-id="evt-2ENw35WE2cEVr26"
-      >
-        Register for Event
-      </a>
+    <div class="luma-embed">
+      <iframe
+        src="https://lu.ma/embed/event/evt-2ENw35WE2cEVr26/simple"
+        width="600"
+        height="450"
+        frameborder="0"
+        allowfullscreen=""
+        aria-hidden="false"
+        tabindex="0"
+      ></iframe>
     </div>
 
     <div class="buttons">
-      <a class="confetti-button" href="https://bit.ly/Tasty_Trivia" target="_blank">Join WA Community</a>
+      <a class="confetti-button" href="https://bit.ly/Tasty_Trivia" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="whatsapp-icon" alt="WhatsApp Logo" />
+        Join WhatsApp Community!
+      </a>
     </div>
   </div>
 
@@ -145,14 +161,17 @@
       confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
     }
 
-    // Set countdown to Friday 11:59 PM of the current week
+    // Set countdown to Friday 11:59 PM of current week
     const getNextFridayNight = () => {
       const now = new Date();
       const friday = new Date(now);
-      friday.setDate(now.getDate() + ((5 - now.getDay() + 7) % 7)); // Next Friday
+      const day = now.getDay();
+      const diff = (5 - day + 7) % 7; // Days till next Friday
+      friday.setDate(now.getDate() + diff);
       friday.setHours(23, 59, 59, 999);
       return friday;
     };
+
     const targetDate = getNextFridayNight();
 
     function updateCountdown() {
