@@ -84,13 +84,12 @@
     }
 
     .image-box {
-      width: fit-content;
       max-width: 100%;
     }
 
     .image-box img {
-      width: calc(8 * 1.2rem); /* double the width of 4 flip-units @ 1.2rem font-size */
-      max-width: 90vw;
+      width: calc(8 * 2 * 1.2rem); /* 8 flip units × 1.2rem × 2 */
+      max-width: 95vw;
       height: auto;
       border-radius: 10px;
       border: 1px solid #333;
@@ -98,7 +97,8 @@
       margin: 0 auto;
     }
 
-    .luma-checkout--button {
+    .luma-checkout--button,
+    .whatsapp-button {
       background-color: transparent;
       border: 1px solid #00ffc3;
       color: #00ffc3;
@@ -108,12 +108,21 @@
       border-radius: 6px;
       text-decoration: none;
       transition: background-color 0.2s ease;
-      margin-top: 1rem;
+      margin-top: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
-    .luma-checkout--button:hover {
+    .luma-checkout--button:hover,
+    .whatsapp-button:hover {
       background-color: #00ffc3;
       color: #111;
+    }
+
+    .whatsapp-icon {
+      width: 18px;
+      height: 18px;
     }
 
     @media (max-width: 480px) {
@@ -127,7 +136,8 @@
       .image-box img {
         width: 100%;
       }
-      .luma-checkout--button {
+      .luma-checkout--button,
+      .whatsapp-button {
         font-size: 0.9rem;
         padding: 0.5rem 1rem;
       }
@@ -161,6 +171,11 @@
       data-luma-event-id="evt-2ENw35WE2cEVr26"
     >
       Register for Tasty Trivia | Bhubaneswar
+    </a>
+
+    <a class="whatsapp-button" href="https://bit.ly/Tasty_Trivia" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="whatsapp-icon" alt="WhatsApp Logo" />
+      Join WhatsApp Community!
     </a>
   </div>
 
