@@ -6,6 +6,7 @@
   <title>Tasty Trivia – Delicious Trivia Events!</title>
   <link rel="icon" href="https://emoji.gg/assets/emoji/7699-pepperoni-pizza.png" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -58,6 +59,12 @@
       color: #aaa;
     }
 
+    .timer-label {
+      font-size: 1rem;
+      color: #00ffc3;
+      margin-top: 1rem;
+    }
+
     .flip-clock {
       display: flex;
       gap: 0.5rem;
@@ -75,16 +82,8 @@
       color: #00ffc3;
     }
 
-    .image-box {
+    .luma-box {
       max-width: 250px;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid #333;
-    }
-
-    .image-box img {
-      width: 100%;
-      display: block;
     }
 
     .buttons {
@@ -100,6 +99,7 @@
       cursor: pointer;
       padding: 0.4rem 1rem;
       border-radius: 6px;
+      text-decoration: none;
     }
 
     .confetti-button:hover {
@@ -115,6 +115,8 @@
       <p>Delicious Trivia Events!</p>
     </div>
 
+    <div class="timer-label">Registration ends in</div>
+
     <div class="flip-clock">
       <div class="flip-unit" id="days">00d</div>
       <div class="flip-unit" id="hours">00h</div>
@@ -122,12 +124,19 @@
       <div class="flip-unit" id="seconds">00s</div>
     </div>
 
-    <div class="image-box">
-      <img src="https://i.ibb.co/BVGhgh4q/Chat-GPT-Image-May-28-2025-10-28-46-PM.png" alt="Tasty Trivia Loading Screen" />
+    <div class="luma-box">
+      <a
+        href="https://lu.ma/event/evt-2ENw35WE2cEVr26"
+        class="luma-checkout--button"
+        data-luma-action="checkout"
+        data-luma-event-id="evt-2ENw35WE2cEVr26"
+      >
+        Register for Event
+      </a>
     </div>
 
     <div class="buttons">
-      <button class="confetti-button" onclick="launchConfetti()">Celebrate 🎉</button>
+      <a class="confetti-button" href="https://bit.ly/Tasty_Trivia" target="_blank">Join WA Community</a>
     </div>
   </div>
 
@@ -136,17 +145,15 @@
       confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
     }
 
-    setTimeout(launchConfetti, 1000);
-
-    const targetDate = (() => {
+    // Set countdown to Friday 11:59 PM of the current week
+    const getNextFridayNight = () => {
       const now = new Date();
-      const day = now.getDay();
-      const diff = (7 - day) % 7 || 7;
-      const sunday = new Date(now);
-      sunday.setDate(now.getDate() + diff);
-      sunday.setHours(23, 59, 59, 999);
-      return sunday;
-    })();
+      const friday = new Date(now);
+      friday.setDate(now.getDate() + ((5 - now.getDay() + 7) % 7)); // Next Friday
+      friday.setHours(23, 59, 59, 999);
+      return friday;
+    };
+    const targetDate = getNextFridayNight();
 
     function updateCountdown() {
       const now = new Date();
@@ -154,7 +161,6 @@
 
       if (distance < 0) {
         document.querySelector(".flip-clock").innerHTML = "<div class='flip-unit'>We're live! 🎉</div>";
-        launchConfetti();
         return;
       }
 
