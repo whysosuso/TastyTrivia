@@ -155,11 +155,10 @@
   </div>
 
   <script>
-    // Set countdown to Friday 11:59 PM
     const getNextFridayNight = () => {
       const now = new Date();
       const day = now.getDay();
-      const diff = (5 - day + 7) % 7; // Days till Friday
+      const diff = (5 - day + 7) % 7;
       const friday = new Date(now);
       friday.setDate(now.getDate() + diff);
       friday.setHours(23, 59, 59, 999);
@@ -186,6 +185,14 @@
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
+
+    // Auto-scroll Luma iframe into view on load
+    window.addEventListener("load", () => {
+      const lumaIframe = document.querySelector(".luma-embed iframe");
+      if (lumaIframe) {
+        lumaIframe.scrollIntoView({ behavior: "smooth", block: "end" });
+      }
+    });
   </script>
 </body>
 </html>
