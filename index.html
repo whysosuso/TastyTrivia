@@ -16,7 +16,8 @@
       background-size: 200% 200%;
       animation: ambient 20s ease-in-out infinite;
       color: #eee;
-      overflow: hidden;
+      overflow-y: auto;
+      scroll-behavior: smooth;
     }
 
     @keyframes ambient {
@@ -46,15 +47,31 @@
       color: #aaa;
     }
 
+    .scroll-banner {
+      font-size: 0.9rem;
+      color: #00ffc3;
+      background: #111;
+      text-align: center;
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.3rem;
+      border-bottom: 1px solid #333;
+      transition: opacity 0.4s ease;
+    }
+
+    .scroll-banner.hidden {
+      opacity: 0;
+    }
+
     .container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-around;
       text-align: center;
-      padding: 0.5rem;
-      height: calc(100vh - 80px);
       gap: 0.6rem;
+      padding: 1rem 0.5rem 2rem;
     }
 
     .timer-label {
@@ -78,26 +95,9 @@
       color: #00ffc3;
     }
 
-    .scroll-banner {
-      font-size: 0.9rem;
-      color: #00ffc3;
-      background: #111;
-      text-align: center;
-      width: 100%;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 0.3rem;
-      border-bottom: 1px solid #333;
-      transition: opacity 0.4s ease;
-    }
-
-    .scroll-banner.hidden {
-      opacity: 0;
-    }
-
     .luma-embed iframe {
       width: 90vw;
+      max-width: 600px;
       height: 300px;
       border: 1px solid #bfcbda88;
       border-radius: 4px;
@@ -107,6 +107,7 @@
     .buttons {
       display: flex;
       justify-content: center;
+      margin-top: 1rem;
     }
 
     .confetti-button {
@@ -212,7 +213,7 @@
       }
     });
 
-    // Show/hide scroll banner on scroll direction
+    // Show/hide scroll banner based on scroll direction
     let lastScrollTop = 0;
     window.addEventListener("scroll", () => {
       const banner = document.getElementById("scrollBanner");
