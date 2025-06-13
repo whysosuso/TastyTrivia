@@ -16,10 +16,6 @@
       background-size: 200% 200%;
       animation: ambient 20s ease-in-out infinite;
       color: #eee;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
       overflow: hidden;
     }
 
@@ -35,7 +31,8 @@
       border-radius: 10px;
       background: #1a1a1a;
       text-align: center;
-      margin-top: 0.8rem;
+      margin: 0.8rem auto 0;
+      width: fit-content;
     }
 
     .brand-box h1 {
@@ -50,14 +47,13 @@
     }
 
     .container {
-      flex: 1;
-      max-height: calc(100vh - 70px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-around;
       text-align: center;
       padding: 0.5rem;
+      height: calc(100vh - 80px);
       gap: 0.6rem;
     }
 
@@ -80,6 +76,24 @@
       font-size: 1rem;
       font-weight: bold;
       color: #00ffc3;
+    }
+
+    .scroll-banner {
+      font-size: 0.9rem;
+      color: #00ffc3;
+      background: #111;
+      text-align: center;
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.3rem;
+      border-bottom: 1px solid #333;
+      transition: opacity 0.4s ease;
+    }
+
+    .scroll-banner.hidden {
+      opacity: 0;
     }
 
     .luma-embed iframe {
@@ -124,6 +138,10 @@
   <div class="brand-box">
     <h1>Tasty Trivia</h1>
     <p>Delicious Trivia Events!</p>
+  </div>
+
+  <div class="scroll-banner" id="scrollBanner">
+    Scroll to register! ↓
   </div>
 
   <div class="container">
@@ -192,6 +210,19 @@
       if (lumaIframe) {
         lumaIframe.scrollIntoView({ behavior: "smooth", block: "end" });
       }
+    });
+
+    // Show/hide scroll banner on scroll direction
+    let lastScrollTop = 0;
+    window.addEventListener("scroll", () => {
+      const banner = document.getElementById("scrollBanner");
+      const st = window.scrollY || document.documentElement.scrollTop;
+      if (st > lastScrollTop) {
+        banner.classList.add("hidden"); // scrolling down
+      } else {
+        banner.classList.remove("hidden"); // scrolling up
+      }
+      lastScrollTop = st <= 0 ? 0 : st;
     });
   </script>
 </body>
