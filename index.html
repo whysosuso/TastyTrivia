@@ -116,9 +116,9 @@
       border-radius: 6px;
       text-decoration: none;
       transition: background-color 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
+      display: inline-block;
+      white-space: nowrap;
+      overflow-wrap: normal;
     }
 
     .luma-checkout--button:hover,
@@ -130,6 +130,7 @@
     .whatsapp-icon {
       width: 18px;
       height: 18px;
+      vertical-align: middle;
     }
 
     @media (max-width: 480px) {
