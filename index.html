@@ -88,13 +88,21 @@
     }
 
     .image-box img {
-      width: calc(8 * 2 * 1.2rem); /* 8 flip units × 1.2rem × 2 */
+      width: calc(8 * 2 * 1.2rem);
       max-width: 95vw;
       height: auto;
       border-radius: 10px;
       border: 1px solid #333;
       display: block;
       margin: 0 auto;
+    }
+
+    .button-frame {
+      border: 2px solid #00ffc3;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-top: 1rem;
+      box-shadow: 0 0 15px #00ffc3;
     }
 
     .luma-checkout--button,
@@ -108,7 +116,6 @@
       border-radius: 6px;
       text-decoration: none;
       transition: background-color 0.2s ease;
-      margin-top: 0.8rem;
       display: flex;
       align-items: center;
       gap: 0.4rem;
@@ -164,14 +171,16 @@
       <img src="https://i.ibb.co/wZpXd1cQ/TT-BBSR.png" alt="Tasty Trivia Bhubaneswar" />
     </div>
 
-    <a
-      href="https://lu.ma/event/evt-2ENw35WE2cEVr26"
-      class="luma-checkout--button"
-      data-luma-action="checkout"
-      data-luma-event-id="evt-2ENw35WE2cEVr26"
-    >
-      Register for Tasty Trivia | Bhubaneswar
-    </a>
+    <div class="button-frame">
+      <a
+        href="https://lu.ma/event/evt-2ENw35WE2cEVr26"
+        class="luma-checkout--button"
+        data-luma-action="checkout"
+        data-luma-event-id="evt-2ENw35WE2cEVr26"
+      >
+        Register for Tasty Trivia | Bhubaneswar
+      </a>
+    </div>
 
     <a class="whatsapp-button" href="https://bit.ly/Tasty_Trivia" target="_blank">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="whatsapp-icon" alt="WhatsApp Logo" />
