@@ -57,10 +57,17 @@
       margin-bottom: 0.5rem;
     }
 
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      max-width: 100%;
+    }
+
     .flip-clock {
       display: flex;
       gap: 0.4rem;
-      margin-bottom: 1rem;
       flex-wrap: wrap;
       justify-content: center;
     }
@@ -77,17 +84,18 @@
     }
 
     .image-box {
+      width: fit-content;
       max-width: 100%;
-      width: 90vw;
-      max-height: 60vh;
-      margin-bottom: 1rem;
     }
 
     .image-box img {
-      width: 100%;
+      width: calc(8 * 1.2rem); /* double the width of 4 flip-units @ 1.2rem font-size */
+      max-width: 90vw;
       height: auto;
       border-radius: 10px;
       border: 1px solid #333;
+      display: block;
+      margin: 0 auto;
     }
 
     .luma-checkout--button {
@@ -100,6 +108,7 @@
       border-radius: 6px;
       text-decoration: none;
       transition: background-color 0.2s ease;
+      margin-top: 1rem;
     }
 
     .luma-checkout--button:hover {
@@ -114,6 +123,9 @@
       .flip-unit {
         font-size: 1rem;
         padding: 0.5rem 0.6rem;
+      }
+      .image-box img {
+        width: 100%;
       }
       .luma-checkout--button {
         font-size: 0.9rem;
@@ -130,25 +142,27 @@
 
   <div class="timer-label">Registration ends in</div>
 
-  <div class="flip-clock">
-    <div class="flip-unit" id="days">00d</div>
-    <div class="flip-unit" id="hours">00h</div>
-    <div class="flip-unit" id="minutes">00m</div>
-    <div class="flip-unit" id="seconds">00s</div>
-  </div>
+  <div class="content">
+    <div class="flip-clock">
+      <div class="flip-unit" id="days">00d</div>
+      <div class="flip-unit" id="hours">00h</div>
+      <div class="flip-unit" id="minutes">00m</div>
+      <div class="flip-unit" id="seconds">00s</div>
+    </div>
 
-  <div class="image-box">
-    <img src="https://i.ibb.co/wZpXd1cQ/TT-BBSR.png" alt="Tasty Trivia Bhubaneswar" />
-  </div>
+    <div class="image-box">
+      <img src="https://i.ibb.co/wZpXd1cQ/TT-BBSR.png" alt="Tasty Trivia Bhubaneswar" />
+    </div>
 
-  <a
-    href="https://lu.ma/event/evt-2ENw35WE2cEVr26"
-    class="luma-checkout--button"
-    data-luma-action="checkout"
-    data-luma-event-id="evt-2ENw35WE2cEVr26"
-  >
-    Register for Tasty Trivia | Bhubaneswar
-  </a>
+    <a
+      href="https://lu.ma/event/evt-2ENw35WE2cEVr26"
+      class="luma-checkout--button"
+      data-luma-action="checkout"
+      data-luma-event-id="evt-2ENw35WE2cEVr26"
+    >
+      Register for Tasty Trivia | Bhubaneswar
+    </a>
+  </div>
 
   <script>
     const getNextFridayNight = () => {
