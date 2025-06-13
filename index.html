@@ -6,18 +6,23 @@
   <title>Tasty Trivia – Delicious Trivia Events!</title>
   <link rel="icon" href="https://emoji.gg/assets/emoji/7699-pepperoni-pizza.png" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html, body {
-      height: 100vh;
+      min-height: 100vh;
       font-family: 'Inter', 'Segoe UI', sans-serif;
       background: radial-gradient(circle at center, #1a1a1a 0%, #111 100%);
       background-size: 200% 200%;
       animation: ambient 20s ease-in-out infinite;
       color: #eee;
-      overflow-y: auto;
-      scroll-behavior: smooth;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-x: hidden;
+      padding: 1rem;
     }
 
     @keyframes ambient {
@@ -32,106 +37,88 @@
       border-radius: 10px;
       background: #1a1a1a;
       text-align: center;
-      margin: 0.8rem auto 0;
-      width: fit-content;
+      margin-bottom: 1rem;
     }
 
     .brand-box h1 {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       font-weight: 600;
       color: #00ffc3;
     }
 
     .brand-box p {
-      font-size: 0.8rem;
+      font-size: 1rem;
       color: #aaa;
     }
 
-    .scroll-banner {
-      font-size: 0.9rem;
-      color: #00ffc3;
-      background: #111;
-      text-align: center;
-      width: 100%;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 0.3rem;
-      border-bottom: 1px solid #333;
-      transition: opacity 0.4s ease;
-    }
-
-    .scroll-banner.hidden {
-      opacity: 0;
-    }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 0.6rem;
-      padding: 1rem 0.5rem 2rem;
-    }
-
     .timer-label {
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: #00ffc3;
+      margin-bottom: 0.5rem;
     }
 
     .flip-clock {
       display: flex;
       gap: 0.4rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .flip-unit {
       background: #1a1a1a;
       border: 1px solid #333;
       border-radius: 6px;
-      padding: 0.4rem 0.6rem;
+      padding: 0.6rem 0.8rem;
       font-family: monospace;
-      font-size: 1rem;
+      font-size: 1.2rem;
       font-weight: bold;
       color: #00ffc3;
     }
 
-    .luma-embed iframe {
+    .image-box {
+      max-width: 100%;
       width: 90vw;
-      max-width: 600px;
-      height: 300px;
-      border: 1px solid #bfcbda88;
-      border-radius: 4px;
-      overflow: hidden;
+      max-height: 60vh;
+      margin-bottom: 1rem;
     }
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      margin-top: 1rem;
+    .image-box img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid #333;
     }
 
-    .confetti-button {
+    .luma-checkout--button {
       background-color: transparent;
       border: 1px solid #00ffc3;
       color: #00ffc3;
-      font-size: 0.85rem;
+      font-size: 1rem;
       cursor: pointer;
-      padding: 0.4rem 0.8rem;
+      padding: 0.6rem 1.2rem;
       border-radius: 6px;
       text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
+      transition: background-color 0.2s ease;
     }
 
-    .confetti-button:hover {
+    .luma-checkout--button:hover {
       background-color: #00ffc3;
       color: #111;
     }
 
-    .whatsapp-icon {
-      width: 16px;
-      height: 16px;
+    @media (max-width: 480px) {
+      .brand-box h1 {
+        font-size: 1.3rem;
+      }
+      .flip-unit {
+        font-size: 1rem;
+        padding: 0.5rem 0.6rem;
+      }
+      .luma-checkout--button {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+      }
     }
   </style>
 </head>
@@ -141,37 +128,27 @@
     <p>Delicious Trivia Events!</p>
   </div>
 
-  <div class="scroll-banner" id="scrollBanner">
-    Scroll to register! ↓
+  <div class="timer-label">Registration ends in</div>
+
+  <div class="flip-clock">
+    <div class="flip-unit" id="days">00d</div>
+    <div class="flip-unit" id="hours">00h</div>
+    <div class="flip-unit" id="minutes">00m</div>
+    <div class="flip-unit" id="seconds">00s</div>
   </div>
 
-  <div class="container">
-    <div class="timer-label">Registration ends in</div>
-
-    <div class="flip-clock">
-      <div class="flip-unit" id="days">00d</div>
-      <div class="flip-unit" id="hours">00h</div>
-      <div class="flip-unit" id="minutes">00m</div>
-      <div class="flip-unit" id="seconds">00s</div>
-    </div>
-
-    <div class="luma-embed">
-      <iframe
-        src="https://lu.ma/embed/event/evt-2ENw35WE2cEVr26/simple"
-        frameborder="0"
-        allowfullscreen=""
-        aria-hidden="false"
-        tabindex="0"
-      ></iframe>
-    </div>
-
-    <div class="buttons">
-      <a class="confetti-button" href="https://bit.ly/Tasty_Trivia" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="whatsapp-icon" alt="WhatsApp Logo" />
-        Join WhatsApp Community!
-      </a>
-    </div>
+  <div class="image-box">
+    <img src="https://i.ibb.co/wZpXd1cQ/TT-BBSR.png" alt="Tasty Trivia Bhubaneswar" />
   </div>
+
+  <a
+    href="https://lu.ma/event/evt-2ENw35WE2cEVr26"
+    class="luma-checkout--button"
+    data-luma-action="checkout"
+    data-luma-event-id="evt-2ENw35WE2cEVr26"
+  >
+    Register for Tasty Trivia | Bhubaneswar
+  </a>
 
   <script>
     const getNextFridayNight = () => {
@@ -183,19 +160,23 @@
       friday.setHours(23, 59, 59, 999);
       return friday;
     };
+
     const targetDate = getNextFridayNight();
 
     function updateCountdown() {
       const now = new Date();
       const distance = targetDate - now;
+
       if (distance < 0) {
         document.querySelector(".flip-clock").innerHTML = "<div class='flip-unit'>We're live! 🎉</div>";
         return;
       }
+
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
       document.getElementById("days").textContent = `${days.toString().padStart(2, '0')}d`;
       document.getElementById("hours").textContent = `${hours.toString().padStart(2, '0')}h`;
       document.getElementById("minutes").textContent = `${minutes.toString().padStart(2, '0')}m`;
@@ -204,27 +185,6 @@
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
-
-    // Auto-scroll Luma iframe into view on load
-    window.addEventListener("load", () => {
-      const lumaIframe = document.querySelector(".luma-embed iframe");
-      if (lumaIframe) {
-        lumaIframe.scrollIntoView({ behavior: "smooth", block: "end" });
-      }
-    });
-
-    // Show/hide scroll banner based on scroll direction
-    let lastScrollTop = 0;
-    window.addEventListener("scroll", () => {
-      const banner = document.getElementById("scrollBanner");
-      const st = window.scrollY || document.documentElement.scrollTop;
-      if (st > lastScrollTop) {
-        banner.classList.add("hidden"); // scrolling down
-      } else {
-        banner.classList.remove("hidden"); // scrolling up
-      }
-      lastScrollTop = st <= 0 ? 0 : st;
-    });
   </script>
 </body>
 </html>
