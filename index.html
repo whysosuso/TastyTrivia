@@ -86,12 +86,14 @@
       color: #00ffc3;
     }
 
-    .image-box img {
+    img.image {
       width: 60vw;
       max-height: 30vh;
       object-fit: contain;
-      border-radius: 10px;
       border: 1px solid #333;
+      border-radius: 10px;
+      display: block;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     }
 
     .theme-box {
@@ -158,19 +160,10 @@
   <div class="timer-label">Registration ends in</div>
 
   <div class="content">
-    <div class="flip-clock">
-      <div class="flip-unit" id="days">00d</div>
-      <div class="flip-unit" id="hours">00h</div>
-      <div class="flip-unit" id="minutes">00m</div>
-      <div class="flip-unit" id="seconds">00s</div>
-    </div>
-
-    <div class="image-box">
-      <img src="https://i.ibb.co/wZpXd1cQ/TT-BBSR.png" alt="Tasty Trivia Bhubaneswar" />
-    </div>
+    <img src="https://i.ibb.co/wZpXd1cQ/TT-BBSR.png" alt="Tasty Trivia Bhubaneswar" class="image" />
 
     <div class="theme-box">
-      📣 Theme: Asia-themed. Beginner-friendly tidbits on “India in Asia” and “Asia in India”.
+      📣 <b>Theme:</b> Beginner-friendly tidbits on “India in Asia” and “Asia in India”.
     </div>
 
     <div class="button-frame">
