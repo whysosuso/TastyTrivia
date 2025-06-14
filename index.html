@@ -11,7 +11,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html, body {
-      min-height: 100vh;
+      height: 100vh;
       font-family: 'Inter', 'Segoe UI', sans-serif;
       background: radial-gradient(circle at center, #1a1a1a 0%, #111 100%);
       background-size: 200% 200%;
@@ -21,8 +21,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      overflow-x: hidden;
-      padding: 1rem;
+      overflow: hidden;
+      padding: 0.5rem;
     }
 
     @keyframes ambient {
@@ -32,43 +32,45 @@
     }
 
     .brand-box {
-      padding: 0.5rem 1rem;
+      padding: 0.3rem 0.5rem;
       border: 1px solid #333;
       border-radius: 10px;
       background: #1a1a1a;
       text-align: center;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
 
     .brand-box h1 {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 600;
       color: #00ffc3;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.5rem;
     }
 
     .brand-box p {
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: #aaa;
     }
 
     .timer-label {
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #00ffc3;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
 
     .content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1rem;
-      max-width: 100%;
+      justify-content: space-evenly;
+      height: 100%;
+      width: 100%;
+      max-width: 100vw;
     }
 
     .flip-clock {
       display: flex;
-      gap: 0.4rem;
+      gap: 0.3rem;
       flex-wrap: wrap;
       justify-content: center;
     }
@@ -77,45 +79,37 @@
       background: #1a1a1a;
       border: 1px solid #333;
       border-radius: 6px;
-      padding: 0.6rem 0.8rem;
+      padding: 0.4rem 0.6rem;
       font-family: monospace;
-      font-size: 1.2rem;
+      font-size: 1rem;
       font-weight: bold;
       color: #00ffc3;
     }
 
-    .image-box {
-      max-width: 100%;
-    }
-
     .image-box img {
-      width: calc(8 * 2 * 1.2rem);
-      max-width: 95vw;
-      height: auto;
+      width: 60vw;
+      max-height: 30vh;
+      object-fit: contain;
       border-radius: 10px;
       border: 1px solid #333;
-      display: block;
-      margin: 0 auto;
     }
 
     .theme-box {
       border: 1px solid #444;
       background-color: #1a1a1a;
       color: #eee;
-      padding: 1rem;
+      padding: 0.6rem;
       border-radius: 8px;
-      margin-top: 1rem;
-      font-size: 0.95rem;
-      max-width: 600px;
+      font-size: 0.85rem;
+      max-width: 90vw;
       text-align: center;
     }
 
     .button-frame {
       border: 2px solid #00ffc3;
-      padding: 1rem;
+      padding: 0.8rem;
       border-radius: 12px;
-      margin-top: 1rem;
-      box-shadow: 0 0 15px #00ffc3;
+      box-shadow: 0 0 10px #00ffc3;
       text-align: center;
     }
 
@@ -124,16 +118,15 @@
       background-color: transparent;
       border: 1px solid #00ffc3;
       color: #00ffc3;
-      font-size: 1rem;
+      font-size: 0.9rem;
       cursor: pointer;
-      padding: 0.6rem 1.2rem;
+      padding: 0.5rem 1rem;
       border-radius: 6px;
       text-decoration: none;
       transition: background-color 0.2s ease;
       display: inline-block;
       white-space: nowrap;
-      overflow-wrap: normal;
-      margin: 0.5rem 0;
+      margin: 0.3rem 0;
     }
 
     .luma-checkout--button:hover,
@@ -143,34 +136,16 @@
     }
 
     .whatsapp-icon {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       vertical-align: middle;
     }
 
     .upcoming-events {
-      margin-top: 0.8rem;
-      font-size: 0.95rem;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
       color: #ccc;
       text-align: center;
-    }
-
-    @media (max-width: 480px) {
-      .brand-box h1 {
-        font-size: 1.3rem;
-      }
-      .flip-unit {
-        font-size: 1rem;
-        padding: 0.5rem 0.6rem;
-      }
-      .image-box img {
-        width: 100%;
-      }
-      .luma-checkout--button,
-      .whatsapp-button {
-        font-size: 0.9rem;
-        padding: 0.5rem 1rem;
-      }
     }
   </style>
 </head>
@@ -195,19 +170,13 @@
     </div>
 
     <div class="theme-box">
-      📣 <b>Theme:</b> Beginner-friendly tidbits on “India in Asia” and “Asia in India”.
+      📣 Theme: Asia-themed. Beginner-friendly tidbits on “India in Asia” and “Asia in India”.
     </div>
 
     <div class="button-frame">
-      <a
-        href="https://lu.ma/event/evt-2ENw35WE2cEVr26"
-        class="luma-checkout--button"
-        data-luma-action="checkout"
-        data-luma-event-id="evt-2ENw35WE2cEVr26"
-      >
+      <a href="https://lu.ma/event/evt-2ENw35WE2cEVr26" class="luma-checkout--button" data-luma-action="checkout" data-luma-event-id="evt-2ENw35WE2cEVr26">
         Register for Tasty Trivia | Bhubaneswar
       </a>
-
       <div class="upcoming-events">
         📅 Next: Chandigarh, Delhi, Bengaluru, Goa
       </div>
