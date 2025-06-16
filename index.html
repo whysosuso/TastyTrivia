@@ -13,7 +13,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html, body {
-      min-height: 100vh;
+      height: 100vh;
       font-family: 'Inter', 'Segoe UI', sans-serif;
       background: radial-gradient(circle at center, #1a1a1a 0%, #111 100%);
       background-size: 200% 200%;
@@ -22,6 +22,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      overflow: hidden;
       padding: 0.5rem;
     }
 
@@ -50,6 +52,7 @@
       color: #00ffc3;
       margin-bottom: 0.5rem;
       letter-spacing: 0.15em;
+      width: 100%;
       text-align: center;
     }
 
@@ -165,73 +168,61 @@
       text-align: center;
     }
 
-    .faq-section {
-      margin-top: 2rem;
-      width: 100%;
-      max-width: 600px;
-      padding: 1rem;
-    }
-
-    .faq-section h2 {
-      font-size: 1.2rem;
-      color: #00ffc3;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .faq-item {
-      margin-bottom: 0.8rem;
-    }
-
-    .faq-question {
-      background: #222;
-      color: #00ffc3;
-      border: none;
-      width: 100%;
-      padding: 0.6rem;
-      font-size: 0.95rem;
-      text-align: left;
-      cursor: pointer;
-      border-radius: 6px;
-    }
-
-    .faq-answer {
-      background: #1a1a1a;
-      padding: 0.6rem;
-      font-size: 0.85rem;
-      color: #ccc;
-      display: none;
-      border-left: 3px solid #00ffc3;
+    @media (max-width: 480px) {
+      .brand-box h1 {
+        font-size: 1.2rem;
+      }
+      .flip-unit {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.5rem;
+      }
+      img.image {
+        width: 90vw;
+        max-height: 25vh;
+      }
+      .luma-checkout--button,
+      .whatsapp-button {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Existing content remains unchanged -->
-  <!-- ... -->
+  <div class="brand-box">
+    <h1>Tasty Trivia</h1>
+    <p>Delicious Trivia Events!</p>
+  </div>
 
-  <section class="faq-section">
-    <h2>❓ FAQs</h2>
-    <div class="faq-item">
-      <button class="faq-question">Do I need to be a trivia expert?</button>
-      <div class="faq-answer">Not at all! This is a beginner-friendly event. No obscure facts — just fun, workoutable questions.</div>
+  <div class="content">
+    <div class="timer-label">Registration ends in</div>
+    <div class="flip-clock">
+      <div class="flip-unit" id="days">00d</div>
+      <div class="flip-unit" id="hours">00h</div>
+      <div class="flip-unit" id="minutes">00m</div>
+      <div class="flip-unit" id="seconds">00s</div>
     </div>
-    <div class="faq-item">
-      <button class="faq-question">Can I come alone?</button>
-      <div class="faq-answer">Absolutely! You can play solo or pair up with a new friend at the venue.</div>
+
+    <img src="https://i.ibb.co/WWYgBCcH/TT-Jun21-The-Space-Final.jpg" alt="Tasty Trivia Bhubaneswar" class="image" />
+
+    <div class="theme-box">
+      📣 <b>Theme:</b> Beginner-friendly — “India in Asia” & “Asia in India”
     </div>
-    <div class="faq-item">
-      <button class="faq-question">Is there a fee?</button>
-      <div class="faq-answer">Nope, it’s completely free. Just bring your curious self! You can however support us with an amount of your choice.</div>
+
+    <div class="button-frame">
+      <a href="https://lu.ma/event/evt-2ENw35WE2cEVr26" class="luma-checkout--button" data-luma-action="checkout" data-luma-event-id="evt-2ENw35WE2cEVr26" rel="noopener" target="_blank">
+        Register for Tasty Trivia | Bhubaneswar
+      </a>
+      <div class="upcoming-events">
+        📅 Next: Chandigarh, Delhi, Bengaluru, Goa
+      </div>
     </div>
-    <div class="faq-item">
-      <button class="faq-question">What is the format of the quiz?</button>
-      <div class="faq-answer">The quiz has a fun Starters round. 5 teams go forward to the Main Course!</div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">Are there prizes to be won?</button>
-      <div class="faq-answer">Yes! There are goodies for both finalists and the audience.</div>
-    </div>
-  </section>
+
+    <a class="whatsapp-button" href="https://bit.ly/Tasty_Trivia" target="_blank" rel="noopener">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="whatsapp-icon" alt="WhatsApp Logo" />
+      Join WhatsApp Community!
+    </a>
+  </div>
 
   <script>
     const getNextFridayNight = () => {
@@ -268,13 +259,6 @@
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
-
-    document.querySelectorAll('.faq-question').forEach(button => {
-      button.addEventListener('click', () => {
-        const answer = button.nextElementSibling;
-        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
-      });
-    });
   </script>
 </body>
 </html>
