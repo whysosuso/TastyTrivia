@@ -273,5 +273,20 @@
     data-x_margin="18"
     data-y_margin="18"
   ></script>
+
+  <script>
+    window.addEventListener("load", function () {
+      const interval = setInterval(() => {
+        const bmcFrame = document.querySelector('iframe[src*="buymeacoffee"]');
+        if (bmcFrame) {
+          bmcFrame.style.transform = "scale(0.5)";
+          bmcFrame.style.transformOrigin = "bottom right";
+          bmcFrame.style.right = "0";
+          bmcFrame.style.bottom = "0";
+          clearInterval(interval);
+        }
+      }, 300);
+    });
+  </script>
 </body>
 </html>
