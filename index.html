@@ -3,159 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Tasty Trivia – Fun, free, themed trivia nights across Indian cities. Join the community, register, and play!" />
-  <title>Tasty Trivia – Delicious Trivia Events!</title>
+  <title>Tasty Trivia – Delicious Offline Trivia Events</title>
   <link rel="icon" href="https://emoji.gg/assets/emoji/7699-pepperoni-pizza.png" />
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html, body {
-      height: 100vh;
       font-family: 'Inter', 'Segoe UI', sans-serif;
-      background: radial-gradient(circle at center, #1a1a1a 0%, #111 100%);
-      background-size: 200% 200%;
-      animation: ambient 20s ease-in-out infinite;
-      color: #eee;
+      background-color: #fdf6f0;
+      color: #222;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      overflow-y: auto;
-      padding: 1rem;
+      padding: 2rem 1rem;
     }
-
-    @keyframes ambient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    h1 {
+      font-size: 2.2rem;
+      color: #e55a5a;
+      margin-bottom: 0.5rem;
     }
-
-    .brand-box {
-      text-align: center;
+    .tagline {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #444;
       margin-bottom: 1rem;
     }
-
-    .brand-box h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #00ffc3;
-    }
-
-    .brand-box p {
+    .subtagline {
       font-size: 1rem;
-      color: #aaa;
+      color: #666;
+      text-align: center;
+      max-width: 600px;
+      margin-bottom: 1.5rem;
+    }
+    .register-button {
+      background-color: #e55a5a;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
       margin-bottom: 1rem;
     }
-
-    .value-prop {
-      font-size: 0.95rem;
-      margin-bottom: 1.5rem;
-      text-align: center;
-      color: #ddd;
-      max-width: 600px;
+    .register-button:hover {
+      background-color: #d94b4b;
     }
-
     .flip-clock {
       display: flex;
-      gap: 0.3rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 1rem;
+      gap: 0.5rem;
+      margin: 1rem 0;
     }
-
     .flip-unit {
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 6px;
-      padding: 0.4rem 0.6rem;
       font-family: monospace;
-      font-size: 1rem;
-      font-weight: bold;
-      color: #00ffc3;
-    }
-
-    .luma-checkout--button {
-      background-color: transparent;
-      border: 2px solid #00ffc3;
-      color: #00ffc3;
-      font-size: 1rem;
-      cursor: pointer;
-      padding: 0.6rem 1.4rem;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background-color 0.2s ease;
-      margin-bottom: 2rem;
-    }
-
-    .luma-checkout--button:hover {
-      background-color: #00ffc3;
-      color: #111;
-    }
-
-    .secondary-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 2rem;
-    }
-
-    .theme-box, .upcoming-events, .whatsapp-button {
-      margin-top: 1rem;
-    }
-
-    .theme-box {
-      font-size: 0.9rem;
-      background-color: rgba(26, 26, 26, 0.95);
-      padding: 0.6rem;
-      border: 1px solid #444;
-      border-radius: 8px;
-      max-width: 90vw;
-      text-align: center;
-    }
-
-    .whatsapp-button {
-      background-color: transparent;
-      border: 1px solid #00ffc3;
-      color: #00ffc3;
-      font-size: 0.9rem;
-      padding: 0.5rem 1rem;
+      font-size: 1.2rem;
+      background-color: #fff;
+      padding: 0.5rem 0.75rem;
       border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .theme {
+      margin: 1.5rem 0 1rem;
+      font-size: 1rem;
+      color: #555;
+      background-color: #fff6e8;
+      padding: 0.6rem 1rem;
+      border-left: 4px solid #e55a5a;
+      border-radius: 4px;
+    }
+    .poster {
+      width: 90%;
+      max-width: 500px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin: 1rem 0;
+    }
+    .upcoming {
+      font-size: 0.95rem;
+      color: #333;
+      margin: 1rem 0;
+    }
+    .whatsapp-button {
+      background-color: #25D366;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.95rem;
+      border-radius: 6px;
+      cursor: pointer;
       text-decoration: none;
-      display: inline-block;
-      transition: background-color 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
     }
-
-    .whatsapp-button:hover {
-      background-color: #00ffc3;
-      color: #111;
-    }
-
-    .whatsapp-icon {
-      width: 16px;
-      height: 16px;
-      vertical-align: middle;
-      margin-right: 0.4rem;
-    }
-
-    .upcoming-events {
-      color: #ccc;
-      font-size: 0.85rem;
+    .whatsapp-button img {
+      width: 18px;
+      height: 18px;
     }
   </style>
 </head>
 <body>
-  <div class="brand-box">
-    <h1>Tasty Trivia</h1>
-    <p>Delicious Trivia Events!</p>
+  <h1>Tasty Trivia</h1>
+  <div class="tagline">Delicious Offline Trivia Events</div>
+  <div class="subtagline">
+    Fun, Free & Totally Beginner-Friendly Trivia Nights — Made for Curious Gen Zs & Millennials!
   </div>
-
-  <div class="value-prop">
-    ✨ Fun, themed trivia nights for curious minds<br>
-    🧠 Work-outable clues, no obscure facts<br>
-    🎁 Free to join, prizes and good vibes!
-  </div>
+  <a href="https://lu.ma/event/evt-2ENw35WE2cEVr26" class="register-button" target="_blank">
+    Register for Next Event | Bhubaneswar | Jun 26 (Sat)
+  </a>
 
   <div class="flip-clock">
     <div class="flip-unit" id="days">00d</div>
@@ -164,24 +119,18 @@
     <div class="flip-unit" id="seconds">00s</div>
   </div>
 
-  <a href="https://lu.ma/event/evt-2ENw35WE2cEVr26" class="luma-checkout--button" data-luma-action="checkout" data-luma-event-id="evt-2ENw35WE2cEVr26" target="_blank" rel="noopener">
-    Register for Tasty Trivia | Bhubaneswar
-  </a>
-
-  <div class="secondary-section">
-    <div class="theme-box">
-      📣 <b>Theme:</b> Beginner-friendly — “India in Asia” & “Asia in India”
-    </div>
-
-    <div class="upcoming-events">
-      📅 Next: Chandigarh, Delhi, Bengaluru, Goa
-    </div>
-
-    <a class="whatsapp-button" href="https://bit.ly/Tasty_Trivia" target="_blank" rel="noopener">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="whatsapp-icon" alt="WhatsApp Logo" />
-      Join WhatsApp Community
-    </a>
+  <div class="theme">
+    📣 Theme: Beginner-friendly — “India in Asia” & “Asia in India”
   </div>
+
+  <img src="https://i.ibb.co/WWYgBCcH/TT-Jun21-The-Space-Final.jpg" alt="Tasty Trivia Poster" class="poster" />
+
+  <div class="upcoming">📅 Next: Chandigarh, Delhi, Bengaluru, Goa</div>
+
+  <a href="https://bit.ly/Tasty_Trivia" class="whatsapp-button" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    Join WhatsApp Community
+  </a>
 
   <script>
     const getNextFridayNight = () => {
@@ -199,12 +148,7 @@
     function updateCountdown() {
       const now = new Date();
       const distance = targetDate - now;
-
-      if (distance < 0) {
-        document.querySelector(".flip-clock").innerHTML = "<div class='flip-unit'>We're live! 🎉</div>";
-        return;
-      }
-
+      if (distance < 0) return;
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -219,7 +163,5 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
   </script>
-
-  <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="tastytrivia" data-description="Support me on Buy me a coffee!" data-message="Support us?" data-color="#FF5F5F" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 </body>
 </html>
