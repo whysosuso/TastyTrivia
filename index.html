@@ -3,145 +3,105 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tasty Trivia – Delicious Offline Trivia Events</title>
+  <meta name="description" content="Tasty Trivia – Fun, free, themed trivia nights across Indian cities. Join the community, register, and play!" />
+  <title>Tasty Trivia – Delicious Trivia Events!</title>
   <link rel="icon" href="https://emoji.gg/assets/emoji/7699-pepperoni-pizza.png" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
   <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="tastytrivia" data-description="Support me on Buy me a coffee!" data-message="Support us?" data-color="#FF5F5F" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     html, body {
+      height: 100vh;
       font-family: 'Inter', 'Segoe UI', sans-serif;
-      background-color: #fdf6f0;
-      color: #222;
+      background: #f6f5f2;
+      color: #111;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 2rem 1rem;
+      justify-content: flex-start;
+      padding: 1rem;
     }
-    .header-box {
-      text-align: center;
-      background-color: #fff8f3;
-      padding: 1rem 1.5rem;
+
+    .brand-box {
+      border: 1px solid #ddd;
       border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      margin-bottom: 1.5rem;
+      background: #fff;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      width: 100%;
+      max-width: 600px;
     }
-    .header-box h1 {
-      font-size: 2.2rem;
-      color: #e55a5a;
-      margin-bottom: 0.5rem;
+
+    .brand-box h1 {
+      font-size: 1.8rem;
+      color: #00a37c;
+      margin-bottom: 0.3rem;
     }
-    .header-box p {
-      font-size: 1.1rem;
+
+    .brand-box p {
+      font-size: 1rem;
       color: #444;
     }
-    .subtagline {
-      font-size: 1rem;
-      color: #666;
+
+    .subline {
       text-align: center;
-      max-width: 600px;
-      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      margin-bottom: 0.8rem;
+      color: #555;
     }
-    .register-button {
-      background-color: #e55a5a;
-      color: white;
-      border: none;
-      padding: 0.75rem 1.5rem;
+
+    .cta-line {
+      text-align: center;
       font-size: 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
+      font-weight: 500;
       margin-bottom: 1rem;
+      color: #111;
     }
-    .register-button:hover {
-      background-color: #d94b4b;
+
+    .timer-label {
+      font-size: 0.9rem;
+      color: #00a37c;
+      margin-bottom: 0.5rem;
     }
+
     .flip-clock {
       display: flex;
-      gap: 0.5rem;
-      margin: 1rem 0;
-    }
-    .flip-unit {
-      font-family: monospace;
-      font-size: 1.2rem;
-      background-color: #fff;
-      padding: 0.5rem 0.75rem;
-      border-radius: 6px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .theme {
-      margin: 1.5rem 0 1rem;
-      font-size: 1rem;
-      color: #555;
-      background-color: #fff6e8;
-      padding: 0.6rem 1rem;
-      border-left: 4px solid #e55a5a;
-      border-radius: 4px;
-    }
-    .poster {
-      width: 90%;
-      max-width: 500px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      margin: 1rem 0;
-    }
-    .upcoming {
-      font-size: 0.95rem;
-      color: #333;
-      margin: 1rem 0;
-    }
-    .whatsapp-button {
-      background-color: #25D366;
-      color: white;
-      border: none;
-      padding: 0.6rem 1.2rem;
-      font-size: 0.95rem;
-      border-radius: 6px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
       gap: 0.4rem;
+      justify-content: center;
+      margin-bottom: 1rem;
     }
-    .whatsapp-button img {
-      width: 18px;
-      height: 18px;
+
+    .flip-unit {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 0.5rem 0.7rem;
+      font-family: monospace;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #00a37c;
     }
   </style>
 </head>
 <body>
-  <div class="header-box">
+  <div class="brand-box">
     <h1>Tasty Trivia</h1>
     <p>Delicious Offline Trivia Events!</p>
   </div>
 
-  <div class="subtagline">
-    Fun & Beginner-friendly | Designed for GenZs and Millennials.
-  </div>
+  <div class="subline">Fun &amp; Beginner-friendly | For GenZs &amp; Millennials</div>
+  <div class="cta-line">Register | Bhubaneswar | Jun 26 [Sat]</div>
 
-  <a href="https://lu.ma/event/evt-2ENw35WE2cEVr26" class="register-button" target="_blank">
-    Register for Next Event | Bhubaneswar | Jun 26 (Sat)
-  </a>
-
+  <div class="timer-label">Registration ends in</div>
   <div class="flip-clock">
     <div class="flip-unit" id="days">00d</div>
     <div class="flip-unit" id="hours">00h</div>
     <div class="flip-unit" id="minutes">00m</div>
     <div class="flip-unit" id="seconds">00s</div>
   </div>
-
-  <div class="theme">
-    📣 Theme: Beginner-friendly — “India in Asia” & “Asia in India”
-  </div>
-
-  <img src="https://i.ibb.co/WWYgBCcH/TT-Jun21-The-Space-Final.jpg" alt="Tasty Trivia Poster" class="poster" />
-
-  <div class="upcoming">📅 Next: Chandigarh, Delhi, Bengaluru, Goa</div>
-
-  <a href="https://bit.ly/Tasty_Trivia" class="whatsapp-button" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
-    Join WhatsApp Community
-  </a>
 
   <script>
     const getNextFridayNight = () => {
@@ -159,7 +119,12 @@
     function updateCountdown() {
       const now = new Date();
       const distance = targetDate - now;
-      if (distance < 0) return;
+
+      if (distance < 0) {
+        document.querySelector(".flip-clock").innerHTML = "<div class='flip-unit'>We're live! 🎉</div>";
+        return;
+      }
+
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
