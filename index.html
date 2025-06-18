@@ -15,73 +15,61 @@
     html, body {
       height: 100vh;
       font-family: 'Inter', 'Segoe UI', sans-serif;
-      background: #fff7f1;
+      background: #f6f5f2;
       color: #111;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: flex-start;
       padding: 1rem;
     }
 
     .brand-box {
-      padding: 0.5rem 1rem;
       border: 1px solid #ddd;
       border-radius: 10px;
       background: #fff;
-      text-align: center;
+      padding: 1rem;
       margin-bottom: 1rem;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      width: 100%;
+      max-width: 600px;
     }
 
     .brand-box h1 {
       font-size: 1.8rem;
-      font-weight: 700;
-      color: #ff5f5f;
+      color: #00a37c;
+      margin-bottom: 0.3rem;
     }
 
     .brand-box p {
       font-size: 1rem;
       color: #444;
-      margin: 0.3rem 0 0.2rem;
     }
 
-    .brand-box span {
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    .cta-button {
-      margin: 1rem 0;
+    .subline {
       text-align: center;
+      font-size: 0.95rem;
+      margin-bottom: 0.8rem;
+      color: #555;
     }
 
-    .luma-checkout--button {
-      background-color: transparent;
-      border: 2px solid #ff5f5f;
-      color: #ff5f5f;
+    .cta-line {
+      text-align: center;
       font-size: 1rem;
-      cursor: pointer;
-      padding: 0.6rem 1.4rem;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: background-color 0.2s ease;
-    }
-
-    .luma-checkout--button:hover {
-      background-color: #ff5f5f;
-      color: #fff;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: #111;
     }
 
     .timer-label {
-      font-size: 0.95rem;
-      color: #ff5f5f;
-      margin-bottom: 0.3rem;
-      opacity: 0.8;
+      font-size: 0.9rem;
+      color: #00a37c;
+      margin-bottom: 0.5rem;
     }
 
     .flip-clock {
       display: flex;
-      gap: 0.3rem;
+      gap: 0.4rem;
       justify-content: center;
       margin-bottom: 1rem;
     }
@@ -90,56 +78,11 @@
       background: #fff;
       border: 1px solid #ccc;
       border-radius: 6px;
-      padding: 0.5rem 0.8rem;
+      padding: 0.5rem 0.7rem;
       font-family: monospace;
       font-size: 1rem;
       font-weight: bold;
-      color: #ff5f5f;
-    }
-
-    .theme-box {
-      border: 1px solid #ddd;
-      background-color: #fff;
-      color: #222;
-      padding: 0.7rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      max-width: 90vw;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .poster-img {
-      width: 75vw;
-      max-height: 45vh;
-      object-fit: contain;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .upcoming-events {
-      font-size: 0.9rem;
-      color: #444;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .whatsapp-button {
-      background-color: transparent;
-      border: 1px solid #25d366;
-      color: #25d366;
-      font-size: 0.9rem;
-      cursor: pointer;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: background-color 0.2s ease;
-    }
-
-    .whatsapp-button:hover {
-      background-color: #25d366;
-      color: #fff;
+      color: #00a37c;
     }
   </style>
 </head>
@@ -147,21 +90,10 @@
   <div class="brand-box">
     <h1>Tasty Trivia</h1>
     <p>Delicious Offline Trivia Events!</p>
-    <span>Fun & Beginner-friendly | For GenZs & Millennials</span>
   </div>
 
-  <div class="cta-button">
-    <a
-      href="https://lu.ma/event/evt-2ENw35WE2cEVr26"
-      class="luma-checkout--button"
-      data-luma-action="checkout"
-      data-luma-event-id="evt-2ENw35WE2cEVr26"
-      rel="noopener"
-      target="_blank"
-    >
-      Register | Bhubaneswar | Jun 26 [Sat]
-    </a>
-  </div>
+  <div class="subline">Fun &amp; Beginner-friendly | For GenZs &amp; Millennials</div>
+  <div class="cta-line">Register | Bhubaneswar | Jun 26 [Sat]</div>
 
   <div class="timer-label">Registration ends in</div>
   <div class="flip-clock">
@@ -170,20 +102,6 @@
     <div class="flip-unit" id="minutes">00m</div>
     <div class="flip-unit" id="seconds">00s</div>
   </div>
-
-  <div class="theme-box">
-    📣 Theme: Beginner-friendly — “India in Asia” & “Asia in India”
-  </div>
-
-  <img src="https://i.ibb.co/WWYgBCcH/TT-Jun21-The-Space-Final.jpg" alt="Tasty Trivia Poster" class="poster-img" />
-
-  <div class="upcoming-events">
-    📅 Next: Chandigarh, Delhi, Bengaluru, Goa
-  </div>
-
-  <a class="whatsapp-button" href="https://bit.ly/Tasty_Trivia" target="_blank" rel="noopener">
-    Join WhatsApp Community
-  </a>
 
   <script>
     const getNextFridayNight = () => {
