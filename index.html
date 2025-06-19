@@ -140,7 +140,7 @@
 
   <img src="https://i.ibb.co/WWYgBCcH/TT-Jun21-The-Space-Final.jpg" alt="Tasty Trivia Poster" class="poster" />
 
-  <div class="upcoming">📅 Next: Chandigarh, Delhi, Bengaluru, Goa</div>
+  <div class="upcoming">🗓️ Next: Chandigarh, Delhi, Bengaluru, Goa</div>
 
   <a href="https://bit.ly/Tasty_Trivia" class="whatsapp-button" target="_blank">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
@@ -148,17 +148,7 @@
   </a>
 
   <script>
-    const getNextFridayNight = () => {
-      const now = new Date();
-      const day = now.getDay();
-      const diff = (5 - day + 7) % 7;
-      const friday = new Date(now);
-      friday.setDate(now.getDate() + diff);
-      friday.setHours(23, 59, 59, 999);
-      return friday;
-    };
-
-    const targetDate = getNextFridayNight();
+    const targetDate = new Date("2025-06-21T11:30:00Z"); // 5:00 PM IST
 
     function updateCountdown() {
       const now = new Date();
