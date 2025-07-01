@@ -177,4 +177,99 @@
 
   <div class="event-key">🆓 = Free Events | 💰 = Paid Events</div>
 
-  <!-- register-buttons and rest of the body remains unchanged -->
+  <div class="register-buttons">
+    <a href="https://lu.ma/event/evt-QIjFDFBmfJwoySm" class="register-button" data-luma-action="checkout" data-luma-event-id="evt-QIjFDFBmfJwoySm">
+      🆓 Chandigarh | 2–4 PM, Jul 05 [Sat]
+      <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-QIjFDFBmfJwoySm')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Share" />
+      </span>
+    </a>
+    <a href="https://lu.ma/event/evt-DCTa2eCb2YkQLO7" class="register-button" data-luma-action="checkout" data-luma-event-id="evt-DCTa2eCb2YkQLO7">
+      🆓 Gurgaon | 2–4 PM, Jul 26 [Sat]
+      <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-DCTa2eCb2YkQLO7')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Share" />
+      </span>
+    </a>
+    <a href="https://lu.ma/event/evt-liIhRaVHdwwOcbn" class="register-button" data-luma-action="checkout" data-luma-event-id="evt-liIhRaVHdwwOcbn">
+      💰 Delhi | 7–9 PM, Jul 26 [Sat]
+      <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-liIhRaVHdwwOcbn')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Share" />
+      </span>
+    </a>
+  </div>
+
+  <div class="flip-clock">
+    <div class="flip-unit" id="days">00d</div>
+    <div class="flip-unit" id="hours">00h</div>
+    <div class="flip-unit" id="minutes">00m</div>
+    <div class="flip-unit" id="seconds">00s</div>
+  </div>
+
+  <div class="theme">
+    📣 Theme: “India in Asia” & “Asia in India”
+  </div>
+
+  <div class="carousel-container">
+    <button class="nav-button prev" onclick="prevSlide()">❮</button>
+    <div class="carousel" id="carousel">
+      <img src="https://i.ibb.co/KpjPfwt3/CHD-Dorje-1.jpg" alt="Slide 1" />
+      <img src="https://i.ibb.co/svc300PG/GGN.jpg" alt="Slide 2" />
+      <img src="https://i.ibb.co/JjyvHqW0/DEL.jpg" alt="Slide 3" />
+    </div>
+    <button class="nav-button next" onclick="nextSlide()">❯</button>
+  </div>
+
+  <div class="upcoming">📅 Next: Delhi, Gurgaon, Bengaluru, Goa</div>
+
+  <a href="https://bit.ly/Tasty_Trivia" class="whatsapp-button" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    Join WhatsApp Community
+  </a>
+
+  <script>
+    const targetDate = new Date("2025-07-04T17:00:00+05:30");
+
+    function updateCountdown() {
+      const now = new Date();
+      const distance = targetDate - now;
+      if (distance < 0) return;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = `${days.toString().padStart(2, '0')}d`;
+      document.getElementById("hours").textContent = `${hours.toString().padStart(2, '0')}h`;
+      document.getElementById("minutes").textContent = `${minutes.toString().padStart(2, '0')}m`;
+      document.getElementById("seconds").textContent = `${seconds.toString().padStart(2, '0')}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    const carousel = document.getElementById('carousel');
+    let index = 0;
+
+    function showSlide() {
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function nextSlide() {
+      index = (index + 1) % carousel.children.length;
+      showSlide();
+    }
+
+    function prevSlide() {
+      index = (index - 1 + carousel.children.length) % carousel.children.length;
+      showSlide();
+    }
+
+    setInterval(nextSlide, 3000);
+
+    function shareEvent(link) {
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(link)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+  </script>
+</body>
+</html>
