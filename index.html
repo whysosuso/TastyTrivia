@@ -48,6 +48,7 @@
       flex-direction: column;
       align-items: center;
       gap: 0.8rem;
+      margin-bottom: 1.5rem;
     }
     .register-button {
       background-color: #e55a5a;
@@ -70,6 +71,10 @@
     .share-icon {
       margin-left: 12px;
       cursor: pointer;
+    }
+    .share-icon img {
+      width: 18px;
+      height: 18px;
     }
     .flip-clock {
       display: flex;
@@ -104,26 +109,11 @@
       display: flex;
       transition: transform 0.5s ease-in-out;
     }
-    .carousel-item {
-      position: relative;
-      width: 100%;
-      flex-shrink: 0;
-    }
     .carousel img {
       width: 100%;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .caption {
-      position: absolute;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
-      width: 100%;
-      text-align: center;
-      padding: 0.3rem 0;
-      font-size: 0.9rem;
-      border-radius: 0 0 8px 8px;
+      flex-shrink: 0;
     }
     .nav-button {
       position: absolute;
@@ -156,6 +146,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
+      margin-top: 1rem;
     }
     .whatsapp-button img {
       width: 18px;
@@ -164,36 +155,14 @@
   </style>
 </head>
 <body>
-  <div class="header-box">
-    <h1>TASTY TRIVIA</h1>
-    <p>Delicious Offline Trivia Events!</p>
-  </div>
-
-  <div class="subtagline">
-    <p style="margin-bottom: 20px;">🎉 Fun & Beginner-friendly</p>
-    <p>🧠 For GenZs & Millennials</p>
-  </div>
-
-  <div class="register-buttons">
-    <a href="https://lu.ma/event/evt-QIjFDFBmfJwoySm" class="register-button" data-luma-action="checkout" data-luma-event-id="evt-QIjFDFBmfJwoySm">
-      Register | Chandigarh | 2–4 PM, Jul 05 [Sat]
-      <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-QIjFDFBmfJwoySm', 'https://i.ibb.co/KpjPfwt3/CHD-Dorje-1.jpg')">📤</span>
-    </a>
-    <a href="https://lu.ma/event/evt-liIhRaVHdwwOcbn" class="register-button" data-luma-action="checkout" data-luma-event-id="evt-liIhRaVHdwwOcbn">
-      Register | Delhi | 7–9 PM, Jul 26 [Sat]
-      <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-liIhRaVHdwwOcbn', 'https://i.ibb.co/JjyvHqW0/DEL.jpg')">📤</span>
-    </a>
-    <a href="https://lu.ma/event/evt-DCTa2eCb2YkQLO7" class="register-button" data-luma-action="checkout" data-luma-event-id="evt-DCTa2eCb2YkQLO7">
-      Register | Gurgaon | 2–4 PM, Jul 26 [Sat]
-      <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-DCTa2eCb2YkQLO7', 'https://i.ibb.co/svc300PG/GGN.jpg')">📤</span>
-    </a>
-  </div>
-
+  <!-- WhatsApp share icon with only link in message -->
+  <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-QIjFDFBmfJwoySm')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Share via WhatsApp" />
+  </span>
   <script>
-    function shareEvent(link, image) {
-      const message = `Check out this fun trivia event I'm attending! 🎉\n${link}\n${image}`;
-      const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
+    function shareEvent(link) {
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(link)}`;
+      window.open(whatsappUrl, '_blank');
     }
   </script>
 </body>
