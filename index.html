@@ -53,24 +53,20 @@
       text-align: center;
       line-height: 1.4;
     }
-    .press-mention {
+    .news-link {
       border: 2px solid #e55a5a;
-      background-color: #fff8f3;
-      padding: 0.75rem 1rem;
       border-radius: 8px;
-      box-shadow: 0 0 12px rgba(229, 90, 90, 0.4);
-      text-align: center;
-      font-size: 0.95rem;
-      margin-top: -0.5rem;
+      background-color: #fff8f3;
+      padding: 0.8rem 1rem;
+      box-shadow: 0 0 10px rgba(229, 90, 90, 0.5);
       margin-bottom: 1.5rem;
+      text-align: center;
     }
-    .press-mention a {
-      color: #e55a5a;
+    .news-link a {
       text-decoration: none;
-      font-weight: 500;
-    }
-    .press-mention a:hover {
-      text-decoration: underline;
+      color: #e55a5a;
+      font-weight: bold;
+      font-size: 0.95rem;
     }
     .register-buttons {
       display: flex;
@@ -173,22 +169,43 @@
   </div>
 
   <div class="register-buttons">
-    <!-- Registration buttons here (same as before) -->
+    <a href="#" class="register-button" data-luma-action="checkout" data-luma-event-id="evt-QIjFDFBmfJwoySm">
+      🆓 CHD | 2–4 PM, Jul 05 [Sat]
+      <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-QIjFDFBmfJwoySm', 'Chandigarh', 'Jul 05', '2–4 PM')">
+        <img src="https://i.ibb.co/GQtcSDyz/share-removebg-preview.png" alt="Share" />
+      </span>
+    </a>
+    <a href="#" class="register-button" data-luma-action="checkout" data-luma-event-id="evt-DCTa2eCb2YkQLO7">
+      🆓 GGN | 2–4 PM, Jul 26 [Sat]
+      <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-DCTa2eCb2YkQLO7', 'Gurgaon', 'Jul 26', '2–4 PM')">
+        <img src="https://i.ibb.co/GQtcSDyz/share-removebg-preview.png" alt="Share" />
+      </span>
+    </a>
+    <a href="#" class="register-button" data-luma-action="checkout" data-luma-event-id="evt-liIhRaVHdwwOcbn">
+      💰 DEL | 7–9 PM, Jul 26 [Sat]
+      <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-liIhRaVHdwwOcbn', 'Delhi', 'Jul 26', '7–9 PM')">
+        <img src="https://i.ibb.co/GQtcSDyz/share-removebg-preview.png" alt="Share" />
+      </span>
+    </a>
   </div>
 
   <div class="register-info">🆓 = Free Events | 💰 = Paid Events</div>
 
-  <div class="press-mention">
-    📰 <a href="https://indianexpress.com/article/lifestyle/food-wine/trivia-nights-events-india-youngsters-9504124/" target="_blank">
-      Tasty Trivia in The New Indian Express!
-    </a>
+  <div class="news-link">
+    <a href="#" onclick="openNews(); return false;">📰 Tasty Trivia in The New Indian Express!</a>
   </div>
 
   <div class="carousel-container">
-    <!-- Carousel here (same as before) -->
+    <button class="nav-button prev" onclick="prevSlide()">❞</button>
+    <div class="carousel" id="carousel">
+      <img src="https://i.ibb.co/KpjPfwt3/CHD-Dorje-1.jpg" alt="Slide 1" />
+      <img src="https://i.ibb.co/svc300PG/GGN.jpg" alt="Slide 2" />
+      <img src="https://i.ibb.co/JjyvHqW0/DEL.jpg" alt="Slide 3" />
+    </div>
+    <button class="nav-button next" onclick="nextSlide()">❟</button>
   </div>
 
-  <div class="upcoming">📅 Next: Bengaluru, Hyderabad, Goa</div>
+  <div class="upcoming">🗓️ Next: Bengaluru, Hyderabad, Goa</div>
 
   <a href="https://bit.ly/Tasty_Trivia" class="whatsapp-button" target="_blank">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
@@ -196,7 +213,38 @@
   </a>
 
   <script>
-    // Your JS here (same as before)
+    const carousel = document.getElementById('carousel');
+    let index = 0;
+
+    function showSlide() {
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function nextSlide() {
+      index = (index + 1) % carousel.children.length;
+      showSlide();
+    }
+
+    function prevSlide() {
+      index = (index - 1 + carousel.children.length) % carousel.children.length;
+      showSlide();
+    }
+
+    setInterval(nextSlide, 3000);
+
+    function shareEvent(link, city, date, time) {
+      const message = `Hey! Just came across this fun, beginner-friendly trivia night called Tasty Trivia — it’s happening in ${city} on ${date} at ${time}. Looks like a great vibe with games, prizes, and cool people.\n\nHere’s the link: ${link}\nWant to join? 😊`;
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+
+    function openNews() {
+      window.open(
+        "https://www.newindianexpress.com/amp/story/cities/bhubaneswar/2025/jun/22/rice-spice-and-quiz-marks-tasty-trivias-debut-in-bhubaneswar",
+        "newsPopup",
+        "width=600,height=700,resizable=yes,scrollbars=yes"
+      );
+    }
   </script>
 </body>
 </html>
