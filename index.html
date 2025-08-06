@@ -479,7 +479,7 @@
     // Enhanced share function with error handling
     function shareEvent(link, city, date, time) {
       try {
-        const message = `🧠 Found this awesome trivia night in ${city} (${date} ${time})! \n\nFood + games + prizes + cool people = perfect night out 🎉\n\n${link}`;
+        const message = `🧠 Found this awesome trivia event in ${city} (${date} ${time})! \n\nPrizes + fun + meet cool people + beginner friendly = perfect time! 🎉\n\n${link}`;
         const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
       } catch (error) {
