@@ -178,17 +178,23 @@
   </div>
 
   <div class="register-buttons">
-    <a href="https://lu.ma/d8z7c7f6" class="register-button" target="_blank">
+    <a href="https://lu.ma/d8z7c7f6" 
+       class="register-button luma-checkout--button" 
+       data-luma-action="checkout" 
+       data-luma-event-id="d8z7c7f6">
       💰 BLR | 4–6 PM, 06 Sep
-      <span class="share-icon" onclick="shareEvent('https://bangaloreinternationalcentre.org/event/tasty-trivia-all-things-india/', 'Bangalore', 'Aug 2', '4–6:30 PM')">
+      <span class="share-icon" onclick="shareEvent('https://lu.ma/d8z7c7f6', 'Bangalore', '06 Sep', '4–6 PM')">
         <img src="https://i.ibb.co/GQtcSDyz/share-removebg-preview.png" alt="Share" />
       </span>
     </a>
   </div>
   <div class="register-buttons">
-    <a href="https://lu.ma/d8z7c7f6" class="register-button" target="_blank">
+    <a href="https://lu.ma/d8z7c7f6" 
+       class="register-button luma-checkout--button" 
+       data-luma-action="checkout" 
+       data-luma-event-id="d8z7c7f6">
       💰 BBSR | 5–7 PM, Nov 15
-      <span class="share-icon" onclick="shareEvent('https://bangaloreinternationalcentre.org/event/tasty-trivia-all-things-india/', 'Bangalore', 'Aug 2', '4–6:30 PM')">
+      <span class="share-icon" onclick="shareEvent('https://lu.ma/d8z7c7f6', 'Bhubaneswar', 'Nov 15', '5–7 PM')">
         <img src="https://i.ibb.co/GQtcSDyz/share-removebg-preview.png" alt="Share" />
       </span>
     </a>
@@ -241,7 +247,7 @@
     setInterval(nextSlide, 3000);
 
     function shareEvent(link, city, date, time) {
-      const message = `Hey! Just came across this fun, beginner-friendly trivia night called Tasty Trivia — it’s happening in ${city} on ${date} at ${time}. Looks like a great vibe with games, prizes, and cool people.\n\nHere’s the link: ${link}\nWant to join? 😊`;
+      const message = `Hey! Just came across this fun, beginner-friendly trivia night called Tasty Trivia — it's happening in ${city} on ${date} at ${time}. Looks like a great vibe with games, prizes, and cool people.\n\nHere's the link: ${link}\nWant to join? 😊`;
       const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
     }
