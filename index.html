@@ -59,40 +59,49 @@
         animation-duration: 20s;
       }
       
+      .early-bird-banner {
+        font-size: 0.9rem;
+        padding: 0.7rem 1.2rem;
+        margin: 0 1rem 1.5rem 1rem;
+        max-width: calc(100% - 2rem);
+      }
+      
       .register-button {
-        padding: 0.8rem 1rem;
+        padding: 1rem;
         max-width: 100%;
-        min-height: 75px;
+        min-height: 70px;
         flex-direction: row;
         align-items: center;
       }
       
       .button-content {
-        margin-right: 0.5rem;
+        margin-right: 0.8rem;
       }
       
       .button-main {
-        font-size: 0.95rem;
-        margin-bottom: 0.25rem;
-        line-height: 1.1;
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+        line-height: 1.2;
         letter-spacing: 0.3px;
+        font-weight: 700;
       }
       
       .button-details {
-        font-size: 0.75rem;
+        font-size: 0.85rem;
         line-height: 1.2;
+        opacity: 0.95;
       }
       
       .share-icon {
-        padding: 6px;
-        min-width: 38px;
-        min-height: 38px;
+        padding: 8px;
+        min-width: 40px;
+        min-height: 40px;
         flex-shrink: 0;
       }
       
       .share-icon img {
-        width: 16px;
-        height: 16px;
+        width: 18px;
+        height: 18px;
       }
     }
     html, body {
@@ -187,6 +196,27 @@
       max-width: 600px;
       margin-bottom: 1.5rem;
       font-weight: 400;
+    }
+    
+    .early-bird-banner {
+      background: linear-gradient(45deg, #db4118, #e55a5a);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 15px rgba(219, 65, 24, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      max-width: 400px;
+      animation: pulse 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.02); }
     }
     .register-info {
       border: 1px solid #db4118; /* Syracuse Orange */
@@ -434,14 +464,18 @@
     <p>🧠 For GenZs & Millennials</p>
   </div>
 
+  <div class="early-bird-banner">
+    🔥 Early Bird Special - Save ₹170! Limited Time Only
+  </div>
+
   <div class="register-buttons">
     <a href="https://lu.ma/event/evt-MkKdvs95DqbpBNI" 
        class="register-button luma-checkout--button" 
        data-luma-action="checkout" 
        data-luma-event-id="evt-MkKdvs95DqbpBNI">
       <div class="button-content">
-        <div class="button-main">☁️ BANGALORE - Early Bird ₹129 (Save ₹170!)</div>
-        <div class="button-details">September 6, 4-6 PM • Win Cool Prizes • Beginner Friendly</div>
+        <div class="button-main">☁️ BANGALORE - ₹129</div>
+        <div class="button-details">Sep 6, 4-6 PM • Save ₹170</div>
       </div>
       <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-MkKdvs95DqbpBNI', 'Bangalore', '06 Sep', '4–6 PM')">
         <img src="https://i.ibb.co/3mQ9QkRN/80cc9e7494c51de832d0ef3746199004.png" alt="WhatsApp Share" />
@@ -454,8 +488,8 @@
        data-luma-action="checkout" 
        data-luma-event-id="evt-mHz4EjwBN6PDIFK">
       <div class="button-content">
-        <div class="button-main">⭐ BHUBANESWAR - Early Bird ₹129 (Save ₹170!)</div>
-        <div class="button-details">November 15, 5-7 PM • Win Cool Prizes • Beginner Friendly</div>
+        <div class="button-main">⭐ BHUBANESWAR - ₹129</div>
+        <div class="button-details">Nov 15, 5-7 PM • Save ₹170</div>
       </div>
       <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-mHz4EjwBN6PDIFK', 'Bhubaneswar', 'Nov 15', '5–7 PM')">
         <img src="https://i.ibb.co/3mQ9QkRN/80cc9e7494c51de832d0ef3746199004.png" alt="WhatsApp Share" />
