@@ -1,27 +1,258 @@
-<!-- Luma Event: BBSR | 15 Nov -->
-<div style="margin-top: 2rem; max-width: 600px;">
-  <iframe
-    src="https://lu.ma/embed/event/evt-mHz4EjwBN6PDIFK/simple"
-    width="100%"
-    height="450"
-    frameborder="0"
-    style="border: 1px solid #bfcbda88; border-radius: 4px;"
-    allow="fullscreen; payment"
-    aria-hidden="false"
-    tabindex="0"
-  ></iframe>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TASTY TRIVIA – Delicious Offline Trivia Events</title>
+  <link rel="icon" href="https://emoji.gg/assets/emoji/7699-pepperoni-pizza.png" />
+  <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      background-color: #fdf6f0;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+    .header-box {
+      text-align: center;
+      background-color: #fff8f3;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(229, 90, 90, 0.6);
+      margin-bottom: 1.5rem;
+      border: 2px solid #e55a5a;
+    }
+    .header-box h1 {
+      font-size: 2.2rem;
+      color: #e55a5a;
+      margin-bottom: 0.5rem;
+    }
+    .header-box p {
+      font-size: 1.1rem;
+      color: #444;
+    }
+    .subtagline {
+      font-size: 1rem;
+      color: #666;
+      text-align: center;
+      max-width: 600px;
+      margin-bottom: 1.5rem;
+    }
+    .register-info {
+      border: 1px solid #e55a5a;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      background-color: #fff8f3;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      color: #333;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .news-link {
+      border: 2px solid #e55a5a;
+      border-radius: 8px;
+      background-color: #fff8f3;
+      padding: 0.8rem 1rem;
+      box-shadow: 0 0 10px rgba(229, 90, 90, 0.5);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .news-link a {
+      text-decoration: none;
+      color: #e55a5a;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    .register-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+    .register-button {
+      background-color: #e55a5a;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .register-button:hover {
+      background-color: #d94b4b;
+    }
+    .highlight {
+      box-shadow: 0 0 15px 4px rgba(255, 174, 0, 0.8);
+    }
+    .share-icon {
+      margin-left: 12px;
+      cursor: pointer;
+    }
+    .share-icon img {
+      width: 18px;
+      height: 18px;
+    }
+    .carousel-container {
+      position: relative;
+      width: 90%;
+      max-width: 500px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+    .carousel {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .carousel img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+    .nav-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.4);
+      color: white;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.3rem 0.6rem;
+      z-index: 1;
+    }
+    .prev { left: 10px; }
+    .next { right: 10px; }
+    .upcoming {
+      font-size: 0.95rem;
+      color: #333;
+      margin: 1rem 0;
+    }
+    .whatsapp-button {
+      background-color: #25D366;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.95rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+    .whatsapp-button img {
+      width: 18px;
+      height: 18px;
+    }
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #555;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-box">
+    <h1>TASTY TRIVIA</h1>
+    <p>Delicious Offline Trivia Events!</p>
+  </div>
 
-<!-- Luma Event: BLR | 06 Sep -->
-<div style="margin-top: 2rem; max-width: 600px;">
-  <iframe
-    src="https://lu.ma/embed/event/evt-MkKdvs95DqbpBNI/simple"
-    width="100%"
-    height="450"
-    frameborder="0"
-    style="border: 1px solid #bfcbda88; border-radius: 4px;"
-    allow="fullscreen; payment"
-    aria-hidden="false"
-    tabindex="0"
-  ></iframe>
-</div>
+  <div class="subtagline">
+    <p style="margin-bottom: 20px;">🎉 Fun & Beginner-friendly</p>
+    <p>🧠 For GenZs & Millennials</p>
+  </div>
+
+  <div class="register-buttons">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfzglrNAgOYNVj1cC_EGpzvTZQfdUmyHHY0J1YuCx2WSNS1LQ/viewform" class="register-button" target="_blank">
+      🆓 BLR | 4–6:30 PM, Aug 2 [Full]
+      <span class="share-icon" onclick="shareEvent('https://bangaloreinternationalcentre.org/event/tasty-trivia-all-things-india/', 'Bangalore', 'Aug 2', '4–6:30 PM')">
+        <img src="https://i.ibb.co/GQtcSDyz/share-removebg-preview.png" alt="Share" />
+      </span>
+    </a>
+  </div>
+  <div class="register-buttons">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfzglrNAgOYNVj1cC_EGpzvTZQfdUmyHHY0J1YuCx2WSNS1LQ/viewform" class="register-button" target="_blank">
+      🆓 BLR | 4–6:30 PM, Aug 2 [Full]
+      <span class="share-icon" onclick="shareEvent('https://bangaloreinternationalcentre.org/event/tasty-trivia-all-things-india/', 'Bangalore', 'Aug 2', '4–6:30 PM')">
+        <img src="https://i.ibb.co/GQtcSDyz/share-removebg-preview.png" alt="Share" />
+      </span>
+    </a>
+  </div>
+
+  <div class="register-info">🆓 = Free Events | 💰 = Paid Events</div>
+
+  <div class="news-link">
+    <a href="#" onclick="openNews(); return false;">📰 We Got Featured!</a>
+  </div>
+
+  <div class="carousel-container">
+    <button class="nav-button prev" onclick="prevSlide()">←</button>
+    <div class="carousel" id="carousel">
+      <img src="https://i.ibb.co/qFCKccSc/BBSR-Nov-15.png" alt="BBSR Poster" />
+      <img src="https://i.ibb.co/NgT1RXVH/BLR-KSamagata-OS.png" alt="BLR Poster" />
+    </div>
+    <button class="nav-button next" onclick="nextSlide()">→</button>
+  </div>
+
+  <div class="upcoming">🗓️ Next: Bengaluru, Hyderabad, Goa</div>
+
+  <a href="https://bit.ly/Tasty_Trivia" class="whatsapp-button" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    Join WhatsApp Community
+  </a>
+
+  <div class="footer">
+    <b>Curated with ❤️ by Sal & Suso</b> <br>[Supported by their generous friends]</br>
+  </div>
+
+  <script>
+    const carousel = document.getElementById('carousel');
+    let index = 0;
+
+    function showSlide() {
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function nextSlide() {
+      index = (index + 1) % carousel.children.length;
+      showSlide();
+    }
+
+    function prevSlide() {
+      index = (index - 1 + carousel.children.length) % carousel.children.length;
+      showSlide();
+    }
+
+    setInterval(nextSlide, 3000);
+
+    function shareEvent(link, city, date, time) {
+      const message = `Hey! Just came across this fun, beginner-friendly trivia night called Tasty Trivia — it’s happening in ${city} on ${date} at ${time}. Looks like a great vibe with games, prizes, and cool people.\n\nHere’s the link: ${link}\nWant to join? 😊`;
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+
+    function openNews() {
+      window.open(
+        "https://www.newindianexpress.com/amp/story/cities/bhubaneswar/2025/jun/22/rice-spice-and-quiz-marks-tasty-trivias-debut-in-bhubaneswar",
+        "newsPopup",
+        "width=600,height=700,resizable=yes,scrollbars=yes"
+      );
+    }
+  </script>
+</body>
+</html>
