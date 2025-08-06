@@ -7,11 +7,13 @@
   <link rel="icon" href="https://emoji.gg/assets/emoji/7699-pepperoni-pizza.png" />
   <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Oswald:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap');
+    
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
-      font-family: 'Inter', 'Segoe UI', sans-serif;
-      background-color: #fdf6f0;
-      color: #222;
+      font-family: 'Oswald', 'Bebas Neue', 'Arial Black', sans-serif;
+      background-color: #F5DEB3; /* Butterscotch background */
+      color: #000000;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -19,54 +21,66 @@
     }
     .header-box {
       text-align: center;
-      background-color: #fff8f3;
+      background-color: #F5DEB3; /* Butterscotch */
       padding: 1rem 1.5rem;
       border-radius: 10px;
-      box-shadow: 0 0 12px rgba(229, 90, 90, 0.6);
+      box-shadow: 0 0 12px rgba(219, 65, 24, 0.6);
       margin-bottom: 1.5rem;
-      border: 2px solid #e55a5a;
+      border: 2px solid #db4118; /* Syracuse Orange */
     }
     .header-box h1 {
-      font-size: 2.2rem;
-      color: #e55a5a;
+      font-family: 'Bebas Neue', 'Oswald', sans-serif;
+      font-size: 3.2rem;
+      font-weight: 400;
+      color: #db4118; /* Syracuse Orange - brand header color */
       margin-bottom: 0.5rem;
+      letter-spacing: 2px;
     }
     .header-box p {
-      font-size: 1.1rem;
-      color: #444;
+      font-family: 'Oswald', sans-serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: #000000; /* Brand body color */
+      font-weight: 400;
     }
     .subtagline {
-      font-size: 1rem;
-      color: #666;
+      font-family: 'Oswald', sans-serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #000000; /* Brand body color */
       text-align: center;
       max-width: 600px;
       margin-bottom: 1.5rem;
+      font-weight: 400;
     }
     .register-info {
-      border: 1px solid #e55a5a;
+      border: 1px solid #db4118; /* Syracuse Orange */
       padding: 0.6rem 1rem;
       border-radius: 8px;
-      background-color: #fff8f3;
+      background-color: #F5DEB3; /* Butterscotch */
       margin-bottom: 1.5rem;
-      font-size: 0.95rem;
-      color: #333;
+      font-family: 'Oswald', sans-serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: #000000; /* Brand body color */
       text-align: center;
       line-height: 1.4;
     }
     .news-link {
-      border: 2px solid #e55a5a;
+      border: 2px solid #db4118; /* Syracuse Orange */
       border-radius: 8px;
-      background-color: #fff8f3;
+      background-color: #F5DEB3; /* Butterscotch */
       padding: 0.8rem 1rem;
-      box-shadow: 0 0 10px rgba(229, 90, 90, 0.5);
+      box-shadow: 0 0 10px rgba(219, 65, 24, 0.5);
       margin-bottom: 1.5rem;
       text-align: center;
     }
     .news-link a {
       text-decoration: none;
-      color: #e55a5a;
-      font-weight: bold;
-      font-size: 0.95rem;
+      color: #db4118; /* Syracuse Orange */
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
     }
     .register-buttons {
       display: flex;
@@ -76,11 +90,13 @@
       margin-bottom: 1.5rem;
     }
     .register-button {
-      background-color: #e55a5a;
+      background-color: #1E2A5A; /* Space Cadet */
       color: white;
       border: none;
       padding: 0.75rem 1.5rem;
-      font-size: 1rem;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 500;
+      font-size: 1.1rem;
       border-radius: 8px;
       cursor: pointer;
       text-decoration: none;
@@ -89,12 +105,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: background-color 0.3s ease;
     }
     .register-button:hover {
-      background-color: #d94b4b;
+      background-color: #6B46C1; /* Eminence on hover */
     }
     .highlight {
-      box-shadow: 0 0 15px 4px rgba(255, 174, 0, 0.8);
+      box-shadow: 0 0 15px 4px rgba(219, 65, 24, 0.8); /* Syracuse Orange glow */
     }
     .share-icon {
       margin-left: 12px;
@@ -125,27 +142,38 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background-color: rgba(0,0,0,0.4);
+      background-color: rgba(30, 42, 90, 0.8); /* Space Cadet with transparency */
       color: white;
       border: none;
       font-size: 1.5rem;
+      font-weight: bold;
       cursor: pointer;
       padding: 0.3rem 0.6rem;
+      border-radius: 4px;
       z-index: 1;
+      transition: background-color 0.3s ease;
+    }
+    .nav-button:hover {
+      background-color: rgba(219, 65, 24, 0.9); /* Syracuse Orange on hover */
     }
     .prev { left: 10px; }
     .next { right: 10px; }
     .upcoming {
-      font-size: 0.95rem;
-      color: #333;
+      font-family: 'Oswald', sans-serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: #000000; /* Brand body color */
       margin: 1rem 0;
+      font-weight: 400;
     }
     .whatsapp-button {
       background-color: #25D366;
       color: white;
       border: none;
       padding: 0.6rem 1.2rem;
-      font-size: 0.95rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
       border-radius: 6px;
       cursor: pointer;
       text-decoration: none;
@@ -153,6 +181,10 @@
       align-items: center;
       gap: 0.4rem;
       margin-top: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    .whatsapp-button:hover {
+      background-color: #128C7E;
     }
     .whatsapp-button img {
       width: 18px;
@@ -160,9 +192,12 @@
     }
     .footer {
       margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #555;
+      font-family: 'Oswald', sans-serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #000000; /* Brand body color */
       text-align: center;
+      font-weight: 400;
     }
   </style>
 </head>
@@ -178,23 +213,23 @@
   </div>
 
   <div class="register-buttons">
-    <a href="https://lu.ma/d8z7c7f6" 
+    <a href="https://lu.ma/event/evt-MkKdvs95DqbpBNI" 
        class="register-button luma-checkout--button" 
        data-luma-action="checkout" 
-       data-luma-event-id="d8z7c7f6">
+       data-luma-event-id="evt-MkKdvs95DqbpBNI">
       💰 BLR | 4–6 PM, 06 Sep
-      <span class="share-icon" onclick="shareEvent('https://lu.ma/d8z7c7f6', 'Bangalore', '06 Sep', '4–6 PM')">
+      <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-MkKdvs95DqbpBNI', 'Bangalore', '06 Sep', '4–6 PM')">
         <img src="https://i.ibb.co/GQtcSDyz/share-removebg-preview.png" alt="Share" />
       </span>
     </a>
   </div>
   <div class="register-buttons">
-    <a href="https://lu.ma/d8z7c7f6" 
+    <a href="https://lu.ma/event/evt-mHz4EjwBN6PDIFK" 
        class="register-button luma-checkout--button" 
        data-luma-action="checkout" 
-       data-luma-event-id="d8z7c7f6">
+       data-luma-event-id="evt-mHz4EjwBN6PDIFK">
       💰 BBSR | 5–7 PM, Nov 15
-      <span class="share-icon" onclick="shareEvent('https://lu.ma/d8z7c7f6', 'Bhubaneswar', 'Nov 15', '5–7 PM')">
+      <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-mHz4EjwBN6PDIFK', 'Bhubaneswar', 'Nov 15', '5–7 PM')">
         <img src="https://i.ibb.co/GQtcSDyz/share-removebg-preview.png" alt="Share" />
       </span>
     </a>
