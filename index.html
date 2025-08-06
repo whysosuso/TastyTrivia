@@ -7,7 +7,7 @@
   <link rel="icon" href="https://emoji.gg/assets/emoji/7699-pepperoni-pizza.png" />
   <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Oswald:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Oswald:ital,wght@0,400;0,500;0,600;1,400&display=swap');
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
@@ -106,9 +106,31 @@
       justify-content: space-between;
       align-items: center;
       transition: background-color 0.3s ease;
+      position: relative;
     }
     .register-button:hover {
       background-color: #6B46C1; /* Eminence on hover */
+    }
+    .register-button.loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .register-button.loading::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      border: 2px solid transparent;
+      border-top: 2px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
     }
     .highlight {
       box-shadow: 0 0 15px 4px rgba(219, 65, 24, 0.8); /* Syracuse Orange glow */
@@ -116,10 +138,21 @@
     .share-icon {
       margin-left: 12px;
       cursor: pointer;
+      padding: 8px;
+      min-width: 44px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    .share-icon:hover {
+      background-color: rgba(255, 255, 255, 0.1);
     }
     .share-icon img {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
     }
     .carousel-container {
       position: relative;
@@ -242,58 +275,138 @@
   </div>
 
   <div class="carousel-container">
-    <button class="nav-button prev" onclick="prevSlide()">←</button>
+    <button class="nav-button prev" onclick="prevSlide()" aria-label="Previous event poster">←</button>
     <div class="carousel" id="carousel">
-      <img src="https://i.ibb.co/qFCKccSc/BBSR-Nov-15.png" alt="BBSR Poster" />
-      <img src="https://i.ibb.co/NgT1RXVH/BLR-KSamagata-OS.png" alt="BLR Poster" />
+      <img src="https://i.ibb.co/qFCKccSc/BBSR-Nov-15.png" alt="Tasty Trivia BBSR November 15 event poster" loading="lazy" onerror="handleImageError(this)" />
+      <img src="https://i.ibb.co/NgT1RXVH/BLR-KSamagata-OS.png" alt="Tasty Trivia BLR event poster" loading="lazy" onerror="handleImageError(this)" />
     </div>
-    <button class="nav-button next" onclick="nextSlide()">→</button>
+    <button class="nav-button next" onclick="nextSlide()" aria-label="Next event poster">→</button>
   </div>
 
   <div class="upcoming">🗓️ Next: Bangalore, Goa, Bhubaneswar, Mumbai</div>
 
   <a href="https://bit.ly/Tasty_Trivia" class="whatsapp-button" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" onerror="this.style.display='none'" />
     Join WhatsApp Community
   </a>
 
   <div class="footer">
-    <b>Curated with ❤️ by Sal & Suso</b> <br>[Supported by their lovely friends]</br>
+    <b>Curated with ❤️ by Sal & Suso</b><br>[Supported by their lovely friends]
   </div>
 
   <script>
     const carousel = document.getElementById('carousel');
     let index = 0;
+    let autoSlideInterval;
 
     function showSlide() {
-      carousel.style.transform = `translateX(-${index * 100}%)`;
+      if (carousel && carousel.children.length > 0) {
+        carousel.style.transform = `translateX(-${index * 100}%)`;
+      }
     }
 
     function nextSlide() {
-      index = (index + 1) % carousel.children.length;
-      showSlide();
+      if (carousel && carousel.children.length > 0) {
+        index = (index + 1) % carousel.children.length;
+        showSlide();
+      }
     }
 
     function prevSlide() {
-      index = (index - 1 + carousel.children.length) % carousel.children.length;
-      showSlide();
+      if (carousel && carousel.children.length > 0) {
+        index = (index - 1 + carousel.children.length) % carousel.children.length;
+        showSlide();
+      }
     }
 
-    setInterval(nextSlide, 3000);
+    // Start auto-slide with longer interval
+    function startAutoSlide() {
+      autoSlideInterval = setInterval(nextSlide, 5000);
+    }
 
+    function stopAutoSlide() {
+      if (autoSlideInterval) {
+        clearInterval(autoSlideInterval);
+      }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft') {
+        stopAutoSlide();
+        prevSlide();
+        setTimeout(startAutoSlide, 3000);
+      } else if (e.key === 'ArrowRight') {
+        stopAutoSlide();
+        nextSlide();
+        setTimeout(startAutoSlide, 3000);
+      }
+    });
+
+    // Image error handling
+    function handleImageError(img) {
+      img.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><rect width="400" height="300" fill="%23F5DEB3"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" font-family="Arial" font-size="16" fill="%23db4118">Event Poster</text></svg>';
+      img.alt = "Event poster (image unavailable)";
+    }
+
+    // Loading state for register buttons
+    function addLoadingState(button) {
+      button.classList.add('loading');
+      setTimeout(() => {
+        button.classList.remove('loading');
+      }, 3000);
+    }
+
+    // Enhanced share function with error handling
     function shareEvent(link, city, date, time) {
-      const message = `Hey! Just came across this fun, beginner-friendly trivia night called Tasty Trivia — it's happening in ${city} on ${date} at ${time}. Looks like a great vibe with games, prizes, and cool people.\n\nHere's the link: ${link}\nWant to join? 😊`;
-      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
+      try {
+        const message = `Hey! Just came across this fun, beginner-friendly trivia night called Tasty Trivia — it's happening in ${city} on ${date} at ${time}. Looks like a great vibe with games, prizes, and cool people.\n\nHere's the link: ${link}\nWant to join? 😊`;
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+      } catch (error) {
+        console.error('Error sharing event:', error);
+        // Fallback: copy to clipboard
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(link);
+          alert('Link copied to clipboard!');
+        }
+      }
     }
 
     function openNews() {
-      window.open(
-        "https://www.newindianexpress.com/amp/story/cities/bhubaneswar/2025/jun/22/rice-spice-and-quiz-marks-tasty-trivias-debut-in-bhubaneswar",
-        "newsPopup",
-        "width=600,height=700,resizable=yes,scrollbars=yes"
-      );
+      try {
+        window.open(
+          "https://www.newindianexpress.com/amp/story/cities/bhubaneswar/2025/jun/22/rice-spice-and-quiz-marks-tasty-trivias-debut-in-bhubaneswar",
+          "newsPopup",
+          "width=600,height=700,resizable=yes,scrollbars=yes"
+        );
+      } catch (error) {
+        console.error('Error opening news:', error);
+        window.location.href = "https://www.newindianexpress.com/amp/story/cities/bhubaneswar/2025/jun/22/rice-spice-and-quiz-marks-tasty-trivias-debut-in-bhubaneswar";
+      }
     }
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      startAutoSlide();
+      
+      // Add click handlers to register buttons for loading state
+      const registerButtons = document.querySelectorAll('.register-button');
+      registerButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          addLoadingState(this);
+        });
+      });
+    });
+
+    // Pause auto-slide when page is not visible
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        stopAutoSlide();
+      } else {
+        startAutoSlide();
+      }
+    });
   </script>
 </body>
 </html>
