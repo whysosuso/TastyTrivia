@@ -58,6 +58,42 @@
         font-size: 0.85rem;
         animation-duration: 20s;
       }
+      
+      .register-button {
+        padding: 0.8rem 1rem;
+        max-width: 100%;
+        min-height: 75px;
+        flex-direction: row;
+        align-items: center;
+      }
+      
+      .button-content {
+        margin-right: 0.5rem;
+      }
+      
+      .button-main {
+        font-size: 0.95rem;
+        margin-bottom: 0.25rem;
+        line-height: 1.1;
+        letter-spacing: 0.3px;
+      }
+      
+      .button-details {
+        font-size: 0.75rem;
+        line-height: 1.2;
+      }
+      
+      .share-icon {
+        padding: 6px;
+        min-width: 38px;
+        min-height: 38px;
+        flex-shrink: 0;
+      }
+      
+      .share-icon img {
+        width: 16px;
+        height: 16px;
+      }
     }
     html, body {
       font-family: 'Oswald', 'Bebas Neue', 'Arial Black', sans-serif;
@@ -189,26 +225,61 @@
       margin-bottom: 1.5rem;
     }
     .register-button {
-      background-color: #1E2A5A; /* Space Cadet */
+      background: linear-gradient(135deg, #1E2A5A 0%, #2D3B6B 100%);
       color: white;
       border: none;
-      padding: 0.75rem 1.5rem;
+      padding: 1rem 1.5rem;
       font-family: 'Oswald', sans-serif;
-      font-weight: 500;
-      font-size: 1.1rem;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
       text-decoration: none;
       width: 100%;
-      max-width: 420px;
+      max-width: 450px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
       position: relative;
+      box-shadow: 0 4px 15px rgba(30, 42, 90, 0.3);
+      border: 2px solid transparent;
+      min-height: 70px;
     }
     .register-button:hover {
-      background-color: #6B46C1; /* Eminence on hover */
+      background: linear-gradient(135deg, #6B46C1 0%, #8B5CF6 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(107, 70, 193, 0.4);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .button-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex-grow: 1;
+      text-align: left;
+      margin-right: 1rem;
+    }
+    
+    .button-main {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+    
+    .city-highlight {
+      color: #FFD700;
+      font-weight: 700;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .button-details {
+      font-size: 0.9rem;
+      font-weight: 400;
+      opacity: 0.9;
+      font-style: italic;
+      line-height: 1.3;
     }
     .register-button.loading {
       opacity: 0.7;
@@ -220,12 +291,17 @@
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      width: 20px;
-      height: 20px;
-      border: 2px solid transparent;
-      border-top: 2px solid white;
+      width: 24px;
+      height: 24px;
+      border: 3px solid transparent;
+      border-top: 3px solid white;
       border-radius: 50%;
       animation: spin 1s linear infinite;
+      z-index: 10;
+    }
+    .register-button.loading .button-content,
+    .register-button.loading .share-icon {
+      opacity: 0.3;
     }
     @keyframes spin {
       0% { transform: translate(-50%, -50%) rotate(0deg); }
@@ -363,7 +439,10 @@
        class="register-button luma-checkout--button" 
        data-luma-action="checkout" 
        data-luma-event-id="evt-MkKdvs95DqbpBNI">
-      💰 BLR | 4–6 PM, 06 Sep
+      <div class="button-content">
+        <div class="button-main">☁️ BANGALORE - Early Bird ₹129 (Save ₹170!)</div>
+        <div class="button-details">September 6, 4-6 PM • Win Cool Prizes • Beginner Friendly</div>
+      </div>
       <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-MkKdvs95DqbpBNI', 'Bangalore', '06 Sep', '4–6 PM')">
         <img src="https://i.ibb.co/3mQ9QkRN/80cc9e7494c51de832d0ef3746199004.png" alt="WhatsApp Share" />
       </span>
@@ -374,7 +453,10 @@
        class="register-button luma-checkout--button" 
        data-luma-action="checkout" 
        data-luma-event-id="evt-mHz4EjwBN6PDIFK">
-      💰 BBSR | 5–7 PM, 15 Nov
+      <div class="button-content">
+        <div class="button-main">⭐ BHUBANESWAR - Early Bird ₹129 (Save ₹170!)</div>
+        <div class="button-details">November 15, 5-7 PM • Win Cool Prizes • Beginner Friendly</div>
+      </div>
       <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-mHz4EjwBN6PDIFK', 'Bhubaneswar', 'Nov 15', '5–7 PM')">
         <img src="https://i.ibb.co/3mQ9QkRN/80cc9e7494c51de832d0ef3746199004.png" alt="WhatsApp Share" />
       </span>
@@ -396,7 +478,7 @@
     <button class="nav-button next" onclick="nextSlide()" aria-label="Next event poster">→</button>
   </div>
 
-  <div class="upcoming">🗓️ Next: Bangalore, Goa, Bhubaneswar, Mumbai</div>
+  <div class="upcoming">🗓️ Next Cities: Bangalore, Goa, Bhubaneswar, Mumbai</div>
 
   <a href="https://bit.ly/Tasty_Trivia" class="whatsapp-button" target="_blank">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" onerror="this.style.display='none'" />
