@@ -59,6 +59,11 @@
         animation-duration: 20s;
       }
       
+      .register-buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
       .early-bird-banner {
         font-size: 0.9rem;
         padding: 0.7rem 1.2rem;
@@ -67,43 +72,54 @@
       }
       
       .register-button {
-        padding: 1rem;
-        max-width: 100%;
-        min-height: 80px;
-        flex-direction: row;
+        padding: 0.8rem;
+        width: 140px;
+        height: 140px;
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
       }
       
       .button-content {
-        margin-right: 0.8rem;
-        min-height: 50px;
+        margin-right: 0;
+        margin-bottom: 0.3rem;
+        min-height: auto;
         justify-content: center;
       }
       
       .button-main {
-        font-size: 0.95rem;
-        margin-bottom: 0.3rem;
-        line-height: 1.2;
+        font-size: 0.85rem;
+        margin-bottom: 0.1rem;
+        line-height: 1.1;
         letter-spacing: 0.2px;
         font-weight: 700;
       }
       
+      .button-price {
+        font-size: 0.9rem;
+        font-weight: 700;
+        margin-bottom: 0.1rem;
+        letter-spacing: 0.3px;
+      }
+      
       .button-details {
-        font-size: 0.8rem;
-        line-height: 1.2;
+        font-size: 0.65rem;
+        line-height: 1.1;
         opacity: 0.95;
       }
       
       .share-icon {
-        padding: 8px;
-        min-width: 40px;
-        min-height: 40px;
+        padding: 4px;
+        min-width: 28px;
+        min-height: 28px;
         flex-shrink: 0;
+        bottom: 3px;
+        right: 3px;
       }
       
       .share-icon img {
-        width: 18px;
-        height: 18px;
+        width: 14px;
+        height: 14px;
       }
       
       .whatsapp-section {
@@ -303,25 +319,27 @@
     }
     .register-buttons {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      gap: 0.8rem;
+      justify-content: center;
+      gap: 1.5rem;
       margin-bottom: 1.5rem;
+      flex-wrap: wrap;
     }
     .register-button {
       background: linear-gradient(135deg, #1E2A5A 0%, #2D3B6B 100%);
       color: white;
       border: none;
-      padding: 1rem 1.5rem;
+      padding: 1rem;
       font-family: 'Oswald', sans-serif;
-      border-radius: 12px;
+      border-radius: 50%;
       cursor: pointer;
       text-decoration: none;
-      width: 100%;
-      max-width: 450px;
-      min-height: 80px;
+      width: 160px;
+      height: 160px;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
       transition: all 0.3s ease;
       position: relative;
@@ -338,18 +356,26 @@
     .button-content {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      flex-grow: 1;
-      text-align: left;
-      margin-right: 1rem;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 0.5rem;
     }
     
     .button-main {
-      font-size: 1.2rem;
+      font-size: 1rem;
       font-weight: 600;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.1rem;
+      letter-spacing: 0.3px;
+      line-height: 1.1;
+    }
+    
+    .button-price {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #FFD700;
+      margin-bottom: 0.1rem;
       letter-spacing: 0.5px;
-      line-height: 1.2;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
     
     .city-highlight {
@@ -359,11 +385,11 @@
     }
     
     .button-details {
-      font-size: 0.9rem;
+      font-size: 0.7rem;
       font-weight: 400;
       opacity: 0.9;
       font-style: italic;
-      line-height: 1.3;
+      line-height: 1.2;
     }
     .register-button.loading {
       opacity: 0.7;
@@ -395,23 +421,26 @@
       box-shadow: 0 0 15px 4px rgba(219, 65, 24, 0.8); /* Syracuse Orange glow */
     }
     .share-icon {
-      margin-left: 12px;
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
       cursor: pointer;
-      padding: 8px;
-      min-width: 44px;
-      min-height: 44px;
+      padding: 6px;
+      min-width: 32px;
+      min-height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 4px;
+      border-radius: 50%;
       transition: background-color 0.3s ease;
+      background-color: rgba(255, 255, 255, 0.1);
     }
     .share-icon:hover {
       background-color: rgba(255, 255, 255, 0.1);
     }
     .share-icon img {
-      width: 20px;
-      height: 20px;
+      width: 16px;
+      height: 16px;
     }
     .carousel-container {
       position: relative;
@@ -666,22 +695,22 @@
        data-luma-action="checkout" 
        data-luma-event-id="evt-MkKdvs95DqbpBNI">
       <div class="button-content">
-        <div class="button-main">☁️ BANGALORE - ₹129</div>
-        <div class="button-details">Sep 6, 4-6 PM • Save ₹170</div>
+        <div class="button-main">☁️ BANGALORE</div>
+        <div class="button-price">₹129</div>
+        <div class="button-details">Sep 6, 4-6 PM</div>
       </div>
       <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-MkKdvs95DqbpBNI', 'Bangalore', '06 Sep', '4–6 PM')">
         <img src="https://i.ibb.co/3mQ9QkRN/80cc9e7494c51de832d0ef3746199004.png" alt="WhatsApp Share" />
       </span>
     </a>
-  </div>
-  <div class="register-buttons">
     <a href="https://lu.ma/event/evt-mHz4EjwBN6PDIFK" 
        class="register-button luma-checkout--button" 
        data-luma-action="checkout" 
        data-luma-event-id="evt-mHz4EjwBN6PDIFK">
       <div class="button-content">
-        <div class="button-main">⭐ BHUBANESWAR - ₹129</div>
-        <div class="button-details">Nov 15, 5-7 PM • Save ₹170</div>
+        <div class="button-main">⭐ BHUBANESWAR</div>
+        <div class="button-price">₹129</div>
+        <div class="button-details">Nov 15, 5-7 PM</div>
       </div>
       <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-mHz4EjwBN6PDIFK', 'Bhubaneswar', 'Nov 15', '5–7 PM')">
         <img src="https://i.ibb.co/3mQ9QkRN/80cc9e7494c51de832d0ef3746199004.png" alt="WhatsApp Share" />
@@ -709,18 +738,18 @@
   </div>
 
   <div class="whatsapp-section">
+    <a href="https://bit.ly/Tasty_Trivia" class="whatsapp-button" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" onerror="this.style.display='none'" />
+      Join 500+ Members - Get Special Prices!
+    </a>
     <div class="whatsapp-benefits">
-      <h3>🍜 Get Tastiest Access</h3>
+      <h3>🍜 Get The Tastiest Access</h3>
       <div class="benefits-grid">
         <div class="benefit-item">📢 Event Updates</div>
         <div class="benefit-item">💰 Special Prices</div>
         <div class="benefit-item">🏆 Exclusive Contests</div>
       </div>
     </div>
-    <a href="https://bit.ly/Tasty_Trivia" class="whatsapp-button" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" onerror="this.style.display='none'" />
-      Join 500+ Members - Get Special Prices!
-    </a>
   </div>
 
   <div class="footer">
