@@ -173,6 +173,24 @@
       .notify-text {
         font-size: 0.8rem;
       }
+      
+      .contact-title {
+        font-size: 0.9rem;
+      }
+      
+      .contact-email a {
+        font-size: 0.8rem;
+      }
+      
+      .social-handles {
+        font-size: 0.75rem;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+      
+      .social-separator {
+        display: none;
+      }
     }
     html, body {
       font-family: 'Oswald', 'Bebas Neue', 'Arial Black', sans-serif;
@@ -649,6 +667,7 @@
     .community-section {
       border-top: 1px solid rgba(219, 65, 24, 0.2);
       padding-top: 1rem;
+      margin-bottom: 1rem;
     }
     
     .community-text {
@@ -657,6 +676,57 @@
       color: #1E2A5A;
       font-weight: 500;
       font-style: italic;
+    }
+    
+    .contact-section {
+      border-top: 1px solid rgba(219, 65, 24, 0.2);
+      padding-top: 1rem;
+    }
+    
+    .contact-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      color: #db4118;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+    
+    .contact-email {
+      margin-bottom: 0.5rem;
+    }
+    
+    .contact-email a {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.9rem;
+      color: #1E2A5A;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    .contact-email a:hover {
+      color: #db4118;
+    }
+    
+    .social-handles {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      color: #666;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .social-handle {
+      white-space: nowrap;
+    }
+    
+    .social-separator {
+      color: #999;
     }
   </style>
 </head>
@@ -700,7 +770,7 @@
         <div class="button-details">Sep 6, 4-6 PM</div>
       </div>
       <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-MkKdvs95DqbpBNI', 'Bangalore', '06 Sep', '4–6 PM')">
-        <img src="https://i.ibb.co/3mQ9QkRN/80cc9e7494c51de832d0ef3746199004.png" alt="WhatsApp Share" />
+        <img src="https://i.ibb.co/FkxqqVZw/Arrow.png" alt="Share" />
       </span>
     </a>
     <a href="https://lu.ma/event/evt-mHz4EjwBN6PDIFK" 
@@ -713,7 +783,7 @@
         <div class="button-details">Nov 15, 5-7 PM</div>
       </div>
       <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-mHz4EjwBN6PDIFK', 'Bhubaneswar', 'Nov 15', '5–7 PM')">
-        <img src="https://i.ibb.co/3mQ9QkRN/80cc9e7494c51de832d0ef3746199004.png" alt="WhatsApp Share" />
+        <img src="https://i.ibb.co/FkxqqVZw/Arrow.png" alt="Share" />
       </span>
     </a>
   </div>
@@ -763,6 +833,17 @@
       </div>
       <div class="community-section">
         <div class="community-text">Powered by our lovely friends!</div>
+      </div>
+      <div class="contact-section">
+        <div class="contact-title">📧 Get in Touch</div>
+        <div class="contact-email">
+          <a href="mailto:hi.tastytrivia@gmail.com">hi.tastytrivia@gmail.com</a>
+        </div>
+        <div class="social-handles">
+          <span class="social-handle">📸 IG: @gettastytrivia</span>
+          <span class="social-separator">•</span>
+          <span class="social-handle">🐦 X: @gettastytrivia</span>
+        </div>
       </div>
     </div>
   </div>
