@@ -758,6 +758,42 @@
     .social-separator {
       color: #999;
     }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #db4118, #e55a5a);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(219, 65, 24, 0.3);
+      z-index: 999;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    
+    .back-to-top:hover {
+      background: linear-gradient(135deg, #c23815, #d14a4a);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(219, 65, 24, 0.4);
+    }
   </style>
 </head>
 <body>
