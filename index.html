@@ -794,6 +794,111 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(219, 65, 24, 0.4);
     }
+    
+    .carousel-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    
+    .carousel-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: rgba(30, 42, 90, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+    }
+    
+    .carousel-indicator.active {
+      background-color: #db4118;
+      transform: scale(1.2);
+    }
+    
+    .carousel-indicator:hover {
+      background-color: rgba(30, 42, 90, 0.6);
+      transform: scale(1.1);
+    }
+    
+    /* Fade-in animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+    
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: all 0.6s ease;
+    }
+    
+    .slide-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .slide-in-right {
+      opacity: 0;
+      transform: translateX(30px);
+      transition: all 0.6s ease;
+    }
+    
+    .slide-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    /* Enhanced hover effects */
+    .register-button {
+      background: linear-gradient(135deg, #1E2A5A 0%, #2D3B6B 100%);
+      color: white;
+      border: none;
+      padding: 1rem;
+      font-family: 'Oswald', sans-serif;
+      border-radius: 50%;
+      cursor: pointer;
+      text-decoration: none;
+      width: 160px;
+      height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      box-shadow: 0 4px 15px rgba(30, 42, 90, 0.3);
+      border: 2px solid transparent;
+    }
+    
+    .whatsapp-button {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+      min-height: 56px;
+      width: 100%;
+      max-width: 400px;
+    }
   </style>
 </head>
 <body>
@@ -805,7 +910,7 @@
     </div>
   </div>
 
-  <div class="header-box">
+  <div class="header-box fade-in">
     <img src="https://i.ibb.co/1fwSfgcK/8-bit-purple-logo-2x-removebg-preview.png" 
          alt="Tasty Trivia 8-bit logo" 
          class="header-logo"
@@ -816,15 +921,15 @@
     </div>
   </div>
 
-  <div class="promo-section">
+  <div class="promo-section fade-in">
     <div class="promo-title">🔥 Early Bird Special</div>
     <div class="promo-subtitle">🎉 Fun & Beginner-friendly</div>
     <div class="promo-subtitle">🧠 For GenZs & Millennials</div>
   </div>
 
-  <div class="register-buttons">
+  <div class="register-buttons fade-in">
     <a href="https://lu.ma/event/evt-MkKdvs95DqbpBNI" 
-       class="register-button luma-checkout--button" 
+       class="register-button luma-checkout--button slide-in-left" 
        data-luma-action="checkout" 
        data-luma-event-id="evt-MkKdvs95DqbpBNI">
       <div class="button-content">
@@ -838,7 +943,7 @@
       </span>
     </a>
     <a href="https://lu.ma/event/evt-mHz4EjwBN6PDIFK" 
-       class="register-button luma-checkout--button" 
+       class="register-button luma-checkout--button slide-in-right" 
        data-luma-action="checkout" 
        data-luma-event-id="evt-mHz4EjwBN6PDIFK">
       <div class="button-content">
@@ -853,26 +958,30 @@
     </a>
   </div>
 
-  <div class="news-link">
+  <div class="news-link fade-in">
     <a href="#" onclick="openNews(); return false;">📰 We Got Featured!</a>
   </div>
 
-  <div class="carousel-container">
+  <div class="carousel-container fade-in">
     <button class="nav-button prev" onclick="prevSlide()" aria-label="Previous event poster">←</button>
     <div class="carousel" id="carousel">
       <img src="https://i.ibb.co/qFCKccSc/BBSR-Nov-15.png" alt="Tasty Trivia BBSR November 15 event poster" loading="lazy" onerror="handleImageError(this)" />
       <img src="https://i.ibb.co/NgT1RXVH/BLR-KSamagata-OS.png" alt="Tasty Trivia BLR event poster" loading="lazy" onerror="handleImageError(this)" />
     </div>
     <button class="nav-button next" onclick="nextSlide()" aria-label="Next event poster">→</button>
+    <div class="carousel-indicators" id="carouselIndicators">
+      <button class="carousel-indicator active" onclick="goToSlide(0)" aria-label="Go to slide 1"></button>
+      <button class="carousel-indicator" onclick="goToSlide(1)" aria-label="Go to slide 2"></button>
+    </div>
   </div>
 
-  <div class="upcoming-cities">
+  <div class="upcoming-cities fade-in">
     <div class="upcoming-title">🚀 Coming Soon</div>
     <div class="cities-list">Goa • Mumbai • Delhi • Pune • Hyderabad</div>
     <div class="notify-text">Want to be notified? Join our community below! 👇</div>
   </div>
 
-  <div class="whatsapp-section">
+  <div class="whatsapp-section fade-in">
     <a href="https://bit.ly/Tasty_Trivia" class="whatsapp-button" target="_blank">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" onerror="this.style.display='none'" />
       Join 500+ Members - Get Special Prices!
@@ -887,7 +996,7 @@
     </div>
   </div>
 
-  <div class="footer">
+  <div class="footer fade-in">
     <div class="footer-content">
       <div class="creators-section">
         <div class="creators-title">👥 Meet the Curators</div>
@@ -913,14 +1022,42 @@
     </div>
   </div>
 
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Back to top">
+    ↑
+  </button>
+
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Back to top">
+    ↑
+  </button>
+
   <script>
     const carousel = document.getElementById('carousel');
+    const indicators = document.querySelectorAll('.carousel-indicator');
+    const backToTopButton = document.getElementById('backToTop');
     let index = 0;
     let autoSlideInterval;
 
+    // Carousel Functions
     function showSlide() {
       if (carousel && carousel.children.length > 0) {
         carousel.style.transform = `translateX(-${index * 100}%)`;
+        updateIndicators();
+      }
+    }
+
+    function updateIndicators() {
+      indicators.forEach((indicator, i) => {
+        indicator.classList.toggle('active', i === index);
+      });
+    }
+
+    function goToSlide(slideIndex) {
+      if (carousel && carousel.children.length > 0) {
+        index = slideIndex;
+        showSlide();
+        stopAutoSlide();
+        setTimeout(startAutoSlide, 3000);
       }
     }
 
@@ -938,7 +1075,7 @@
       }
     }
 
-    // Start auto-slide with longer interval
+    // Auto-slide functionality
     function startAutoSlide() {
       autoSlideInterval = setInterval(nextSlide, 5000);
     }
@@ -946,6 +1083,66 @@
     function stopAutoSlide() {
       if (autoSlideInterval) {
         clearInterval(autoSlideInterval);
+      }
+    }
+
+    // Back to top functionality
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    function handleScroll() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Show/hide back to top button
+      if (scrollTop > 300) {
+        backToTopButton.classList.add('visible');
+      } else {
+        backToTopButton.classList.remove('visible');
+      }
+    }
+
+    // Intersection Observer for animations
+    function setupAnimations() {
+      const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '50px'
+      });
+
+      animatedElements.forEach(el => observer.observe(el));
+    }
+
+    // Optimized image loading
+    function setupLazyLoading() {
+      const images = document.querySelectorAll('img[loading="lazy"]');
+      
+      if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              if (img.dataset.src) {
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+              }
+              img.classList.add('loaded');
+              imageObserver.unobserve(img);
+            }
+          });
+        });
+
+        images.forEach(img => imageObserver.observe(img));
       }
     }
 
@@ -1014,6 +1211,11 @@
     // Initialize when DOM is loaded
     document.addEventListener('DOMContentLoaded', function() {
       startAutoSlide();
+      setupAnimations();
+      setupLazyLoading();
+      
+      // Add scroll event listener
+      window.addEventListener('scroll', handleScroll);
       
       // Add click handlers to register buttons for loading state
       const registerButtons = document.querySelectorAll('.register-button');
@@ -1022,6 +1224,9 @@
           addLoadingState(this);
         });
       });
+      
+      // Initialize first slide indicator
+      updateIndicators();
     });
 
     // Pause auto-slide when page is not visible
