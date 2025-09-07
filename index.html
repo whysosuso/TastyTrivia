@@ -973,19 +973,17 @@
   </div>
 
   <div class="register-buttons fade-in">
-    <a href="https://lu.ma/event/evt-MkKdvs95DqbpBNI" 
-       class="register-button luma-checkout--button slide-in-left" 
-       data-luma-action="checkout" 
-       data-luma-event-id="evt-MkKdvs95DqbpBNI"
-       data-event-date="2025-09-06T16:00:00.000Z">
+    <a href="https://www.district.in/events/the-great-indian-buffet-by-tasty-trivia-sep12-2025-buy-tickets" 
+       class="register-button slide-in-left" 
+       data-event-date="2025-09-12T21:00:00.000Z">
       <div class="button-content">
         <div class="button-emoji">☁️</div>
         <div class="button-main">BANGALORE</div>
-        <div class="button-price">₹299</div>
-        <div class="button-details">Sep 6, 4-6 PM</div>
+        <div class="button-price">₹399</div>
+        <div class="button-details">Sep 12, 9-11 PM</div>
         <div class="countdown-timer" id="countdown-bangalore">Loading...</div>
       </div>
-      <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-MkKdvs95DqbpBNI', 'Bangalore', '06 Sep', '4–6 PM')">
+      <span class="share-icon" onclick="shareEvent('https://www.district.in/events/the-great-indian-buffet-by-tasty-trivia-sep12-2025-buy-tickets', 'Bangalore', '12 Sep', '9–11 PM')">
         <img src="https://i.ibb.co/FkxqqVZw/Arrow.png" alt="Share" />
       </span>
     </a>
@@ -1015,7 +1013,7 @@
     <button class="nav-button prev" onclick="prevSlide()" aria-label="Previous event poster">←</button>
     <div class="carousel" id="carousel">
       <img src="https://i.ibb.co/qFCKccSc/BBSR-Nov-15.png" alt="Tasty Trivia BBSR November 15 event poster" loading="lazy" onerror="handleImageError(this)" />
-      <img src="https://i.ibb.co/wFVRtVb3/BLR-KSamagata-OS.png" alt="Tasty Trivia BLR event poster" loading="lazy" onerror="handleImageError(this)" />
+      <img src="https://i.ibb.co/tP2pyCfQ/BLR-KSamagata-OS-1.jpg" alt="Tasty Trivia BLR event poster" loading="lazy" onerror="handleImageError(this)" />
     </div>
     <button class="nav-button next" onclick="nextSlide()" aria-label="Next event poster">→</button>
     <div class="carousel-indicators" id="carouselIndicators">
@@ -1083,9 +1081,9 @@
     let autoSlideInterval;
     let countdownIntervals = {};
 
-    // Event dates - these should match your actual event dates
+    // Event dates - updated Bangalore event to Sep 12, 9 PM IST
     const eventDates = {
-      'countdown-bangalore': new Date('2025-09-06T16:00:00+05:30'),  // 4 PM IST
+      'countdown-bangalore': new Date('2025-09-12T21:00:00+05:30'),  // 9 PM IST
       'countdown-bhubaneswar': new Date('2025-11-15T17:00:00+05:30') // 5 PM IST
     };
 
@@ -1292,7 +1290,7 @@
       }, 3000);
     }
 
-    // Enhanced share function with error handling
+    // Enhanced share function with error handling - updated for new Bangalore details
     function shareEvent(link, city, date, time) {
       try {
         const message = `🧠 Found this awesome trivia event in ${city} (${date} ${time})! \n\nPrizes + fun + meet cool people + beginner friendly = perfect time! 🎉\n\n${link}`;
