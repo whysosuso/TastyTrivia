@@ -213,23 +213,6 @@
       .social-separator {
         display: none;
       }
-      
-      .faq-section {
-        margin: 1.5rem 1rem;
-        max-width: calc(100% - 2rem);
-      }
-      
-      .faq-title {
-        font-size: 1.2rem;
-      }
-      
-      .faq-question {
-        font-size: 0.85rem;
-      }
-      
-      .faq-answer {
-        font-size: 0.8rem;
-      }
     }
     html, body {
       font-family: 'Oswald', 'Bebas Neue', 'Arial Black', sans-serif;
@@ -317,4 +300,891 @@
     .promo-section {
       background: linear-gradient(45deg, #db4118, #e55a5a);
       color: white;
-      padding: 1rem
+      padding: 1rem 1.5rem;
+      border-radius: 15px;
+      font-family: 'Oswald', sans-serif;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 15px rgba(219, 65, 24, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      max-width: 450px;
+      animation: pulse 2s ease-in-out infinite alternate;
+    }
+    
+    .promo-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+    
+    .promo-subtitle {
+      font-size: 1rem;
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 0.3rem;
+      opacity: 0.95;
+    }
+    
+    .promo-subtitle:last-child {
+      margin-bottom: 0;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.02); }
+    }
+    .register-info {
+      border: 1px solid #db4118;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      background-color: #F5DEB3;
+      margin-bottom: 1.5rem;
+      font-family: 'Oswald', sans-serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: #000000;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .news-link {
+      border: 2px solid #db4118;
+      border-radius: 8px;
+      background-color: #F5DEB3;
+      padding: 0.8rem 1rem;
+      box-shadow: 0 0 10px rgba(219, 65, 24, 0.5);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .news-link a {
+      text-decoration: none;
+      color: #db4118;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .register-buttons {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .register-button {
+      background: linear-gradient(135deg, #1E2A5A 0%, #2D3B6B 100%);
+      color: white;
+      border: none;
+      padding: 1rem;
+      font-family: 'Oswald', sans-serif;
+      border-radius: 50%;
+      cursor: pointer;
+      text-decoration: none;
+      width: 180px;
+      height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      box-shadow: 0 4px 15px rgba(30, 42, 90, 0.3);
+      border: 2px solid transparent;
+    }
+    .register-button:hover {
+      background: linear-gradient(135deg, #6B46C1 0%, #8B5CF6 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(107, 70, 193, 0.4);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .button-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 0.3rem;
+    }
+    
+    .button-emoji {
+      font-size: 1.6rem;
+      margin-bottom: 0.2rem;
+      line-height: 1;
+    }
+    
+    .button-main {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+      letter-spacing: 0.3px;
+      line-height: 1.1;
+    }
+    
+    .button-price {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #FFD700;
+      margin-bottom: 0.1rem;
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .city-highlight {
+      color: #FFD700;
+      font-weight: 700;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .button-details {
+      font-size: 0.65rem;
+      font-weight: 400;
+      opacity: 0.9;
+      font-style: italic;
+      line-height: 1.2;
+      margin-bottom: 0.1rem;
+    }
+
+    /* Countdown Timer Styles */
+    .countdown-timer {
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      color: #1E2A5A;
+      padding: 0.2rem 0.4rem;
+      border-radius: 8px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-top: 0.2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      text-shadow: none;
+      animation: countdownPulse 2s ease-in-out infinite alternate;
+    }
+
+    .countdown-timer.urgent {
+      background: linear-gradient(135deg, #FF6B6B, #FF4757);
+      color: white;
+      animation: urgentPulse 1s ease-in-out infinite alternate;
+    }
+
+    .countdown-timer.expired {
+      background: linear-gradient(135deg, #95A5A6, #7F8C8D);
+      color: white;
+      animation: none;
+    }
+
+    @keyframes countdownPulse {
+      0% { transform: scale(1); opacity: 0.9; }
+      100% { transform: scale(1.02); opacity: 1; }
+    }
+
+    @keyframes urgentPulse {
+      0% { transform: scale(1); box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+      100% { transform: scale(1.05); box-shadow: 0 4px 8px rgba(255, 107, 107, 0.4); }
+    }
+
+    .register-button.loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .register-button.loading::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 24px;
+      height: 24px;
+      border: 3px solid transparent;
+      border-top: 3px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      z-index: 10;
+    }
+    .register-button.loading .button-content,
+    .register-button.loading .share-icon {
+      opacity: 0.3;
+    }
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    .highlight {
+      box-shadow: 0 0 15px 4px rgba(219, 65, 24, 0.8);
+    }
+    .share-icon {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      cursor: pointer;
+      padding: 6px;
+      min-width: 32px;
+      min-height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      background-color: rgba(0, 0, 0, 0.6);
+      border: none;
+    }
+    .share-icon:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+      transform: scale(1.1);
+    }
+    .share-icon img {
+      width: 16px;
+      height: 16px;
+      filter: invert(1) brightness(1);
+    }
+    .carousel-container {
+      position: relative;
+      width: 90%;
+      max-width: 500px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+    .carousel {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .carousel img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+    .upcoming-cities {
+      font-family: 'Oswald', sans-serif;
+      text-align: center;
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: linear-gradient(135deg, rgba(219, 65, 24, 0.05), rgba(30, 42, 90, 0.05));
+      border-radius: 12px;
+      border: 1px solid rgba(219, 65, 24, 0.2);
+      max-width: 500px;
+    }
+    
+    .upcoming-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #db4118;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+    
+    .cities-list {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #1E2A5A;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.3px;
+    }
+    
+    .notify-text {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #666;
+      font-weight: 400;
+    }
+    .whatsapp-section {
+      margin-top: 1.5rem;
+      text-align: center;
+      max-width: 450px;
+      width: 100%;
+    }
+    
+    .whatsapp-benefits {
+      background: linear-gradient(135deg, rgba(219, 65, 24, 0.05), rgba(30, 42, 90, 0.05));
+      border: 1px solid rgba(219, 65, 24, 0.2);
+      border-radius: 8px;
+      padding: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+    
+    .whatsapp-benefits h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      color: #db4118;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+    
+    .benefits-grid {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0;
+    }
+    
+    .benefit-item {
+      background: white;
+      padding: 0.4rem 0.6rem;
+      border-radius: 4px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 500;
+      font-size: 0.8rem;
+      color: #1E2A5A;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      border: 1px solid rgba(219, 65, 24, 0.15);
+      white-space: nowrap;
+    }
+    
+    .whatsapp-button {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+      min-height: 56px;
+      width: 100%;
+      max-width: 400px;
+    }
+    .whatsapp-button:hover {
+      background: linear-gradient(135deg, #128C7E, #0D7377);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+    .whatsapp-button img {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+    .footer {
+      margin-top: 2rem;
+      text-align: center;
+      max-width: 500px;
+      width: 100%;
+    }
+    
+    .footer-content {
+      background: linear-gradient(135deg, rgba(219, 65, 24, 0.05), rgba(30, 42, 90, 0.05));
+      border: 1px solid rgba(219, 65, 24, 0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    
+    .creators-section {
+      margin-bottom: 1rem;
+    }
+    
+    .creators-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      color: #db4118;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+    
+    .creators-names {
+      font-family: 'Bebas Neue', 'Oswald', sans-serif;
+      font-size: 1.8rem;
+      color: #1E2A5A;
+      font-weight: 400;
+      margin-bottom: 0.3rem;
+      letter-spacing: 2px;
+    }
+    
+    .creators-names a {
+      color: #1E2A5A;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-bottom: 2px solid transparent;
+    }
+    
+    .creators-names a:hover {
+      color: #db4118;
+      border-bottom-color: #db4118;
+      transform: translateY(-1px);
+    }
+    
+    .creators-subtitle {
+      font-family: 'Oswald', sans-serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #666;
+      font-weight: 400;
+    }
+    
+    .community-section {
+      border-top: 1px solid rgba(219, 65, 24, 0.2);
+      padding-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .community-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.9rem;
+      color: #1E2A5A;
+      font-weight: 500;
+      font-style: italic;
+    }
+    
+    .contact-section {
+      border-top: 1px solid rgba(219, 65, 24, 0.2);
+      padding-top: 1rem;
+    }
+    
+    .contact-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      color: #db4118;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+    
+    .contact-email {
+      margin-bottom: 0.5rem;
+    }
+    
+    .contact-email a {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.9rem;
+      color: #1E2A5A;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    .contact-email a:hover {
+      color: #db4118;
+    }
+    
+    .social-handles {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      color: #666;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .social-handle {
+      white-space: nowrap;
+    }
+    
+    .social-separator {
+      color: #999;
+    }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #db4118, #e55a5a);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(219, 65, 24, 0.3);
+      z-index: 999;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    
+    .back-to-top:hover {
+      background: linear-gradient(135deg, #c23815, #d14a4a);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(219, 65, 24, 0.4);
+    }
+    
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+    
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: all 0.6s ease;
+    }
+    
+    .slide-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .slide-in-right {
+      opacity: 0;
+      transform: translateX(30px);
+      transition: all 0.6s ease;
+    }
+    
+    .slide-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="ticker-container">
+    <div class="ticker-content">
+      <span class="ticker-text">🎉 5+ Cities • 300+ Happy Participants • 100% Fun Guaranteed • Join the Community! 🧠</span>
+      <span class="ticker-text">🎉 5+ Cities • 300+ Happy Participants • 100% Fun Guaranteed • Join the Community! 🧠</span>
+      <span class="ticker-text">🎉 5+ Cities • 300+ Happy Participants • 100% Fun Guaranteed • Join the Community! 🧠</span>
+    </div>
+  </div>
+
+  <div class="header-box fade-in">
+    <img src="https://i.ibb.co/1fwSfgcK/8-bit-purple-logo-2x-removebg-preview.png" 
+         alt="Tasty Trivia 8-bit logo" 
+         class="header-logo"
+         onerror="handleLogoError(this)" />
+    <div class="header-text">
+      <h1>TASTY TRIVIA</h1>
+      <p>Delicious Offline Trivia Events!</p>
+    </div>
+  </div>
+
+  <div class="promo-section fade-in">
+    <div class="promo-title">🔥 Early Bird Special</div>
+    <div class="promo-subtitle">🎉 Fun & Beginner-friendly</div>
+    <div class="promo-subtitle">🧠 For GenZs & Millennials</div>
+  </div>
+
+  <div class="register-buttons fade-in">
+    <a href="https://www.district.in/events/tasty-trivia-all-things-india-ft-goa-oct2-2025-buy-tickets" 
+       class="register-button slide-in-left">
+      <div class="button-content">
+        <div class="button-emoji">☁️</div>
+        <div class="button-main">GOA</div>
+        <div class="button-price">₹249</div>
+        <div class="button-details">Oct 2, 4-6 PM</div>
+        <div class="countdown-timer" id="countdown-goa">Loading...</div>
+      </div>
+      <span class="share-icon" onclick="shareEvent('https://www.district.in/events/tasty-trivia-all-things-india-ft-goa-oct2-2025-buy-tickets', 'Goa', '2 Oct', '4–6 PM')">
+        <img src="https://i.ibb.co/FkxqqVZw/Arrow.png" alt="Share" />
+      </span>
+    </a>
+    <a href="https://lu.ma/event/evt-mHz4EjwBN6PDIFK" 
+       class="register-button luma-checkout--button slide-in-right" 
+       data-luma-action="checkout" 
+       data-luma-event-id="evt-mHz4EjwBN6PDIFK">
+      <div class="button-content">
+        <div class="button-emoji">⭐</div>
+        <div class="button-main">BHUBANESWAR</div>
+        <div class="button-price">₹129</div>
+        <div class="button-details">Nov 15, 5-7 PM</div>
+        <div class="countdown-timer" id="countdown-bhubaneswar">Loading...</div>
+      </div>
+      <span class="share-icon" onclick="shareEvent('https://lu.ma/event/evt-mHz4EjwBN6PDIFK', 'Bhubaneswar', 'Nov 15', '5–7 PM')">
+        <img src="https://i.ibb.co/FkxqqVZw/Arrow.png" alt="Share" />
+      </span>
+    </a>
+  </div>
+
+  <div class="news-link fade-in">
+    <a href="#" onclick="openNews(); return false;">📰 We Got Featured!</a>
+  </div>
+
+  <div class="carousel-container fade-in">
+    <div class="carousel" id="carousel">
+      <img src="https://i.ibb.co/qFCKccSc/BBSR-Nov-15.png" alt="Tasty Trivia BBSR November 15 event poster" loading="lazy" onerror="handleImageError(this)" />
+    </div>
+  </div>
+
+  <div class="upcoming-cities fade-in">
+    <div class="upcoming-title">🚀 Coming Soon</div>
+    <div class="cities-list">Mumbai • Delhi • Pune • Hyderabad</div>
+    <div class="notify-text">Want to be notified? Join our community below! 👇</div>
+  </div>
+
+  <div class="whatsapp-section fade-in">
+    <a href="https://bit.ly/Tasty_Trivia" class="whatsapp-button" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" onerror="this.style.display='none'" />
+      Join 500+ Members - Get Special Prices!
+    </a>
+    <div class="whatsapp-benefits">
+      <h3>🍜 Get The Tastiest Access</h3>
+      <div class="benefits-grid">
+        <div class="benefit-item">📢 Event Updates</div>
+        <div class="benefit-item">💰 Special Prices</div>
+        <div class="benefit-item">🏆 Exclusive Contests</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer fade-in">
+    <div class="footer-content">
+      <div class="creators-section">
+        <div class="creators-title">👥 Meet the Curators</div>
+        <div class="creators-names">
+          <a href="https://in.linkedin.com/in/reach-saloni" target="_blank">Sal</a> & <a href="https://in.linkedin.com/in/whysosuso" target="_blank">Suso</a>
+        </div>
+        <div class="creators-subtitle">Making trivia fun, one event at a time ❤️</div>
+      </div>
+      <div class="community-section">
+        <div class="community-text">Powered by our lovely friends!</div>
+      </div>
+      <div class="contact-section">
+        <div class="contact-title">📧 Get in Touch</div>
+        <div class="contact-email">
+          <a href="mailto:hi.tastytrivia@gmail.com">hi.tastytrivia@gmail.com</a>
+        </div>
+        <div class="social-handles">
+          <span class="social-handle">📸 IG: @gettastytrivia</span>
+          <span class="social-separator">•</span>
+          <span class="social-handle">🐦 X: @gettastytrivia</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Back to top">
+    ↑
+  </button>
+
+  <script>
+    const backToTopButton = document.getElementById('backToTop');
+    let countdownIntervals = {};
+
+    // Event dates - Fixed for Goa and Bhubaneswar events
+    const eventDates = {
+      'countdown-goa': new Date('2025-10-02T16:00:00+05:30'),  // 4 PM IST
+      'countdown-bhubaneswar': new Date('2025-11-15T17:00:00+05:30') // 5 PM IST
+    };
+
+    // Countdown Timer Functions
+    function updateCountdown(timerId, targetDate) {
+      const now = new Date();
+      const timeLeft = targetDate - now;
+      const timerElement = document.getElementById(timerId);
+      
+      if (!timerElement) return;
+
+      if (timeLeft <= 0) {
+        timerElement.textContent = 'Event Started!';
+        timerElement.className = 'countdown-timer expired';
+        if (countdownIntervals[timerId]) {
+          clearInterval(countdownIntervals[timerId]);
+          delete countdownIntervals[timerId];
+        }
+        return;
+      }
+
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      let countdownText = '';
+      let timerClass = 'countdown-timer';
+
+      // Different display formats based on time left
+      if (days > 0) {
+        countdownText = `${days}d ${hours}h`;
+      } else if (hours > 0) {
+        countdownText = `${hours}h ${minutes}m`;
+        if (hours <= 24) {
+          timerClass += ' urgent';
+        }
+      } else if (minutes > 0) {
+        countdownText = `${minutes}m ${seconds}s`;
+        timerClass += ' urgent';
+      } else {
+        countdownText = `${seconds}s`;
+        timerClass += ' urgent';
+      }
+
+      timerElement.textContent = countdownText;
+      timerElement.className = timerClass;
+    }
+
+    function startCountdowns() {
+      // Clear any existing intervals
+      Object.values(countdownIntervals).forEach(interval => clearInterval(interval));
+      countdownIntervals = {};
+
+      // Start countdown for each event
+      Object.entries(eventDates).forEach(([timerId, targetDate]) => {
+        // Initial update
+        updateCountdown(timerId, targetDate);
+        
+        // Set up interval to update every second
+        countdownIntervals[timerId] = setInterval(() => {
+          updateCountdown(timerId, targetDate);
+        }, 1000);
+      });
+    }
+
+    // Back to top functionality
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    function handleScroll() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (scrollTop > 300) {
+        backToTopButton.classList.add('visible');
+      } else {
+        backToTopButton.classList.remove('visible');
+      }
+    }
+
+    // Intersection Observer for animations
+    function setupAnimations() {
+      const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '50px'
+      });
+
+      animatedElements.forEach(el => observer.observe(el));
+    }
+
+    // Optimized image loading
+    function setupLazyLoading() {
+      const images = document.querySelectorAll('img[loading="lazy"]');
+      
+      if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              if (img.dataset.src) {
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+              }
+              img.classList.add('loaded');
+              imageObserver.unobserve(img);
+            }
+          });
+        });
+
+        images.forEach(img => imageObserver.observe(img));
+      }
+    }
+
+    // Image error handling
+    function handleImageError(img) {
+      img.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><rect width="400" height="300" fill="%23F5DEB3"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" font-family="Arial" font-size="16" fill="%23db4118">Event Poster</text></svg>';
+      img.alt = "Event poster (image unavailable)";
+    }
+
+    // Logo error handling
+    function handleLogoError(img) {
+      img.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70"><rect width="70" height="70" fill="%23db4118" rx="8"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" font-family="Arial" font-size="12" fill="white" font-weight="bold">TT</text></svg>';
+      img.alt = "Tasty Trivia logo (fallback)";
+    }
+
+    // Loading state for register buttons
+    function addLoadingState(button) {
+      button.classList.add('loading');
+      setTimeout(() => {
+        button.classList.remove('loading');
+      }, 3000);
+    }
+
+    // Enhanced share function with error handling
+    function shareEvent(link, city, date, time) {
+      try {
+        const message = `🧠 Found this awesome trivia event in ${city} (${date} ${time})! \n\nPrizes + fun + meet cool people + beginner friendly = perfect time! 🎉\n\n${link}`;
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+      } catch (error) {
+        console.error('Error sharing event:', error);
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(link);
+          alert('Link copied to clipboard!');
+        }
+      }
+    }
+
+    function openNews() {
+      try {
+        window.open(
+          "https://www.newindianexpress.com/amp/story/cities/bhubaneswar/2025/jun/22/rice-spice-and-quiz-marks-tasty-trivias-debut-in-bhubaneswar",
+          "newsPopup",
+          "width=600,height=700,resizable=yes,scrollbars=yes"
+        );
+      } catch (error) {
+        console.error('Error opening news:', error);
+        window.location.href = "https://www.newindianexpress.com/amp/story/cities/bhubaneswar/2025/jun/22/rice-spice-and-quiz-marks-tasty-trivias-debut-in-bhubaneswar";
+      }
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      setupAnimations();
+      setupLazyLoading();
+      startCountdowns(); // Start the countdown timers
+      
+      window.addEventListener('scroll', handleScroll);
+      
+      const registerButtons = document.querySelectorAll('.register-button');
+      registerButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          addLoadingState(this);
+        });
+      });
+    });
+
+    // Pause countdowns when page is not visible
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        // Pause countdowns when page is hidden to save resources
+        Object.values(countdownIntervals).forEach(interval => clearInterval(interval));
+      } else {
+        // Resume countdowns when page is visible
+        startCountdowns();
+      }
+    });
+
+    // Clean up intervals when page is unloaded
+    window.addEventListener('beforeunload', function() {
+      Object.values(countdownIntervals).forEach(interval => clearInterval(interval));
+    });
+  </script>
+</body>
+</html>
