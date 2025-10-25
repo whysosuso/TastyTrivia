@@ -212,6 +212,78 @@
     .cities-list { font-size: 1rem; font-weight: 500; color: #1E2A5A; margin-bottom: 0.5rem; letter-spacing: 0.3px; }
     .notify-text { font-size: 0.9rem; font-style: italic; color: #666; font-weight: 400; }
 
+    /* BEGIN: Partners carousel styles */
+    .partners-section {
+      width: 100%;
+      max-width: 760px;
+      margin: 1.6rem auto;
+      padding: 1rem;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(219,65,24,0.03), rgba(30,42,90,0.02));
+      border: 1px solid rgba(219,65,24,0.08);
+      box-shadow: 0 6px 20px rgba(219,65,24,0.04);
+      text-align: center;
+      font-family: 'Oswald', sans-serif;
+    }
+    .partners-title {
+      margin: 0 0 0.8rem 0;
+      color: #db4118;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      font-size: 1.05rem;
+    }
+    .partners-viewport {
+      overflow: hidden;
+      width: 100%;
+      padding: 0.6rem 0;
+      border-radius: 8px;
+      outline: none;
+    }
+    .partners-track {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      will-change: transform;
+      animation: partnersScroll linear infinite;
+      animation-duration: 28s; /* adjust for speed */
+    }
+    .partner-item {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem 0.6rem;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .partner-item img {
+      display: block;
+      height: 64px;
+      width: auto;
+      object-fit: contain;
+      filter: grayscale(100%) saturate(60%);
+      transition: filter 220ms ease, transform 220ms ease;
+    }
+    .partner-item a:focus img,
+    .partner-item:hover img {
+      filter: none;
+      transform: translateY(-3px) scale(1.02);
+    }
+    @keyframes partnersScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @media (max-width: 768px) {
+      .partners-section { max-width: calc(100% - 2rem); margin: 1rem auto; }
+      .partner-item img { height: 48px; }
+      .partners-track { gap: 0.9rem; animation-duration: 36s; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .partners-track { animation: none; }
+    }
+    /* END: Partners carousel styles */
+
     .whatsapp-section { margin-top: 1.5rem; text-align: center; max-width: 450px; width: 100%; }
     .whatsapp-benefits {
       background: linear-gradient(135deg, rgba(219, 65, 24, 0.05), rgba(30, 42, 90, 0.05));
@@ -346,6 +418,33 @@
     <div class="cities-list">Mumbai • Delhi • Pune • Hyderabad</div>
     <div class="notify-text">Want to be notified? Join our community below! 👇</div>
   </div>
+
+  <!-- BEGIN: Past Venue Partners -->
+  <div class="partners-section fade-in" role="region" aria-label="Our past venue partners">
+    <h2 class="partners-title">🏛️ Our Past Venue Partners</h2>
+    <div class="partners-viewport" tabindex="0" aria-live="polite">
+      <div class="partners-track" id="partnersTrack" aria-hidden="false">
+        <!-- original set -->
+        <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img data-src="https://i.ibb.co/gb6m57zt/Whats-App-Image-2025-10-26-at-00-08-30.jpg" alt="Partner 1" loading="lazy"></a></div>
+        <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img data-src="https://i.ibb.co/XxDLRqkp/Whats-App-Image-2025-10-26-at-00-08-31-1.jpg" alt="Partner 2" loading="lazy"></a></div>
+        <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img data-src="https://i.ibb.co/rKmqLnxQ/Whats-App-Image-2025-10-26-at-00-08-31-2.jpg" alt="Partner 3" loading="lazy"></a></div>
+        <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img data-src="https://i.ibb.co/MxPszGTF/Whats-App-Image-2025-10-26-at-00-08-31.jpg" alt="Partner 4" loading="lazy"></a></div>
+        <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img data-src="https://i.ibb.co/Dd869bS/Whats-App-Image-2025-10-26-at-00-08-32-1.jpg" alt="Partner 5" loading="lazy"></a></div>
+        <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img data-src="https://i.ibb.co/k2xKM6M6/Whats-App-Image-2025-10-26-at-00-08-32-2.jpg" alt="Partner 6" loading="lazy"></a></div>
+        <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img data-src="https://i.ibb.co/WWBx0K7r/Whats-App-Image-2025-10-26-at-00-08-32.jpg" alt="Partner 7" loading="lazy"></a></div>
+
+        <!-- duplicated set for smooth infinite scroll -->
+        <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img data-src="https://i.ibb.co/gb6m57zt/Whats-App-Image-2025-10-26-at-00-08-30.jpg" alt="Partner 1" loading="lazy"></a></div>
+        <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img data-src="https://i.ibb.co/XxDLRqkp/Whats-App-Image-2025-10-26-at-00-08-31-1.jpg" alt="Partner 2" loading="lazy"></a></div>
+        <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img data-src="https://i.ibb.co/rKmqLnxQ/Whats-App-Image-2025-10-26-at-00-08-31-2.jpg" alt="Partner 3" loading="lazy"></a></div>
+        <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img data-src="https://i.ibb.co/MxPszGTF/Whats-App-Image-2025-10-26-at-00-08-31.jpg" alt="Partner 4" loading="lazy"></a></div>
+        <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img data-src="https://i.ibb.co/Dd869bS/Whats-App-Image-2025-10-26-at-00-08-32-1.jpg" alt="Partner 5" loading="lazy"></a></div>
+        <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img data-src="https://i.ibb.co/k2xKM6M6/Whats-App-Image-2025-10-26-at-00-08-32-2.jpg" alt="Partner 6" loading="lazy"></a></div>
+        <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img data-src="https://i.ibb.co/WWBx0K7r/Whats-App-Image-2025-10-26-at-00-08-32.jpg" alt="Partner 7" loading="lazy"></a></div>
+      </div>
+    </div>
+  </div>
+  <!-- END: Past Venue Partners -->
 
   <div class="whatsapp-section fade-in">
     <a href="https://bit.ly/Tasty_Trivia" class="whatsapp-button" target="_blank">
@@ -505,10 +604,43 @@
       }
     }
 
+    // Partners carousel behaviour
+    (function() {
+      const track = document.getElementById('partnersTrack');
+      if (!track) return;
+
+      // Lazy-load images (data-src -> src)
+      const imgs = track.querySelectorAll('img[data-src]');
+      const loadImg = (img) => { img.src = img.dataset.src; img.removeAttribute('data-src'); img.onerror = () => handleImageError(img); };
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries, obs) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) { loadImg(e.target); obs.unobserve(e.target); }
+          });
+        }, {rootMargin: '200px'});
+        imgs.forEach(i => io.observe(i));
+      } else { imgs.forEach(loadImg); }
+
+      // Pause/Play on hover or focus (for accessibility)
+      const viewport = track.parentElement;
+      const pause = () => { track.style.animationPlayState = 'paused'; };
+      const play = () => { track.style.animationPlayState = 'running'; };
+
+      viewport.addEventListener('mouseenter', pause);
+      viewport.addEventListener('mouseleave', play);
+      viewport.addEventListener('focusin', pause);
+      viewport.addEventListener('focusout', play);
+
+      // Ensure any broken images get fallback
+      imgs.forEach(i => i.onerror = () => handleImageError(i));
+    })();
+
     document.addEventListener('DOMContentLoaded', function() {
       setupAnimations();
       startCountdowns();
       window.addEventListener('scroll', handleScroll);
+      // Ensure partners track images load even if already in view
+      // (DOMContentLoaded above, the partner lazy loader runs as IIFE)
     });
 
     document.addEventListener('visibilitychange', function() {
