@@ -212,7 +212,7 @@
     .cities-list { font-size: 1rem; font-weight: 500; color: #1E2A5A; margin-bottom: 0.5rem; letter-spacing: 0.3px; }
     .notify-text { font-size: 0.9rem; font-style: italic; color: #666; font-weight: 400; }
 
-    /* --- MOBILE-OPTIMISED partners carousel (uniform logos) --- */
+    /* ===== Strictly responsive partners band (updated) ===== */
     .partners-section {
       width: 100%;
       max-width: 760px;
@@ -224,7 +224,10 @@
       box-shadow: 0 6px 20px rgba(219,65,24,0.04);
       text-align: center;
       font-family: 'Oswald', sans-serif;
+      box-sizing: border-box;
+      overflow: visible;
     }
+
     .partners-title {
       margin: 0 0 0.8rem 0;
       color: #db4118;
@@ -232,62 +235,73 @@
       letter-spacing: 0.6px;
       font-size: 1.05rem;
     }
+
     .partners-viewport {
-      overflow: hidden;               /* prevent horizontal page scroll */
+      overflow: hidden;
       width: 100%;
       padding: 0.6rem 0;
       border-radius: 8px;
       outline: none;
       -webkit-tap-highlight-color: transparent;
+      box-sizing: border-box;
     }
+
     .partners-track {
       display: flex;
       align-items: center;
       gap: 1rem;
-      flex-wrap: nowrap;              /* keep single row */
+      flex-wrap: nowrap;
       will-change: transform;
       animation-name: partnersScroll;
       animation-timing-function: linear;
       animation-iteration-count: infinite;
       animation-play-state: running;
       animation-duration: var(--partners-duration, 28s);
+      width: max-content;
+      min-width: 0;
+      box-sizing: content-box;
     }
+
     .partner-item {
       flex: 0 0 auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0.5rem;
+      padding: 0.45rem;
       border-radius: 8px;
       background: rgba(255,255,255,0.95);
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      /* uniform tile size */
       --partner-logo-width: 140px;
       --partner-logo-height: 96px;
       width: var(--partner-logo-width);
       height: var(--partner-logo-height);
       box-sizing: border-box;
       overflow: hidden;
+      min-width: 0;
     }
+
     .partner-item img {
       display: block;
       width: auto;
       height: auto;
-      max-width: calc(var(--partner-logo-width) - 20px);
-      max-height: calc(var(--partner-logo-height) - 20px);
+      max-width: 100%;
+      max-height: 100%;
       object-fit: contain;
       filter: grayscale(100%) saturate(60%);
       transition: filter 220ms ease, transform 220ms ease;
     }
+
     .partner-item a:focus img,
     .partner-item:hover img {
       filter: none;
       transform: translateY(-3px) scale(1.02);
     }
+
     @keyframes partnersScroll {
       0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
+
     @media (max-width: 768px) {
       .partner-item {
         --partner-logo-width: 110px;
@@ -295,7 +309,7 @@
       }
       .partners-track { gap: 0.7rem; animation-duration: var(--partners-duration, 36s); }
     }
-    /* tiny screens: prefer swipe, stop animation */
+
     @media (max-width: 420px) {
       .partners-viewport {
         overflow-x: auto;
@@ -306,10 +320,11 @@
         gap: 0.6rem;
       }
     }
+
     @media (prefers-reduced-motion: reduce) {
       .partners-track { animation: none; }
     }
-    /* --- end partners --- */
+    /* ===== end partners ===== */
 
     .whatsapp-section { margin-top: 1.5rem; text-align: center; max-width: 450px; width: 100%; }
     .whatsapp-benefits {
@@ -631,7 +646,7 @@
       }
     }
 
-    /* ---------- Partners carousel logic (optimise + lazy load) ---------- */
+    /* ---------- Partners carousel logic (optimise + lazy load, strict responsive) ---------- */
     function debounce(fn, wait) {
       let t;
       return function(...args) {
@@ -645,12 +660,13 @@
       const viewport = track ? track.parentElement : null;
       if (!track || !viewport) return;
 
-      // ensure single-row
+      // prevent wrapping
       track.style.flexWrap = 'nowrap';
 
-      // Duplicate original set if needed so total scrollWidth >= viewportWidth * 2
+      // Duplicate the original half (we duplicated in markup, but ensure enough items)
       const ensureDouble = () => {
-        const original = Array.from(track.children).slice(0, Math.floor(track.children.length / 2));
+        const originalCount = Math.floor(track.children.length / 2) || track.children.length;
+        const original = Array.from(track.children).slice(0, originalCount);
         let attempts = 0;
         while (track.scrollWidth < (viewport.clientWidth * 2) && attempts < 6) {
           original.forEach(node => track.appendChild(node.cloneNode(true)));
@@ -659,24 +675,27 @@
       };
       ensureDouble();
 
-      // Lazy-load imgs that still have data-src (some clones may carry it)
+      // Lazy-load any remaining data-src images (clones might have data-src)
       track.querySelectorAll('img[data-src]').forEach(img => {
-        if (!img.src) {
-          img.src = img.dataset.src;
-        }
+        if (!img.src) img.src = img.dataset.src;
         img.removeAttribute('data-src');
         img.onerror = () => handleImageError(img);
       });
 
-      // compute animation duration based on pixel distance
-      const basePixelsPerSecond = 80; // tweakable: higher = faster
-      const trackWidth = track.scrollWidth;
-      const distance = trackWidth * 0.5; // translateX(0 -> -50%)
-      let durationSec = Math.max(8, Math.round(distance / basePixelsPerSecond));
-      durationSec = Math.min(durationSec, 90);
-      track.style.setProperty('--partners-duration', `${durationSec}s`);
+      // After layout stabilizes, explicitly set track width = scrollWidth to avoid tiny overflow
+      setTimeout(() => {
+        const widthPx = track.scrollWidth;
+        track.style.width = widthPx + 'px';
 
-      // fallback: tiny screens => allow swipe and stop animation
+        // compute duration from pixel distance
+        const basePixelsPerSecond = 80;
+        const distance = widthPx * 0.5;
+        let durationSec = Math.max(8, Math.round(distance / basePixelsPerSecond));
+        durationSec = Math.min(durationSec, 90);
+        track.style.setProperty('--partners-duration', `${durationSec}s`);
+      }, 60);
+
+      // tiny screens: allow swipe and stop animation
       if (viewport.clientWidth <= 420) {
         viewport.style.overflowX = 'auto';
         track.style.animation = 'none';
@@ -685,7 +704,10 @@
         track.style.animationPlayState = 'running';
       }
 
-      // pause/play handlers
+      // Safety: prevent page-level horizontal scroll while carousel present
+      document.documentElement.style.overflowX = 'hidden';
+
+      // Pause/play handlers
       const pause = () => { track.style.animationPlayState = 'paused'; };
       const play = () => { track.style.animationPlayState = 'running'; };
 
@@ -704,7 +726,7 @@
       viewport.addEventListener('touchend', play, {passive:true});
     }
 
-    // initial lazy loader for partners set (in case optimisePartners doesn't run instantly)
+    // initial lazy loader for partners set
     (function initialPartnersLazyLoad() {
       const track = document.getElementById('partnersTrack');
       if (!track) return;
@@ -712,7 +734,13 @@
       if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver((entries, obs) => {
           entries.forEach(e => {
-            if (e.isIntersecting) { const img = e.target; img.src = img.dataset.src; img.removeAttribute('data-src'); img.onerror = () => handleImageError(img); obs.unobserve(img); }
+            if (e.isIntersecting) {
+              const img = e.target;
+              img.src = img.dataset.src;
+              img.removeAttribute('data-src');
+              img.onerror = () => handleImageError(img);
+              obs.unobserve(img);
+            }
           });
         }, { rootMargin: '200px' });
         imgs.forEach(i => io.observe(i));
@@ -739,6 +767,8 @@
 
     window.addEventListener('beforeunload', function() {
       Object.values(countdownIntervals).forEach(interval => clearInterval(interval));
+      // restore overflowX in case page is unloading
+      document.documentElement.style.overflowX = '';
     });
   </script>
 </body>
