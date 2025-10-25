@@ -8,9 +8,9 @@
   <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Oswald:ital,wght@0,400;0,500;0,600;1,400&display=swap');
-    
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    
+
     .ticker-container {
       position: fixed;
       top: 0;
@@ -212,7 +212,7 @@
     .cities-list { font-size: 1rem; font-weight: 500; color: #1E2A5A; margin-bottom: 0.5rem; letter-spacing: 0.3px; }
     .notify-text { font-size: 0.9rem; font-style: italic; color: #666; font-weight: 400; }
 
-    /* BEGIN: Partners carousel styles */
+    /* --- MOBILE-OPTIMISED partners carousel (uniform logos) --- */
     .partners-section {
       width: 100%;
       max-width: 760px;
@@ -233,34 +233,48 @@
       font-size: 1.05rem;
     }
     .partners-viewport {
-      overflow: hidden;
+      overflow: hidden;               /* prevent horizontal page scroll */
       width: 100%;
       padding: 0.6rem 0;
       border-radius: 8px;
       outline: none;
+      -webkit-tap-highlight-color: transparent;
     }
     .partners-track {
       display: flex;
       align-items: center;
-      gap: 1.2rem;
+      gap: 1rem;
+      flex-wrap: nowrap;              /* keep single row */
       will-change: transform;
-      animation: partnersScroll linear infinite;
-      animation-duration: 28s; /* adjust for speed */
+      animation-name: partnersScroll;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-play-state: running;
+      animation-duration: var(--partners-duration, 28s);
     }
     .partner-item {
       flex: 0 0 auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0.25rem 0.6rem;
+      padding: 0.5rem;
       border-radius: 8px;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      /* uniform tile size */
+      --partner-logo-width: 140px;
+      --partner-logo-height: 96px;
+      width: var(--partner-logo-width);
+      height: var(--partner-logo-height);
+      box-sizing: border-box;
+      overflow: hidden;
     }
     .partner-item img {
       display: block;
-      height: 64px;
       width: auto;
+      height: auto;
+      max-width: calc(var(--partner-logo-width) - 20px);
+      max-height: calc(var(--partner-logo-height) - 20px);
       object-fit: contain;
       filter: grayscale(100%) saturate(60%);
       transition: filter 220ms ease, transform 220ms ease;
@@ -275,14 +289,27 @@
       100% { transform: translateX(-50%); }
     }
     @media (max-width: 768px) {
-      .partners-section { max-width: calc(100% - 2rem); margin: 1rem auto; }
-      .partner-item img { height: 48px; }
-      .partners-track { gap: 0.9rem; animation-duration: 36s; }
+      .partner-item {
+        --partner-logo-width: 110px;
+        --partner-logo-height: 72px;
+      }
+      .partners-track { gap: 0.7rem; animation-duration: var(--partners-duration, 36s); }
+    }
+    /* tiny screens: prefer swipe, stop animation */
+    @media (max-width: 420px) {
+      .partners-viewport {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .partners-track {
+        animation: none;
+        gap: 0.6rem;
+      }
     }
     @media (prefers-reduced-motion: reduce) {
       .partners-track { animation: none; }
     }
-    /* END: Partners carousel styles */
+    /* --- end partners --- */
 
     .whatsapp-section { margin-top: 1.5rem; text-align: center; max-width: 450px; width: 100%; }
     .whatsapp-benefits {
@@ -584,9 +611,9 @@
         window.open(whatsappUrl, '_blank');
       } catch (error) {
         console.error('Error sharing event:', error);
-        if (navigator.clipboard && link) { 
-          navigator.clipboard.writeText(link); 
-          alert('Link copied to clipboard!'); 
+        if (navigator.clipboard && link) {
+          navigator.clipboard.writeText(link);
+          alert('Link copied to clipboard!');
         }
       }
     }
@@ -604,43 +631,105 @@
       }
     }
 
-    // Partners carousel behaviour
-    (function() {
+    /* ---------- Partners carousel logic (optimise + lazy load) ---------- */
+    function debounce(fn, wait) {
+      let t;
+      return function(...args) {
+        clearTimeout(t);
+        t = setTimeout(() => fn.apply(this, args), wait);
+      };
+    }
+
+    function optimisePartners() {
       const track = document.getElementById('partnersTrack');
-      if (!track) return;
+      const viewport = track ? track.parentElement : null;
+      if (!track || !viewport) return;
 
-      // Lazy-load images (data-src -> src)
-      const imgs = track.querySelectorAll('img[data-src]');
-      const loadImg = (img) => { img.src = img.dataset.src; img.removeAttribute('data-src'); img.onerror = () => handleImageError(img); };
-      if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver((entries, obs) => {
-          entries.forEach(e => {
-            if (e.isIntersecting) { loadImg(e.target); obs.unobserve(e.target); }
-          });
-        }, {rootMargin: '200px'});
-        imgs.forEach(i => io.observe(i));
-      } else { imgs.forEach(loadImg); }
+      // ensure single-row
+      track.style.flexWrap = 'nowrap';
 
-      // Pause/Play on hover or focus (for accessibility)
-      const viewport = track.parentElement;
+      // Duplicate original set if needed so total scrollWidth >= viewportWidth * 2
+      const ensureDouble = () => {
+        const original = Array.from(track.children).slice(0, Math.floor(track.children.length / 2));
+        let attempts = 0;
+        while (track.scrollWidth < (viewport.clientWidth * 2) && attempts < 6) {
+          original.forEach(node => track.appendChild(node.cloneNode(true)));
+          attempts++;
+        }
+      };
+      ensureDouble();
+
+      // Lazy-load imgs that still have data-src (some clones may carry it)
+      track.querySelectorAll('img[data-src]').forEach(img => {
+        if (!img.src) {
+          img.src = img.dataset.src;
+        }
+        img.removeAttribute('data-src');
+        img.onerror = () => handleImageError(img);
+      });
+
+      // compute animation duration based on pixel distance
+      const basePixelsPerSecond = 80; // tweakable: higher = faster
+      const trackWidth = track.scrollWidth;
+      const distance = trackWidth * 0.5; // translateX(0 -> -50%)
+      let durationSec = Math.max(8, Math.round(distance / basePixelsPerSecond));
+      durationSec = Math.min(durationSec, 90);
+      track.style.setProperty('--partners-duration', `${durationSec}s`);
+
+      // fallback: tiny screens => allow swipe and stop animation
+      if (viewport.clientWidth <= 420) {
+        viewport.style.overflowX = 'auto';
+        track.style.animation = 'none';
+      } else {
+        viewport.style.overflow = 'hidden';
+        track.style.animationPlayState = 'running';
+      }
+
+      // pause/play handlers
       const pause = () => { track.style.animationPlayState = 'paused'; };
       const play = () => { track.style.animationPlayState = 'running'; };
+
+      viewport.removeEventListener('mouseenter', pause);
+      viewport.removeEventListener('mouseleave', play);
+      viewport.removeEventListener('focusin', pause);
+      viewport.removeEventListener('focusout', play);
+      viewport.removeEventListener('touchstart', pause);
+      viewport.removeEventListener('touchend', play);
 
       viewport.addEventListener('mouseenter', pause);
       viewport.addEventListener('mouseleave', play);
       viewport.addEventListener('focusin', pause);
       viewport.addEventListener('focusout', play);
+      viewport.addEventListener('touchstart', pause, {passive:true});
+      viewport.addEventListener('touchend', play, {passive:true});
+    }
 
-      // Ensure any broken images get fallback
-      imgs.forEach(i => i.onerror = () => handleImageError(i));
+    // initial lazy loader for partners set (in case optimisePartners doesn't run instantly)
+    (function initialPartnersLazyLoad() {
+      const track = document.getElementById('partnersTrack');
+      if (!track) return;
+      const imgs = track.querySelectorAll('img[data-src]');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries, obs) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) { const img = e.target; img.src = img.dataset.src; img.removeAttribute('data-src'); img.onerror = () => handleImageError(img); obs.unobserve(img); }
+          });
+        }, { rootMargin: '200px' });
+        imgs.forEach(i => io.observe(i));
+      } else {
+        imgs.forEach(img => { img.src = img.dataset.src; img.removeAttribute('data-src'); img.onerror = () => handleImageError(img); });
+      }
     })();
+
+    window.addEventListener('load', optimisePartners);
+    window.addEventListener('resize', debounce(optimisePartners, 240));
+    window.addEventListener('orientationchange', debounce(optimisePartners, 300));
+    /* ---------- end partners logic ---------- */
 
     document.addEventListener('DOMContentLoaded', function() {
       setupAnimations();
       startCountdowns();
       window.addEventListener('scroll', handleScroll);
-      // Ensure partners track images load even if already in view
-      // (DOMContentLoaded above, the partner lazy loader runs as IIFE)
     });
 
     document.addEventListener('visibilitychange', function() {
