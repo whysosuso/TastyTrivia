@@ -1,288 +1,178 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TASTY TRIVIA – Offline Trivia Game Shows</title>
   <link rel="icon" href="https://emoji.gg/assets/emoji/7699-pepperoni-pizza.png" />
   <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js" async></script>
 
   <style>
-    /* fonts */
     @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Oswald:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
-    /* reset / base */
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html,body {
+    html, body {
       font-family: 'Oswald','Bebas Neue','Arial Black',sans-serif;
       background-color: #F5DEB3;
-      color: #111;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+      color: #000;
       min-height: 100%;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* page container (center column) */
-    .page {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 2rem 1rem 4rem;
-      padding-top: 80px; /* leave room for ticker */
-    }
-
-    /* ticker */
     .ticker-container {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+      position: fixed; top: 0; left: 0; right: 0;
       height: 40px;
-      background: linear-gradient(90deg,#db4118,#1E2A5A,#6B46C1);
+      background: linear-gradient(90deg, #db4118, #1E2A5A, #6B46C1);
       color: white;
-      z-index: 1200;
-      box-shadow: 0 2px 8px rgba(219,65,24,0.3);
-      border-bottom: 1px solid rgba(255,255,255,0.12);
       overflow: hidden;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(219,65,24,0.3);
     }
     .ticker-content {
-      display:flex;
-      white-space:nowrap;
-      line-height:40px;
-      font-family: 'Oswald',sans-serif;
-      font-weight:500;
-      padding-left: 1rem;
-      animation: tickerScroll 24s linear infinite;
+      display: flex;
+      white-space: nowrap;
+      line-height: 40px;
+      animation: tickerScroll 25s linear infinite;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 500;
+      font-size: 0.95rem;
     }
     .ticker-content:hover { animation-play-state: paused; }
     .ticker-text { padding-right: 80px; }
     @keyframes tickerScroll { 0%{transform:translateX(100%);} 100%{transform:translateX(-100%);} }
 
-    /* header */
+    .page { max-width: 960px; margin: 0 auto; padding: 80px 1rem 3rem; }
+
     .header-box {
-      display:flex;
-      gap:1rem;
-      align-items:center;
-      justify-content:center;
+      display: flex; align-items: center; justify-content: center;
       background: #F5DEB3;
       border: 2px solid #db4118;
-      padding: 1rem 1.5rem;
       border-radius: 10px;
-      box-shadow: 0 0 12px rgba(219,65,24,0.22);
-      text-align:center;
+      box-shadow: 0 0 12px rgba(219,65,24,0.4);
       margin-bottom: 1.5rem;
-    }
-    .header-logo {
-      width:70px; height:70px;
-      object-fit:contain;
-      flex-shrink:0;
-    }
-    .header-text h1 {
-      font-family:'Bebas Neue','Oswald',sans-serif;
-      font-size: 3.2rem;
-      color:#db4118;
-      letter-spacing:2px;
-      font-weight:400;
-      margin-bottom: 0.15rem;
-    }
-    .header-text p {
-      font-family: 'Oswald',sans-serif;
-      font-style: italic;
-      color:#111;
-      font-size:1.05rem;
-      margin:0;
-    }
-
-    /* promo */
-    .promo-section {
-      max-width: 520px;
-      margin: 0 auto 1.5rem;
-      background: linear-gradient(45deg,#db4118,#e55a5a);
-      color: #fff;
+      gap: 1rem;
       padding: 1rem 1.5rem;
-      border-radius: 14px;
-      box-shadow: 0 4px 15px rgba(219,65,24,0.18);
-      border: 2px solid rgba(255,255,255,0.12);
-      text-align:center;
+      text-align: center;
+    }
+    .header-logo { width: 70px; height: 70px; object-fit: contain; flex-shrink: 0; }
+    .header-text h1 { font-family: 'Bebas Neue'; font-size: 3rem; color: #db4118; letter-spacing: 2px; }
+    .header-text p { font-style: italic; font-size: 1.1rem; }
+
+    .promo-section {
+      background: linear-gradient(45deg,#db4118,#e55a5a);
+      color: #fff; padding: 1rem 1.5rem; border-radius: 15px;
+      text-align: center; margin: 1.5rem auto; max-width: 450px;
+      box-shadow: 0 4px 15px rgba(219,65,24,0.3);
       animation: pulse 2s ease-in-out infinite alternate;
     }
     @keyframes pulse { 0%{transform:scale(1)} 100%{transform:scale(1.02)} }
-    .promo-title { font-weight:600; font-size:1.15rem; margin-bottom:0.5rem; }
-    .promo-subtitle { font-style:italic; opacity:0.95; }
 
-    /* register buttons (events) */
-    .register-buttons { display:flex; gap:1.25rem; justify-content:center; flex-wrap:wrap; margin:1.25rem 0; }
+    .promo-title { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
+    .promo-subtitle { font-size: 1rem; font-style: italic; opacity: 0.95; }
+
+    .register-buttons {
+      display: flex; justify-content: center; align-items: center;
+      gap: 1.5rem; flex-wrap: wrap; margin: 1.5rem 0;
+    }
     .register-button {
-      width: 180px; height:180px; border-radius:50%;
-      display:flex; align-items:center; justify-content:center; text-decoration:none;
+      width: 180px; height: 180px;
+      border-radius: 50%; text-decoration: none;
       background: linear-gradient(135deg,#1E2A5A,#2D3B6B);
-      color:white; border:2px solid transparent; box-shadow: 0 4px 15px rgba(30,42,90,0.22);
-      transition: all .28s cubic-bezier(.17,.885,.32,1.275);
-      position:relative; font-family:'Oswald',sans-serif;
+      color: white; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 15px rgba(30,42,90,0.3);
+      transition: all 0.3s ease; position: relative;
     }
-    .register-button:hover { transform: translateY(-4px); background: linear-gradient(135deg,#6B46C1,#8B5CF6); border-color: rgba(255,255,255,0.12); }
-    .button-content { text-align:center; }
-    .button-emoji { font-size:1.6rem; margin-bottom:0.2rem; }
-    .button-main { font-weight:600; font-size:0.95rem; }
-    .button-price { color:#FFD700; font-weight:700; margin-top:0.15rem; margin-bottom:0.25rem; text-shadow: 0 1px 2px rgba(0,0,0,0.25); }
-    .button-details { font-size:0.67rem; font-style:italic; opacity:0.95; }
+    .register-button:hover { background: linear-gradient(135deg,#6B46C1,#8B5CF6); transform: translateY(-2px); }
 
-    .countdown-timer { display:inline-block; margin-top:0.3rem; padding:0.2rem 0.45rem; border-radius:8px; font-weight:700; font-size:0.65rem; background:linear-gradient(135deg,#FFD700,#FFA500); color:#1E2A5A; }
+    .button-content { text-align: center; }
+    .button-emoji { font-size: 1.6rem; }
+    .button-main { font-size: .95rem; font-weight: 600; }
+    .button-price { font-size: 1rem; font-weight: 700; color: #FFD700; margin: .1rem 0; }
+    .button-details { font-size: .7rem; font-style: italic; opacity: .9; }
+    .countdown-timer {
+      display: inline-block; padding: 0.2rem 0.4rem; border-radius: 8px;
+      font-size: .65rem; font-weight: 700;
+      background: linear-gradient(135deg,#FFD700,#FFA500); color: #1E2A5A;
+      margin-top: 0.2rem;
+    }
 
-    /* news link */
-    .news-link { max-width:520px; margin:0.6rem auto; background:#F5DEB3; border:2px solid #db4118; padding:.7rem 1rem; border-radius:8px; text-align:center; box-shadow: 0 0 10px rgba(219,65,24,0.12); }
-    .news-link a { color:#db4118; text-decoration:none; font-weight:600; }
+    .share-icon {
+      position: absolute; bottom: 5px; right: 5px;
+      cursor: pointer; padding: 6px; border-radius: 50%;
+      background: rgba(0,0,0,0.6); border: none;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 20; transition: all 0.3s ease;
+    }
+    .share-icon img { width: 16px; height: 16px; filter: invert(1); }
 
-    /* upcoming cities */
-    .upcoming-cities { max-width:520px; margin:1.25rem auto; background: linear-gradient(135deg, rgba(219,65,24,0.03), rgba(30,42,90,0.02)); border-radius:12px; border:1px solid rgba(219,65,24,0.12); padding:1rem; text-align:center; }
-    .upcoming-title { color:#db4118; font-weight:600; margin-bottom:0.45rem; }
-    .cities-list { font-weight:500; color:#1E2A5A; margin-bottom:0.35rem; }
-
-    /* ===== partners carousel ===== */
+    /* partners section */
     .partners-section {
-      width:100%;
-      margin: 1.6rem 0;
-      padding: 1rem;
-      border-radius: 12px;
-      background: linear-gradient(135deg, rgba(219,65,24,0.03), rgba(30,42,90,0.02));
-      border: 1px solid rgba(219,65,24,0.08);
-      box-shadow: 0 6px 20px rgba(219,65,24,0.04);
-      text-align:center;
+      margin: 1.5rem auto; text-align: center;
+      padding: 1rem; border-radius: 12px;
+      background: linear-gradient(135deg,rgba(219,65,24,0.05),rgba(30,42,90,0.05));
+      border: 1px solid rgba(219,65,24,0.15);
+      max-width: 900px;
     }
-    .partners-title { color:#db4118; font-weight:600; font-size:1.05rem; margin-bottom:0.6rem; }
+    .partners-title { font-size: 1.2rem; font-weight: 600; color: #db4118; margin-bottom: 1rem; }
 
-    .partners-viewport {
-      width:100%;
-      overflow:hidden;
-      padding:0.6rem 0;
-      border-radius:8px;
-    }
-
+    .partners-viewport { width: 100%; overflow: hidden; }
     .partners-track {
-      display:flex;
-      gap:1rem;
-      align-items:center;
-      flex-wrap:nowrap;
-      will-change:transform;
-      animation: partnersScroll var(--partners-duration, 28s) linear infinite;
+      display: flex; gap: 1rem; flex-wrap: nowrap;
+      animation: scrollPartners 25s linear infinite;
     }
+    @keyframes scrollPartners { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
 
     .partner-item {
       flex: 0 0 auto;
-      width:140px; height:96px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background: #fff;
-      border-radius:8px;
-      padding:8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      overflow:hidden;
+      width: 140px; height: 96px;
+      display: flex; align-items: center; justify-content: center;
+      background: #fff; border-radius: 8px;
+      padding: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
     .partner-item img {
-      display:block;
-      max-width:100%;
-      max-height:100%;
-      object-fit:contain;
-      filter:grayscale(100%) saturate(60%);
-      transition: filter .18s ease, transform .18s ease;
-      -webkit-user-drag:none;
+      max-width: 100%; max-height: 100%;
+      object-fit: contain;
+      filter: grayscale(100%) saturate(60%);
+      transition: filter .2s ease, transform .2s ease;
     }
-    .partner-item:hover img, .partner-item a:focus img { filter:none; transform:translateY(-3px) scale(1.02); }
+    .partner-item:hover img { filter: none; transform: scale(1.03); }
 
-    @keyframes partnersScroll { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
-
-    /* responsive adjustments */
-    @media (max-width: 900px) {
-      .page { padding-left: 12px; padding-right: 12px; }
-      .header-text h1 { font-size: 2.6rem; }
-    }
     @media (max-width: 768px) {
-      .partner-item { width:110px; height:72px; }
-      .partners-track { gap:0.7rem; --partners-duration:36s; }
-      .register-button { width:160px; height:160px; }
-      .header-logo { width:50px; height:50px; }
-      .header-text h1 { font-size:2.4rem; }
+      .partner-item { width: 100px; height: 70px; }
+      .partners-track { gap: 0.7rem; animation-duration: 18s; }
     }
-    /* tiny screens - stop animation and allow swipe */
     @media (max-width: 420px) {
-      .partners-viewport { overflow-x:auto; -webkit-overflow-scrolling: touch; }
-      .partners-track { animation: none; gap:0.6rem; }
-      .partner-item { width:90px; height:60px; padding:6px; }
+      .partners-viewport { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .partners-track { animation: none; }
     }
-
-    /* whatsapp / benefits / footer */
-    .whatsapp-section { max-width:520px; margin: 1.2rem auto; text-align:center; }
-    .whatsapp-button {
-      display:inline-flex; align-items:center; gap:0.6rem; justify-content:center;
-      width:100%; max-width:420px;
-      background: linear-gradient(135deg,#25D366,#128C7E);
-      color:#fff; padding:.9rem 1.2rem; border-radius:12px; border:none; text-decoration:none; font-weight:700; font-family:'Oswald',sans-serif;
-      box-shadow: 0 6px 20px rgba(37,211,102,0.15);
-    }
-    .whatsapp-button img { width:22px; height:22px; display:inline-block; }
-
-    .whatsapp-benefits { margin-top:0.8rem; background: linear-gradient(135deg, rgba(219,65,24,0.03), rgba(30,42,90,0.02)); border-radius:8px; padding:0.7rem; border:1px solid rgba(219,65,24,0.08); }
-    .benefits-grid { display:flex; gap:0.5rem; justify-content:center; margin-top:0.5rem; flex-wrap:wrap; }
-
-    .footer { margin-top:1.6rem; text-align:center; }
-    .footer-content { max-width:520px; margin:0 auto; background: linear-gradient(135deg, rgba(219,65,24,0.03), rgba(30,42,90,0.02)); padding:1.2rem; border-radius:12px; border:1px solid rgba(219,65,24,0.08); }
-    .creators-names a { color:#1E2A5A; text-decoration:none; font-family:'Bebas Neue', 'Oswald', sans-serif; font-size:1.8rem; letter-spacing:2px; }
-    .creators-subtitle { font-style:italic; color:#666; margin-top:0.35rem; }
-
-    /* share-icon tweak: ensure clickable above overlays and remove default button borders */
-    .share-icon {
-      position: absolute;
-      bottom: 8px;
-      right: 8px;
-      cursor: pointer;
-      padding: 6px;
-      min-width: 34px;
-      min-height: 34px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-      background-color: rgba(0,0,0,0.6);
-      z-index: 40;
-      border: none;
-    }
-    .share-icon img { width: 16px; height: 16px; filter: invert(1) brightness(1); }
-
-    /* animation helper classes */
-    .fade-in { opacity:0; transform:translateY(20px); transition: all .55s ease; }
-    .fade-in.visible { opacity:1; transform:none; }
-    .slide-in-left{ opacity:0; transform:translateX(-20px); transition: all .55s ease; }
-    .slide-in-left.visible{ opacity:1; transform:translateX(0); }
-    .slide-in-right{ opacity:0; transform:translateX(20px); transition: all .55s ease; }
-    .slide-in-right.visible{ opacity:1; transform:translateX(0); }
-
   </style>
 </head>
+
 <body>
-  <div class="ticker-container" role="region" aria-label="Site notices">
-    <div class="ticker-content" aria-hidden="false">
-      <span class="ticker-text">🎉 6 Cities • 900+ Happy Participants • 100% Fun Guaranteed • Join the Community! 🧠</span>
+  <div class="ticker-container">
+    <div class="ticker-content">
       <span class="ticker-text">🎉 6 Cities • 900+ Happy Participants • 100% Fun Guaranteed • Join the Community! 🧠</span>
       <span class="ticker-text">🎉 6 Cities • 900+ Happy Participants • 100% Fun Guaranteed • Join the Community! 🧠</span>
     </div>
   </div>
 
-  <main class="page" id="main">
-    <header class="header-box fade-in">
-      <img src="https://i.ibb.co/1fwSfgcK/8-bit-purple-logo-2x-removebg-preview.png" alt="Tasty Trivia logo" class="header-logo" onerror="handleLogoError(this)">
+  <main class="page">
+    <div class="header-box">
+      <img src="https://i.ibb.co/1fwSfgcK/8-bit-purple-logo-2x-removebg-preview.png" alt="Tasty Trivia 8-bit logo" class="header-logo" onerror="handleLogoError(this)" />
       <div class="header-text">
         <h1>TASTY TRIVIA</h1>
         <p>Delicious Offline Trivia Events!</p>
       </div>
-    </header>
+    </div>
 
-    <section class="promo-section fade-in">
+    <div class="promo-section">
       <div class="promo-title">🔥 Early Bird Special</div>
       <div class="promo-subtitle">🎉 Fun & Beginner-friendly</div>
       <div class="promo-subtitle">🧠 For GenZs & Millennials</div>
-    </section>
+    </div>
 
-    <section class="register-buttons fade-in" aria-label="Events">
-      <div class="register-button slide-in-left" style="cursor:default;">
+    <div class="register-buttons">
+      <div class="register-button" style="cursor:default;">
         <div class="button-content">
           <div class="button-emoji">☁️</div>
           <div class="button-main">BENGALURU</div>
@@ -290,12 +180,12 @@
           <div class="button-details">Nov 21, 9–11 PM</div>
           <div class="countdown-timer tickets-soon">Tickets Out Soon</div>
         </div>
-        <button class="share-icon" aria-label="Share Bengaluru" onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); e.stopPropagation(); shareEvent('', 'Bengaluru', 'Nov 21', '9–11 PM'); return false; })(event);" style="position:absolute; right:8px; bottom:8px;">
+        <button type="button" class="share-icon" onclick="(function(e){e.preventDefault();e.stopImmediatePropagation();shareEvent('','Bengaluru','Nov 21','9–11 PM');})(event)">
           <img src="https://i.ibb.co/FkxqqVZw/Arrow.png" alt="Share" />
         </button>
       </div>
 
-      <a class="register-button luma-checkout--button slide-in-right" href="https://lu.ma/event/evt-mHz4EjwBN6PDIFK" data-luma-action="checkout" data-luma-event-id="evt-mHz4EjwBN6PDIFK">
+      <a href="https://lu.ma/event/evt-mHz4EjwBN6PDIFK" class="register-button luma-checkout--button" data-luma-action="checkout" data-luma-event-id="evt-mHz4EjwBN6PDIFK">
         <div class="button-content">
           <div class="button-emoji">⭐</div>
           <div class="button-main">BHUBANESWAR</div>
@@ -303,201 +193,77 @@
           <div class="button-details">Dec 27, 5–7 PM</div>
           <div class="countdown-timer" id="countdown-bhubaneswar">Loading...</div>
         </div>
-
-        <!-- <-- Replaced span with a proper button that prevents parent link activation -->
-        <button
-          type="button"
-          class="share-icon"
-          aria-label="Share Bhubaneswar event"
-          onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); e.stopPropagation(); shareEvent('https://lu.ma/event/evt-mHz4EjwBN6PDIFK','Bhubaneswar','Dec 27','5–7 PM'); return false; })(event);">
+        <button type="button" class="share-icon" onclick="(function(e){e.preventDefault();e.stopImmediatePropagation();shareEvent('https://lu.ma/event/evt-mHz4EjwBN6PDIFK','Bhubaneswar','Dec 27','5–7 PM');})(event)">
           <img src="https://i.ibb.co/FkxqqVZw/Arrow.png" alt="Share" />
         </button>
       </a>
-    </section>
-
-    <div class="news-link fade-in">
-      <a href="#" onclick="openNews(); return false;">📰 We Got Featured!</a>
     </div>
 
-    <section class="upcoming-cities fade-in" aria-label="Upcoming cities">
-      <div class="upcoming-title">🚀 Coming Soon</div>
-      <div class="cities-list">Mumbai • Delhi • Pune • Hyderabad</div>
-      <div class="notify-text">Want to be notified? Join our community below! 👇</div>
-    </section>
-
-    <!-- Partners carousel -->
-    <section class="partners-section fade-in" aria-label="Past venue partners">
+    <section class="partners-section">
       <div class="partners-title">🏛️ Our Past Venue Partners</div>
-
-      <div class="partners-viewport" aria-hidden="false" tabindex="0">
-        <div class="partners-track" id="partnersTrack" aria-hidden="false">
-          <!-- original 7 logos (src used directly) -->
-          <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img src="https://i.ibb.co/gb6m57zt/Whats-App-Image-2025-10-26-at-00-08-30.jpg" alt="Partner 1" onerror="handleImageError(this)"></a></div>
-          <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img src="https://i.ibb.co/XxDLRqkp/Whats-App-Image-2025-10-26-at-00-08-31-1.jpg" alt="Partner 2" onerror="handleImageError(this)"></a></div>
-          <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img src="https://i.ibb.co/rKmqLnxQ/Whats-App-Image-2025-10-26-at-00-08-31-2.jpg" alt="Partner 3" onerror="handleImageError(this)"></a></div>
-          <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img src="https://i.ibb.co/MxPszGTF/Whats-App-Image-2025-10-26-at-00-08-31.jpg" alt="Partner 4" onerror="handleImageError(this)"></a></div>
-          <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img src="https://i.ibb.co/Dd869bS/Whats-App-Image-2025-10-26-at-00-08-32-1.jpg" alt="Partner 5" onerror="handleImageError(this)"></a></div>
-          <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img src="https://i.ibb.co/k2xKM6M6/Whats-App-Image-2025-10-26-at-00-08-32-2.jpg" alt="Partner 6" onerror="handleImageError(this)"></a></div>
-          <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img src="https://i.ibb.co/WWBx0K7r/Whats-App-Image-2025-10-26-at-00-08-32.jpg" alt="Partner 7" onerror="handleImageError(this)"></a></div>
-
-          <!-- duplicate set for smooth infinite scroll -->
-          <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img src="https://i.ibb.co/gb6m57zt/Whats-App-Image-2025-10-26-at-00-08-30.jpg" alt="Partner 1" onerror="handleImageError(this)"></a></div>
-          <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img src="https://i.ibb.co/XxDLRqkp/Whats-App-Image-2025-10-26-at-00-08-31-1.jpg" alt="Partner 2" onerror="handleImageError(this)"></a></div>
-          <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img src="https://i.ibb.co/rKmqLnxQ/Whats-App-Image-2025-10-26-at-00-08-31-2.jpg" alt="Partner 3" onerror="handleImageError(this)"></a></div>
-          <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img src="https://i.ibb.co/MxPszGTF/Whats-App-Image-2025-10-26-at-00-08-31.jpg" alt="Partner 4" onerror="handleImageError(this)"></a></div>
-          <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img src="https://i.ibb.co/Dd869bS/Whats-App-Image-2025-10-26-at-00-08-32-1.jpg" alt="Partner 5" onerror="handleImageError(this)"></a></div>
-          <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img src="https://i.ibb.co/k2xKM6M6/Whats-App-Image-2025-10-26-at-00-08-32-2.jpg" alt="Partner 6" onerror="handleImageError(this)"></a></div>
-          <div class="partner-item"><a href="#" target="_blank" rel="noopener"><img src="https://i.ibb.co/WWBx0K7r/Whats-App-Image-2025-10-26-at-00-08-32.jpg" alt="Partner 7" onerror="handleImageError(this)"></a></div>
+      <div class="partners-viewport">
+        <div class="partners-track" id="partnersTrack">
+          <div class="partner-item"><img src="https://i.ibb.co/gb6m57zt/Whats-App-Image-2025-10-26-at-00-08-30.jpg" alt="Partner 1"></div>
+          <div class="partner-item"><img src="https://i.ibb.co/XxDLRqkp/Whats-App-Image-2025-10-26-at-00-08-31-1.jpg" alt="Partner 2"></div>
+          <div class="partner-item"><img src="https://i.ibb.co/rKmqLnxQ/Whats-App-Image-2025-10-26-at-00-08-31-2.jpg" alt="Partner 3"></div>
+          <div class="partner-item"><img src="https://i.ibb.co/MxPszGTF/Whats-App-Image-2025-10-26-at-00-08-31.jpg" alt="Partner 4"></div>
+          <div class="partner-item"><img src="https://i.ibb.co/Dd869bS/Whats-App-Image-2025-10-26-at-00-08-32-1.jpg" alt="Partner 5"></div>
+          <div class="partner-item"><img src="https://i.ibb.co/k2xKM6M6/Whats-App-Image-2025-10-26-at-00-08-32-2.jpg" alt="Partner 6"></div>
+          <div class="partner-item"><img src="https://i.ibb.co/WWBx0K7r/Whats-App-Image-2025-10-26-at-00-08-32.jpg" alt="Partner 7"></div>
         </div>
       </div>
     </section>
-
-    <section class="whatsapp-section fade-in" aria-label="WhatsApp community">
-      <a class="whatsapp-button" href="https://bit.ly/Tasty_Trivia" target="_blank" rel="noopener">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" onerror="this.style.display='none'"> Join 500+ Members - Get Special Prices!
-      </a>
-
-      <div class="whatsapp-benefits">
-        <div style="font-weight:700; color:#db4118; margin-bottom:0.6rem;">🍜 Get The Tastiest Access</div>
-        <div class="benefits-grid">
-          <div style="background:#fff;padding:.45rem .6rem;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,0.06);">📢 Event Updates</div>
-          <div style="background:#fff;padding:.45rem .6rem;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,0.06);">💰 Special Prices</div>
-          <div style="background:#fff;padding:.45rem .6rem;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,0.06);">🏆 Exclusive Contests</div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer fade-in" aria-label="Footer">
-      <div class="footer-content">
-        <div style="margin-bottom:0.6rem; color:#db4118; font-weight:600;">👥 Meet the Curators</div>
-        <div class="creators-names"><a href="https://in.linkedin.com/in/reach-saloni" target="_blank" rel="noopener">Sal</a> &amp; <a href="https://in.linkedin.com/in/whysosuso" target="_blank" rel="noopener">Suso</a></div>
-        <div class="creators-subtitle">Making trivia fun, one event at a time ❤️</div>
-
-        <div style="margin-top:1.1rem; font-style:italic; color:#333;">Powered by our lovely friends!</div>
-
-        <div style="margin-top:1rem; color:#db4118; font-weight:600;">📧 Get in Touch</div>
-        <div style="margin-top:0.4rem;"><a href="mailto:hi.tastytrivia@gmail.com">hi.tastytrivia@gmail.com</a></div>
-
-        <div style="margin-top:0.6rem; color:#666;">📸 IG: @gettastytrivia &nbsp; • &nbsp; 🐦 X: @gettastytrivia</div>
-      </div>
-    </footer>
   </main>
 
-  <button id="backToTop" aria-label="Back to top" style="position:fixed;right:18px;bottom:18px;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#db4118,#e55a5a);color:#fff;border:none;box-shadow:0 6px 20px rgba(219,65,24,0.18);font-weight:700;display:none;z-index:1000;">↑</button>
-
   <script>
-    /*** Helpers ***/
     function handleImageError(img){
-      img.onerror = null;
-      img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180"><rect width="100%" height="100%" fill="#f0e0c2"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#db4118" font-family="Arial" font-size="14">Image unavailable</text></svg>');
-      img.alt = 'Image unavailable';
+      img.src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="120"><rect width="100%" height="100%" fill="%23f0e0c2"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="%23db4118" font-family="Arial" font-size="12">Image missing</text></svg>';
     }
     function handleLogoError(img){
-      img.onerror = null;
-      img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70"><rect width="100%" height="100%" rx="8" fill="#db4118"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="14" fill="#fff">TT</text></svg>');
-      img.alt = 'Tasty Trivia';
+      img.src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70"><rect width="70" height="70" fill="%23db4118" rx="8"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="white" font-family="Arial" font-size="14">TT</text></svg>';
     }
 
-    /* Countdown logic */
     const eventDates = { 'countdown-bhubaneswar': new Date('2025-12-27T17:00:00+05:30') };
     let countdownIntervals = {};
-    function updateCountdown(id, dt){
+
+    function updateCountdown(id, dt) {
       const el = document.getElementById(id);
       if (!el) return;
-      const now = new Date();
-      const diff = dt - now;
-      if (diff <= 0) { el.textContent = 'Event Started!'; el.className = 'countdown-timer expired'; clearInterval(countdownIntervals[id]); return; }
-      const days = Math.floor(diff / (1000*60*60*24));
-      const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-      const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
-      const seconds = Math.floor((diff % (1000*60))/1000);
-      if (days > 0) el.textContent = `${days}d ${hours}h`;
-      else if (hours > 0) el.textContent = `${hours}h ${minutes}m`;
-      else if (minutes > 0) el.textContent = `${minutes}m ${seconds}s`;
-      else el.textContent = `${seconds}s`;
+      const diff = dt - new Date();
+      if (diff <= 0) { el.textContent = 'Event Started!'; return; }
+      const d = Math.floor(diff / 86400000), h = Math.floor(diff % 86400000 / 3600000), m = Math.floor(diff % 3600000 / 60000);
+      el.textContent = d > 0 ? `${d}d ${h}h` : `${h}h ${m}m`;
     }
-    function startCountdowns(){
-      Object.keys(eventDates).forEach(id => {
-        updateCountdown(id, eventDates[id]);
-        countdownIntervals[id] = setInterval(()=> updateCountdown(id, eventDates[id]), 1000);
+
+    function startCountdowns() {
+      Object.entries(eventDates).forEach(([id, dt]) => {
+        updateCountdown(id, dt);
+        countdownIntervals[id] = setInterval(() => updateCountdown(id, dt), 1000);
       });
     }
 
-    /* Partners: simple reliable optimiser */
-    function debounce(fn, wait=200){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), wait); }; }
+    function shareEvent(link, city, date, time) {
+      let msg = `🧠 Found this awesome trivia event in ${city} (${date} ${time})! 🎉`;
+      msg += link ? `\n\n${link}` : `\n\nTickets coming soon!`;
+      window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`,'_blank');
+    }
 
-    function optimisePartners(){
+    function optimisePartners() {
       const track = document.getElementById('partnersTrack');
       if (!track) return;
-      const viewport = track.parentElement;
-      // compute duration based on content width for comfortable speed
-      const fullWidth = track.scrollWidth || viewport.clientWidth*2;
-      const distance = fullWidth * 0.5;
-      const pxPerSec = 80; // adjust speed
-      let duration = Math.max(8, Math.round(distance / pxPerSec));
-      duration = Math.min(duration, 90);
-      track.style.setProperty('--partners-duration', duration + 's');
-
-      // tiny screens: stop animation and allow swipe
-      if (viewport.clientWidth <= 420) {
-        viewport.style.overflowX = 'auto';
-        track.style.animation = 'none';
-      } else {
-        viewport.style.overflowX = 'hidden';
-        track.style.animation = '';
-      }
-
-      // pause/play handlers
-      const pause = ()=> track.style.animationPlayState = 'paused';
-      const play = ()=> track.style.animationPlayState = 'running';
-      viewport.removeEventListener('mouseenter', pause);
-      viewport.removeEventListener('mouseleave', play);
-      viewport.addEventListener('mouseenter', pause);
-      viewport.addEventListener('mouseleave', play);
-      viewport.addEventListener('touchstart', pause, {passive:true});
-      viewport.addEventListener('touchend', play, {passive:true});
-
-      track.querySelectorAll('img').forEach(img => { img.onerror = () => handleImageError(img); });
+      if (window.innerWidth < 420) track.style.animation = 'none';
+      else track.style.animation = '';
     }
 
-    /* UI: reveal animations, back-to-top */
-    function setupAnimations(){
-      const nodes = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
-      const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-      }, { threshold: 0.12, rootMargin: '40px' });
-      nodes.forEach(n => obs.observe(n));
-    }
-    const backToTop = document.getElementById('backToTop');
-    function handleScroll(){
-      if (window.scrollY > 300) backToTop.style.display = 'block'; else backToTop.style.display = 'none';
-    }
-    backToTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
-
-    /* share, news */
-    function shareEvent(link, city, date, time){
-      try{
-        let msg = `🧠 Found this awesome trivia event in ${city} (${date} ${time})! 🎉`;
-        if (link) msg += `\n\n${link}`; else msg += `\n\nTickets coming soon! Join our WhatsApp group for updates.`;
-        const url = `https://wa.me/?text=${encodeURIComponent(msg)}`;
-        window.open(url, '_blank');
-      } catch(e){ console.error(e); if (navigator.clipboard && link) navigator.clipboard.writeText(link); }
-    }
-    function openNews(){ window.open("https://www.newindianexpress.com/amp/story/cities/bhubaneswar/2025/jun/22/rice-spice-and-quiz-marks-tasty-trivias-debut-in-bhubaneswar", "newsPopup", "width=600,height=700,resizable=yes,scrollbars=yes"); }
-
-    /* init */
-    window.addEventListener('DOMContentLoaded', ()=>{
-      setupAnimations();
+    document.addEventListener('DOMContentLoaded', () => {
       startCountdowns();
       optimisePartners();
-      window.addEventListener('resize', debounce(optimisePartners, 240));
-      window.addEventListener('orientationchange', debounce(optimisePartners, 300));
-      window.addEventListener('scroll', handleScroll, {passive:true});
+      window.addEventListener('resize', optimisePartners);
     });
 
-    // cleanup timers on unload
-    window.addEventListener('beforeunload', ()=> {
-      Object.values(countdownIntervals).forEach(i=>clearInterval(i));
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) Object.values(countdownIntervals).forEach(clearInterval);
+      else startCountdowns();
     });
   </script>
 </body>
