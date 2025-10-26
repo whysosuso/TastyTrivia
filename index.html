@@ -227,6 +227,26 @@
     .creators-names a { color:#1E2A5A; text-decoration:none; font-family:'Bebas Neue', 'Oswald', sans-serif; font-size:1.8rem; letter-spacing:2px; }
     .creators-subtitle { font-style:italic; color:#666; margin-top:0.35rem; }
 
+    /* share-icon tweak: ensure clickable above overlays and remove default button borders */
+    .share-icon {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      cursor: pointer;
+      padding: 6px;
+      min-width: 34px;
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      background-color: rgba(0,0,0,0.6);
+      z-index: 40;
+      border: none;
+    }
+    .share-icon img { width: 16px; height: 16px; filter: invert(1) brightness(1); }
+
     /* animation helper classes */
     .fade-in { opacity:0; transform:translateY(20px); transition: all .55s ease; }
     .fade-in.visible { opacity:1; transform:none; }
@@ -268,10 +288,10 @@
           <div class="button-main">BENGALURU</div>
           <div class="button-price">Rs 349</div>
           <div class="button-details">Nov 21, 9–11 PM</div>
-          <div class="countdown-timer tickets-soon">Tix Soon</div>
+          <div class="countdown-timer tickets-soon">Tickets Out Soon</div>
         </div>
-        <button class="share-icon" aria-label="Share Bengaluru" onclick="shareEvent('', 'Bengaluru', 'Nov 21', '9–11 PM'); event.stopPropagation();" style="position:absolute; right:8px; bottom:8px; background:rgba(0,0,0,0.6); border-radius:50%; width:34px; height:34px; display:flex;align-items:center;justify-content:center; border:none;">
-          <img src="https://i.ibb.co/FkxqqVZw/Arrow.png" alt="Share" style="width:16px;height:16px;filter:invert(1);">
+        <button class="share-icon" aria-label="Share Bengaluru" onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); e.stopPropagation(); shareEvent('', 'Bengaluru', 'Nov 21', '9–11 PM'); return false; })(event);" style="position:absolute; right:8px; bottom:8px;">
+          <img src="https://i.ibb.co/FkxqqVZw/Arrow.png" alt="Share" />
         </button>
       </div>
 
@@ -283,9 +303,15 @@
           <div class="button-details">Dec 27, 5–7 PM</div>
           <div class="countdown-timer" id="countdown-bhubaneswar">Loading...</div>
         </div>
-        <span class="share-icon" aria-hidden="true" style="position:absolute; right:8px; bottom:8px;">
-          <img src="https://i.ibb.co/FkxqqVZw/Arrow.png" alt="Share" style="width:16px;height:16px;filter:invert(1);">
-        </span>
+
+        <!-- <-- Replaced span with a proper button that prevents parent link activation --> -->
+        <button
+          type="button"
+          class="share-icon"
+          aria-label="Share Bhubaneswar event"
+          onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); e.stopPropagation(); shareEvent('https://lu.ma/event/evt-mHz4EjwBN6PDIFK','Bhubaneswar','Dec 27','5–7 PM'); return false; })(event);">
+          <img src="https://i.ibb.co/FkxqqVZw/Arrow.png" alt="Share" />
+        </button>
       </a>
     </section>
 
@@ -404,7 +430,6 @@
       const track = document.getElementById('partnersTrack');
       if (!track) return;
       const viewport = track.parentElement;
-      // Ensure track has at least two sets for smooth scroll (we already duplicate in markup)
       // compute duration based on content width for comfortable speed
       const fullWidth = track.scrollWidth || viewport.clientWidth*2;
       const distance = fullWidth * 0.5;
@@ -422,7 +447,7 @@
         track.style.animation = '';
       }
 
-      // attach pause/play on hover/touch
+      // pause/play handlers
       const pause = ()=> track.style.animationPlayState = 'paused';
       const play = ()=> track.style.animationPlayState = 'running';
       viewport.removeEventListener('mouseenter', pause);
@@ -432,7 +457,6 @@
       viewport.addEventListener('touchstart', pause, {passive:true});
       viewport.addEventListener('touchend', play, {passive:true});
 
-      // ensure onerror fallback present
       track.querySelectorAll('img').forEach(img => { img.onerror = () => handleImageError(img); });
     }
 
