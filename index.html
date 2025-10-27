@@ -10,23 +10,18 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Oswald:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
-    /* Reset / base */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       font-family: 'Oswald','Bebas Neue','Arial Black',sans-serif;
       background-color: #F5DEB3;
       color: #111;
       -webkit-font-smoothing:antialiased;
+      overflow-x: hidden;
       min-height: 100%;
     }
 
-    /* Prevent accidental horizontal overflow */
-    html, body { overflow-x: hidden; }
-
-    /* Page container */
     .page { max-width: 980px; margin: 0 auto; padding: 80px 1rem 4rem; }
 
-    /* Ticker */
     .ticker-container {
       position: fixed; top: 0; left: 0; right: 0; height: 40px;
       background: linear-gradient(90deg,#db4118,#1E2A5A,#6B46C1);
@@ -38,19 +33,16 @@
     .ticker-text { padding-right: 80px; }
     @keyframes tickerScroll { 0%{transform:translateX(100%);} 100%{transform:translateX(-100%);} }
 
-    /* Header */
     .header-box { display:flex; gap:1rem; align-items:center; justify-content:center; background:#F5DEB3; border:2px solid #db4118; border-radius:10px; padding:1rem 1.5rem; box-shadow:0 0 12px rgba(219,65,24,0.22); margin-bottom:1.5rem; text-align:center; }
     .header-logo{ width:70px; height:70px; object-fit:contain; flex-shrink:0; }
     .header-text h1{ font-family:'Bebas Neue'; font-size:3.2rem; color:#db4118; letter-spacing:2px; margin-bottom:0.15rem; }
     .header-text p{ font-style:italic; font-size:1.05rem; color:#111; }
 
-    /* Promo */
     .promo-section{ max-width:520px; margin:0 auto 1.5rem; background:linear-gradient(45deg,#db4118,#e55a5a); color:#fff; padding:1rem 1.5rem; border-radius:14px; text-align:center; box-shadow:0 4px 15px rgba(219,65,24,0.18); animation:pulse 2s ease-in-out infinite alternate; }
     @keyframes pulse{0%{transform:scale(1)}100%{transform:scale(1.02)}}
     .promo-title{ font-weight:600; font-size:1.15rem; margin-bottom:0.5rem; }
     .promo-subtitle{ font-style:italic; opacity:0.95; }
 
-    /* Register buttons (events) */
     .register-buttons{ display:flex; gap:1.25rem; justify-content:center; flex-wrap:wrap; margin:1.25rem 0; }
     .register-button{ width:180px; height:180px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,#1E2A5A,#2D3B6B); color:#fff; position:relative; text-decoration:none; border:2px solid transparent; box-shadow:0 4px 15px rgba(30,42,90,0.22); transition:all .28s cubic-bezier(.17,.885,.32,1.275); font-family:'Oswald',sans-serif; }
     .register-button:hover{ transform:translateY(-4px); background:linear-gradient(135deg,#6B46C1,#8B5CF6); border-color:rgba(255,255,255,0.12); }
@@ -61,101 +53,69 @@
     .button-details{ font-size:0.67rem; font-style:italic; opacity:0.95; }
     .countdown-timer{ display:inline-block; margin-top:0.3rem; padding:0.2rem 0.45rem; border-radius:8px; font-weight:700; font-size:0.65rem; background:linear-gradient(135deg,#FFD700,#FFA500); color:#1E2A5A; }
 
-    /* Share icon button (works over anchors) */
     .share-icon{ position:absolute; bottom:8px; right:8px; padding:6px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.6); border:none; z-index:40; cursor:pointer; transition:all .2s ease; }
     .share-icon img{ width:16px; height:16px; filter:invert(1) brightness(1); }
 
-    /* News link */
     .news-link{ max-width:520px; margin:0.6rem auto; background:#F5DEB3; border:2px solid #db4118; padding:.7rem 1rem; border-radius:8px; text-align:center; box-shadow:0 0 10px rgba(219,65,24,0.12); }
     .news-link a{ color:#db4118; text-decoration:none; font-weight:600; }
 
-    /* Upcoming */
+    .instagram-feed{ max-width:520px; margin:1rem auto 1.5rem; background:#fff8ef; border:1px solid rgba(219,65,24,0.2); border-radius:10px; text-align:center; padding:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
+    .instagram-feed h3{ color:#db4118; font-size:1.1rem; font-weight:600; margin-bottom:0.5rem; }
+    .instagram-feed iframe{ width:100%; border:none; height:480px; border-radius:10px; }
+
     .upcoming-cities{ max-width:520px; margin:1.25rem auto; background:linear-gradient(135deg,rgba(219,65,24,0.03),rgba(30,42,90,0.02)); border-radius:12px; border:1px solid rgba(219,65,24,0.12); padding:1rem; text-align:center; }
     .upcoming-title{ color:#db4118; font-weight:600; margin-bottom:0.45rem; }
     .cities-list{ font-weight:500; color:#1E2A5A; margin-bottom:0.35rem; }
 
-    /* Partners section (static logos — non-clickable) */
-    .partners-section{ margin:1.5rem auto; padding:1rem; border-radius:12px; background:linear-gradient(135deg,rgba(219,65,24,0.05),rgba(30,42,90,0.05)); border:1px solid rgba(219,65,24,0.12); text-align:center; max-width:900px; }
-    .partners-title{ font-weight:600; color:#db4118; margin-bottom:0.8rem; font-size:1.05rem; }
-
-    .partners-viewport{ width:100%; overflow:hidden; }
-    .partners-track{ display:flex; gap:1rem; align-items:center; flex-wrap:nowrap; will-change:transform; animation: partnersScroll var(--partners-duration,28s) linear infinite; }
-    @keyframes partnersScroll{ 0%{ transform:translateX(0);} 100%{ transform:translateX(-50%);} }
-
-    .partner-item{ flex:0 0 auto; width:140px; height:96px; display:flex; align-items:center; justify-content:center; background:#fff; border-radius:8px; padding:8px; box-shadow:0 2px 8px rgba(0,0,0,0.04); overflow:hidden; }
-    .partner-item img{ max-width:100%; max-height:100%; object-fit:contain; filter:grayscale(100%) saturate(60%); transition:filter .18s ease, transform .18s ease; -webkit-user-drag:none; }
-    .partner-item:hover img{ filter:none; transform:translateY(-3px) scale(1.02); }
-
-    /* WhatsApp and footer */
     .whatsapp-section{ max-width:520px; margin:1.25rem auto; text-align:center; }
     .whatsapp-button{ display:inline-flex; align-items:center; gap:0.6rem; justify-content:center; width:100%; max-width:420px; background:linear-gradient(135deg,#25D366,#128C7E); color:#fff; padding:.9rem 1.2rem; border-radius:12px; border:none; font-weight:700; text-decoration:none; box-shadow:0 6px 20px rgba(37,211,102,0.15); }
     .whatsapp-button img{ width:22px; height:22px; }
-
-    .whatsapp-benefits{ margin-top:0.8rem; background:linear-gradient(135deg,rgba(219,65,24,0.03),rgba(30,42,90,0.02)); border-radius:8px; padding:0.7rem; border:1px solid rgba(219,65,24,0.08); }
-    .benefits-grid{ display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap; margin-top:0.4rem; }
 
     .footer{ margin-top:1.6rem; text-align:center; }
     .footer-content{ max-width:520px; margin:0 auto; background:linear-gradient(135deg,rgba(219,65,24,0.03),rgba(30,42,90,0.02)); padding:1.2rem; border-radius:12px; border:1px solid rgba(219,65,24,0.08); }
     .creators-names{ font-family:'Bebas Neue','Oswald',sans-serif; font-size:1.8rem; color:#1E2A5A; margin-bottom:0.3rem; }
     .creators-subtitle{ font-style:italic; color:#666; }
 
-    /* Back to top */
     .back-to-top{ position:fixed; right:18px; bottom:18px; width:50px; height:50px; border-radius:50%; background:linear-gradient(135deg,#db4118,#e55a5a); color:#fff; border:none; box-shadow:0 6px 20px rgba(219,65,24,0.18); font-weight:700; display:none; z-index:1000; cursor:pointer; }
-
-    /* Responsive tweaks */
-    @media (max-width: 900px) { .page{ padding-left:12px; padding-right:12px; } .header-text h1{ font-size:2.6rem; } }
-    @media (max-width:768px){ .partner-item{ width:110px; height:72px; } .partners-track{ gap:0.7rem; --partners-duration:36s; } .register-button{ width:160px;height:160px; } .header-logo{ width:50px;height:50px; } .header-text h1{ font-size:2.4rem; } }
-    @media (max-width:420px){ .partners-viewport{ overflow-x:auto; -webkit-overflow-scrolling:touch; } .partners-track{ animation:none; gap:0.6rem; } .partner-item{ width:90px; height:60px; padding:6px; } }
-
-    @media (prefers-reduced-motion: reduce){ .partners-track, .ticker-content { animation: none !important; } }
   </style>
 </head>
 <body>
-  <div class="ticker-container" role="region" aria-label="Site notices">
-    <div class="ticker-content" aria-hidden="false">
-      <span class="ticker-text">🎉 6 Cities • 900+ Happy Participants • 100% Fun Guaranteed • Join the Community! 🧠</span>
+  <div class="ticker-container">
+    <div class="ticker-content">
       <span class="ticker-text">🎉 6 Cities • 900+ Happy Participants • 100% Fun Guaranteed • Join the Community! 🧠</span>
       <span class="ticker-text">🎉 6 Cities • 900+ Happy Participants • 100% Fun Guaranteed • Join the Community! 🧠</span>
     </div>
   </div>
 
-  <main class="page" id="main">
+  <main class="page">
     <header class="header-box">
-      <img src="https://i.ibb.co/1fwSfgcK/8-bit-purple-logo-2x-removebg-preview.png" alt="Tasty Trivia logo" class="header-logo" onerror="handleLogoError(this)">
+      <img src="https://i.ibb.co/1fwSfgcK/8-bit-purple-logo-2x-removebg-preview.png" alt="Tasty Trivia logo" class="header-logo">
       <div class="header-text">
         <h1>TASTY TRIVIA</h1>
         <p>Delicious Offline Trivia Events!</p>
       </div>
     </header>
 
-    <section class="promo-section" aria-hidden="false">
+    <section class="promo-section">
       <div class="promo-title">🔥 Early Bird Special</div>
       <div class="promo-subtitle">🎉 Fun & Beginner-friendly</div>
       <div class="promo-subtitle">🧠 For GenZs & Millennials</div>
     </section>
 
-    <!-- EVENTS -->
-    <section class="register-buttons" aria-label="Events">
-      <!-- Bengaluru (no link) -->
-      <div class="register-button" style="cursor:default;">
+    <section class="register-buttons">
+      <!-- Bengaluru -->
+      <a href="https://www.district.in/events/all-things-asia-rice-spice-everything-with-tasty-trivia-oct10-2025-buy-tickets" class="register-button">
         <div class="button-content">
           <div class="button-emoji">☁️</div>
           <div class="button-main">BENGALURU</div>
           <div class="button-price">Rs 349</div>
-          <div class="button-details">Nov 21, 9–11 PM</div>
-          <div class="countdown-timer tickets-soon">Tix Out Soon</div>
+          <div class="button-details">Oct 10, 9–11 PM</div>
+          <div class="countdown-timer" id="countdown-bengaluru">Loading...</div>
         </div>
-        <button type="button" class="share-icon" aria-label="Share Bengaluru event"
-                onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('', 'Bengaluru','Nov 21','9–11 PM'); })(event)">
-          <img src="https://i.ibb.co/FkxqqVZw/Arrow.png" alt="Share" />
-        </button>
-      </div>
+      </a>
 
-      <!-- Bhubaneswar (checkout anchor) -->
-      <a href="https://lu.ma/event/evt-mHz4EjwBN6PDIFK"
-         class="register-button luma-checkout--button"
-         data-luma-action="checkout"
-         data-luma-event-id="evt-mHz4EjwBN6PDIFK">
+      <!-- Bhubaneswar (updated to District link) -->
+      <a href="https://www.district.in/events/tasty-trivia-the-great-indian-buffet-beginnerfriendly-quiz-show-dec27-2025-buy-tickets" class="register-button">
         <div class="button-content">
           <div class="button-emoji">⭐</div>
           <div class="button-main">BHUBANESWAR</div>
@@ -163,12 +123,6 @@
           <div class="button-details">Dec 27, 5–7 PM</div>
           <div class="countdown-timer" id="countdown-bhubaneswar">Loading...</div>
         </div>
-
-        <!-- share button placed inside anchor but uses stopImmediatePropagation to avoid parent click -->
-        <button type="button" class="share-icon" aria-label="Share Bhubaneswar event"
-                onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://lu.ma/event/evt-mHz4EjwBN6PDIFK','Bhubaneswar','Dec 27','5–7 PM'); })(event)">
-          <img src="https://i.ibb.co/FkxqqVZw/Arrow.png" alt="Share" />
-        </button>
       </a>
     </section>
 
@@ -176,181 +130,69 @@
       <a href="#" onclick="openNews(); return false;">📰 We Got Featured!</a>
     </div>
 
-    <section class="upcoming-cities" aria-label="Upcoming cities">
+    <!-- Instagram Feed -->
+    <section class="instagram-feed">
+      <h3>📸 Follow Us on Instagram</h3>
+      <p><a href="https://www.instagram.com/gettastytrivia/" target="_blank">@gettastytrivia</a></p>
+
+      <!-- Replace with your real feed widget URL -->
+      <!-- Example: <iframe src="https://snapwidget.com/embed/yourwidgetid" allowtransparency="true"></iframe> -->
+
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C8oP3E8yT0x/" data-instgrm-version="14"></blockquote>
+      <script async src="//www.instagram.com/embed.js"></script>
+    </section>
+
+    <section class="upcoming-cities">
       <div class="upcoming-title">🚀 Coming Soon</div>
       <div class="cities-list">Mumbai • Delhi • Pune • Hyderabad</div>
       <div class="notify-text">Want to be notified? Join our community below! 👇</div>
     </section>
 
-    <!-- PARTNERS: static logos (non-clickable) -->
-    <section class="partners-section" aria-label="Our past venue partners">
-      <div class="partners-title">🏛️ Our Past Venue Partners</div>
-      <div class="partners-viewport" tabindex="0" aria-hidden="false">
-        <div class="partners-track" id="partnersTrack" aria-hidden="false">
-          <!-- original set -->
-          <div class="partner-item"><img src="https://i.ibb.co/gb6m57zt/Whats-App-Image-2025-10-26-at-00-08-30.jpg" alt="Partner 1" onerror="handleImageError(this)"></div>
-          <div class="partner-item"><img src="https://i.ibb.co/XxDLRqkp/Whats-App-Image-2025-10-26-at-00-08-31-1.jpg" alt="Partner 2" onerror="handleImageError(this)"></div>
-          <div class="partner-item"><img src="https://i.ibb.co/rKmqLnxQ/Whats-App-Image-2025-10-26-at-00-08-31-2.jpg" alt="Partner 3" onerror="handleImageError(this)"></div>
-          <div class="partner-item"><img src="https://i.ibb.co/MxPszGTF/Whats-App-Image-2025-10-26-at-00-08-31.jpg" alt="Partner 4" onerror="handleImageError(this)"></div>
-          <div class="partner-item"><img src="https://i.ibb.co/Dd869bS/Whats-App-Image-2025-10-26-at-00-08-32-1.jpg" alt="Partner 5" onerror="handleImageError(this)"></div>
-          <div class="partner-item"><img src="https://i.ibb.co/k2xKM6M6/Whats-App-Image-2025-10-26-at-00-08-32-2.jpg" alt="Partner 6" onerror="handleImageError(this)"></div>
-          <div class="partner-item"><img src="https://i.ibb.co/WWBx0K7r/Whats-App-Image-2025-10-26-at-00-08-32.jpg" alt="Partner 7" onerror="handleImageError(this)"></div>
-
-          <!-- duplicate set for smooth infinite scroll on large screens -->
-          <div class="partner-item"><img src="https://i.ibb.co/gb6m57zt/Whats-App-Image-2025-10-26-at-00-08-30.jpg" alt="Partner 1" onerror="handleImageError(this)"></div>
-          <div class="partner-item"><img src="https://i.ibb.co/XxDLRqkp/Whats-App-Image-2025-10-26-at-00-08-31-1.jpg" alt="Partner 2" onerror="handleImageError(this)"></div>
-          <div class="partner-item"><img src="https://i.ibb.co/rKmqLnxQ/Whats-App-Image-2025-10-26-at-00-08-31-2.jpg" alt="Partner 3" onerror="handleImageError(this)"></div>
-          <div class="partner-item"><img src="https://i.ibb.co/MxPszGTF/Whats-App-Image-2025-10-26-at-00-08-31.jpg" alt="Partner 4" onerror="handleImageError(this)"></div>
-          <div class="partner-item"><img src="https://i.ibb.co/Dd869bS/Whats-App-Image-2025-10-26-at-00-08-32-1.jpg" alt="Partner 5" onerror="handleImageError(this)"></div>
-          <div class="partner-item"><img src="https://i.ibb.co/k2xKM6M6/Whats-App-Image-2025-10-26-at-00-08-32-2.jpg" alt="Partner 6" onerror="handleImageError(this)"></div>
-          <div class="partner-item"><img src="https://i.ibb.co/WWBx0K7r/Whats-App-Image-2025-10-26-at-00-08-32.jpg" alt="Partner 7" onerror="handleImageError(this)"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WhatsApp community -->
-    <section class="whatsapp-section" aria-label="WhatsApp community">
-      <a class="whatsapp-button" href="https://bit.ly/Tasty_Trivia" target="_blank" rel="noopener">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" onerror="this.style.display='none'"> Join 500+ Members - Get Special Prices!
+    <section class="whatsapp-section">
+      <a class="whatsapp-button" href="https://bit.ly/Tasty_Trivia" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> Join 500+ Members - Get Special Prices!
       </a>
-
-      <div class="whatsapp-benefits" style="margin-top:.8rem;">
-        <div style="font-weight:700; color:#db4118; margin-bottom:0.5rem;">🍜 Get The Tastiest Access</div>
-        <div class="benefits-grid">
-          <div style="background:#fff;padding:.45rem .6rem;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,0.06);">📢 Event Updates</div>
-          <div style="background:#fff;padding:.45rem .6rem;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,0.06);">💰 Special Prices</div>
-          <div style="background:#fff;padding:.45rem .6rem;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,0.06);">🏆 Exclusive Contests</div>
-        </div>
-      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer" aria-label="Footer">
+    <footer class="footer">
       <div class="footer-content">
-        <div style="color:#db4118;font-weight:600;margin-bottom:0.5rem;">👥 Meet the Curators</div>
-        <div class="creators-names"><a href="https://in.linkedin.com/in/reach-saloni" target="_blank" rel="noopener">Sal</a> &amp; <a href="https://in.linkedin.com/in/whysosuso" target="_blank" rel="noopener">Suso</a></div>
-        <div class="creators-subtitle" style="margin-bottom:0.8rem;">Making trivia fun, one event at a time ❤️</div>
-
-        <div style="font-style:italic;color:#333;margin-bottom:0.8rem;">Powered by our lovely friends!</div>
-
-        <div style="color:#db4118;font-weight:600;margin-bottom:0.25rem;">📧 Get in Touch</div>
-        <div style="margin-bottom:.6rem;"><a href="mailto:hi.tastytrivia@gmail.com">hi.tastytrivia@gmail.com</a></div>
-        <div style="color:#666;">📸 IG: @gettastytrivia &nbsp; • &nbsp; 🐦 X: @gettastytrivia</div>
+        <div>👥 Meet the Curators</div>
+        <div class="creators-names"><a href="https://in.linkedin.com/in/reach-saloni" target="_blank">Sal</a> &amp; <a href="https://in.linkedin.com/in/whysosuso" target="_blank">Suso</a></div>
+        <div class="creators-subtitle">Made with ❤️ by Sal &amp; Suso</div>
       </div>
     </footer>
-
-    <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
   </main>
 
   <script>
-    /* --- Fallback images --- */
-    function handleImageError(img){
-      img.onerror = null;
-      img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180"><rect width="100%" height="100%" fill="#f0e0c2"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#db4118" font-family="Arial" font-size="14">Image missing</text></svg>');
-      img.alt = 'Image unavailable';
-    }
-    function handleLogoError(img){
-      img.onerror = null;
-      img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70"><rect width="70" height="70" rx="8" fill="#db4118"/><text x="50%" y="50" dominant-baseline="middle" text-anchor="middle" fill="#fff" font-family="Arial" font-size="14">TT</text></svg>');
-      img.alt = 'Tasty Trivia';
-    }
-
-    /* --- Countdown --- */
-    const eventDates = { 'countdown-bhubaneswar': new Date('2025-12-27T17:00:00+05:30') };
+    const eventDates = {
+      'countdown-bengaluru': new Date('2025-10-10T21:00:00+05:30'),
+      'countdown-bhubaneswar': new Date('2025-12-27T17:00:00+05:30')
+    };
     let countdownIntervals = {};
 
     function updateCountdown(id, dt) {
       const el = document.getElementById(id);
       if (!el) return;
-      const now = new Date();
-      const diff = dt - now;
-      if (diff <= 0) { el.textContent = 'Event Started!'; el.classList.add('expired'); if (countdownIntervals[id]) clearInterval(countdownIntervals[id]); return; }
-      const days = Math.floor(diff / (1000*60*60*24));
-      const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-      const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
-      const seconds = Math.floor((diff % (1000*60)) / 1000);
-      if (days > 0) el.textContent = `${days}d ${hours}h`;
-      else if (hours > 0) el.textContent = `${hours}h ${minutes}m`;
-      else if (minutes > 0) el.textContent = `${minutes}m ${seconds}s`;
-      else el.textContent = `${seconds}s`;
+      const diff = dt - new Date();
+      if (diff <= 0) { el.textContent = 'Event Started!'; return; }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      el.textContent = d > 0 ? `${d}d ${h}h` : `${h}h ${m}m`;
     }
 
     function startCountdowns() {
-      Object.entries(eventDates).forEach(([id, dt]) => {
-        updateCountdown(id, dt);
-        countdownIntervals[id] = setInterval(() => updateCountdown(id, dt), 1000);
+      Object.entries(eventDates).forEach(([id, date]) => {
+        updateCountdown(id, date);
+        countdownIntervals[id] = setInterval(() => updateCountdown(id, date), 1000);
       });
     }
 
-    /* --- Share --- */
-    function shareEvent(link, city, date, time) {
-      try {
-        let message = `🧠 Found this awesome trivia event in ${city} (${date} ${time})! 🎉`;
-        if (link) message += `\n\n${link}`;
-        else message += `\n\nTickets coming soon! Join our WhatsApp community for updates.`;
-        const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
-        window.open(url, '_blank');
-      } catch (err) {
-        console.error('shareEvent error', err);
-        if (navigator.clipboard && link) { navigator.clipboard.writeText(link); alert('Link copied to clipboard!'); }
-      }
-    }
-
-    /* --- Partners: responsive behaviour --- */
-    function optimisePartners() {
-      const track = document.getElementById('partnersTrack');
-      if (!track) return;
-      const viewport = track.parentElement;
-      // if small screen allow swipe and stop animation
-      if (viewport.clientWidth <= 420) {
-        viewport.style.overflowX = 'auto';
-        track.style.animation = 'none';
-      } else {
-        viewport.style.overflowX = 'hidden';
-        track.style.animation = '';
-      }
-      // ensure images have fallback handler
-      track.querySelectorAll('img').forEach(img => { img.onerror = () => handleImageError(img); });
-      // compute duration (optional) to keep pace comfortable; keep existing CSS variable not necessary
-    }
-
-    /* --- Misc UI --- */
     function openNews() {
-      try {
-        window.open("https://www.newindianexpress.com/amp/story/cities/bhubaneswar/2025/jun/22/rice-spice-and-quiz-marks-tasty-trivias-debut-in-bhubaneswar", "newsPopup", "width=600,height=700,resizable=yes,scrollbars=yes");
-      } catch (e) {
-        window.location.href = "https://www.newindianexpress.com/amp/story/cities/bhubaneswar/2025/jun/22/rice-spice-and-quiz-marks-tasty-trivias-debut-in-bhubaneswar";
-      }
+      window.open("https://www.newindianexpress.com/amp/story/cities/bhubaneswar/2025/jun/22/rice-spice-and-quiz-marks-tasty-trivias-debut-in-bhubaneswar","newsPopup","width=600,height=700,scrollbars=yes");
     }
 
-    /* back to top, animations, init */
-    const backToTop = document.getElementById('backToTop');
-    function handleScroll() { if (window.scrollY > 300) backToTop.style.display = 'block'; else backToTop.style.display = 'none'; }
-    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    function setupAnimations() {
-      const animated = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
-      const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-      }, { threshold: 0.12, rootMargin: '40px' });
-      animated.forEach(n => obs.observe(n));
-    }
-
-    /* Init */
-    window.addEventListener('DOMContentLoaded', () => {
-      startCountdowns();
-      optimisePartners();
-      setupAnimations();
-      window.addEventListener('resize', optimisePartners);
-      window.addEventListener('scroll', handleScroll, { passive: true });
-    });
-
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) { Object.values(countdownIntervals).forEach(clearInterval); }
-      else { startCountdowns(); }
-    });
-
-    window.addEventListener('beforeunload', () => { Object.values(countdownIntervals).forEach(clearInterval); });
+    document.addEventListener('DOMContentLoaded', startCountdowns);
   </script>
 </body>
 </html>
