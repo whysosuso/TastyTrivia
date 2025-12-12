@@ -8,27 +8,42 @@
   <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js" async></script>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Oswald:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Oswald:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
+    /* Reset / base */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       font-family: 'Oswald','Bebas Neue','Arial Black',sans-serif;
       background-color: #F5DEB3;
       color: #111;
+      -webkit-font-smoothing:antialiased;
+      min-height: 100%;
       overflow-x: hidden;
     }
 
+    /* Page container */
     .page { max-width: 980px; margin: 0 auto; padding: 80px 1rem 4rem; }
+
+    /* Ticker */
+    .ticker-container {
+      position: fixed; top: 0; left: 0; right: 0; height: 40px;
+      background: linear-gradient(90deg,#db4118,#1E2A5A,#6B46C1);
+      color: white; z-index: 1200; box-shadow:0 2px 8px rgba(219,65,24,0.3);
+      overflow: hidden;
+    }
+    .ticker-content { display:flex; white-space:nowrap; line-height:40px; padding-left:1rem; animation: tickerScroll 24s linear infinite; font-weight:500; }
+    .ticker-text { padding-right: 80px; }
+    @keyframes tickerScroll { 0%{transform:translateX(100%);} 100%{transform:translateX(-100%);} }
 
     /* Header */
     .header-box {
       display:flex; gap:1rem; align-items:center; justify-content:center;
       border:2px solid #db4118; border-radius:10px;
-      padding:1rem 1.5rem; margin-bottom:1.5rem;
-      box-shadow:0 0 12px rgba(219,65,24,0.22);
+      padding:1rem 1.5rem; box-shadow:0 0 12px rgba(219,65,24,0.22);
+      margin-bottom:1.5rem;
     }
     .header-logo{ width:70px; height:70px; }
-    .header-text h1{ font-family:'Bebas Neue'; font-size:3rem; color:#db4118; }
+    .header-text h1{ font-family:'Bebas Neue'; font-size:3.2rem; color:#db4118; }
     .header-text p{ font-style:italic; }
 
     /* Promo */
@@ -98,122 +113,147 @@
       cursor:pointer;
     }
 
-    /* ===== POPUP ===== */
-    .popup-overlay{
-      position:fixed; inset:0;
-      background:rgba(0,0,0,0.65);
-      display:none;
-      align-items:center; justify-content:center;
-      z-index:2000;
+    /* ===== Promo Popup ===== */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 1rem;
     }
-    .popup{
-      width:min(90vw,540px);
-      aspect-ratio:1/1;
-      background:#fff;
-      border-radius:16px;
-      overflow:hidden;
-      position:relative;
+
+    .popup {
+      width: min(90vw, 540px);
+      aspect-ratio: 1 / 1;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
     }
-    .popup img{ width:100%; height:100%; object-fit:cover; }
-    .popup-cta{
-      position:absolute; bottom:16px; left:50%;
-      transform:translateX(-50%);
-      background:#db4118; color:#fff;
-      padding:.75rem 1.3rem;
-      border-radius:999px;
-      text-decoration:none; font-weight:700;
+
+    .popup img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-    .popup-close{
-      position:absolute; top:10px; right:10px;
-      width:32px; height:32px;
-      border-radius:50%; border:none;
-      background:rgba(0,0,0,0.6);
-      color:#fff; font-size:18px;
-      cursor:pointer;
+
+    .popup-cta {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg,#db4118,#e55a5a);
+      color: #fff;
+      padding: .75rem 1.3rem;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
     }
   </style>
 </head>
 
 <body>
 
-<main class="page">
-  <header class="header-box">
-    <img class="header-logo" src="https://i.ibb.co/1fwSfgcK/8-bit-purple-logo-2x-removebg-preview.png">
-    <div class="header-text">
-      <h1>TASTY TRIVIA</h1>
-      <p>Delicious Offline Trivia Events!</p>
+  <div class="ticker-container">
+    <div class="ticker-content">
+      <span class="ticker-text">🎉 6 Cities • 900+ Happy Participants • 100% Fun Guaranteed</span>
+      <span class="ticker-text">🎉 6 Cities • 900+ Happy Participants • 100% Fun Guaranteed</span>
     </div>
-  </header>
-
-  <section class="promo-section">
-    🔥 Fun & Beginner-friendly Trivia Game Shows
-  </section>
-
-  <section class="register-buttons">
-    <a class="register-button" href="https://sortmyscene.com/event/tasty-trivia-all-things-food-dec-12-2025" target="_blank">
-      <div class="button-content">
-        ☕<br>JP Nagar<br>
-        <span class="button-price">Rs 399</span>
-      </div>
-      <button class="share-icon" onclick="shareEvent(event,'JP Nagar')">
-        <img src="https://i.ibb.co/FkxqqVZw/Arrow.png">
-      </button>
-    </a>
-  </section>
-
-  <section class="partners-section">
-    <h3>🏛️ Our Past Venue Partners</h3>
-    <div class="partners-track">
-      <div class="partner-item"><img src="https://i.ibb.co/gb6m57zt/Whats-App-Image-2025-10-26-at-00-08-30.jpg"></div>
-      <div class="partner-item"><img src="https://i.ibb.co/XxDLRqkp/Whats-App-Image-2025-10-26-at-00-08-31-1.jpg"></div>
-      <div class="partner-item"><img src="https://i.ibb.co/rKmqLnxQ/Whats-App-Image-2025-10-26-at-00-08-31-2.jpg"></div>
-    </div>
-  </section>
-
-  <section style="text-align:center;">
-    <a class="whatsapp-button" href="https://bit.ly/Tasty_Trivia" target="_blank">
-      <img width="22" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
-      Join our WhatsApp Community
-    </a>
-  </section>
-
-  <footer class="footer">
-    <p>👥 Sal & Suso · @gettastytrivia</p>
-  </footer>
-
-  <button id="backToTop" class="back-to-top">↑</button>
-</main>
-
-<!-- POPUP HTML -->
-<div class="popup-overlay" id="promoPopup">
-  <div class="popup">
-    <button class="popup-close" onclick="closePopup()">×</button>
-    <img src="https://i.ibb.co/fzxVK6CY/Tasty-Tote.jpg" alt="Tasty Tote">
-    <a class="popup-cta" href="https://ig.me/m/gettastytrivia" target="_blank">
-      DM to order now
-    </a>
   </div>
-</div>
 
-<script>
-  function shareEvent(e, city){
-    e.preventDefault();
-    window.open(`https://wa.me/?text=${encodeURIComponent('Trivia night in '+city)}`);
-  }
+  <main class="page">
+    <header class="header-box">
+      <img class="header-logo" src="https://i.ibb.co/1fwSfgcK/8-bit-purple-logo-2x-removebg-preview.png">
+      <div class="header-text">
+        <h1>TASTY TRIVIA</h1>
+        <p>Delicious Offline Trivia Events!</p>
+      </div>
+    </header>
 
-  const promoPopup = document.getElementById('promoPopup');
+    <section class="promo-section">
+      🔥 Fun & Beginner-friendly Trivia Game Shows
+    </section>
 
-  function openPopup(){ promoPopup.style.display = 'flex'; }
-  function closePopup(){ promoPopup.style.display = 'none'; }
+    <section class="register-buttons">
+      <a class="register-button" href="https://sortmyscene.com/event/tasty-trivia-all-things-food-dec-12-2025" target="_blank">
+        <div class="button-content">
+          ☕<br>JP Nagar<br>
+          <span class="button-price">Rs 399</span>
+        </div>
+        <button class="share-icon" onclick="shareEvent(event,'JP Nagar')">
+          <img src="https://i.ibb.co/FkxqqVZw/Arrow.png">
+        </button>
+      </a>
+    </section>
 
-  promoPopup.addEventListener('click', e => {
-    if(e.target === promoPopup) closePopup();
-  });
+    <section class="partners-section">
+      <h3>🏛️ Our Past Venue Partners</h3>
+      <div class="partners-track">
+        <div class="partner-item"><img src="https://i.ibb.co/gb6m57zt/Whats-App-Image-2025-10-26-at-00-08-30.jpg"></div>
+        <div class="partner-item"><img src="https://i.ibb.co/XxDLRqkp/Whats-App-Image-2025-10-26-at-00-08-31-1.jpg"></div>
+        <div class="partner-item"><img src="https://i.ibb.co/rKmqLnxQ/Whats-App-Image-2025-10-26-at-00-08-31-2.jpg"></div>
+      </div>
+    </section>
 
-  window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(openPopup, 1200);
-  });
-</script>
+    <section style="text-align:center;">
+      <a class="whatsapp-button" href="https://bit.ly/Tasty_Trivia" target="_blank">
+        <img width="22" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+        Join our WhatsApp Community
+      </a>
+    </section>
+
+    <footer class="footer">
+      <p>👥 Sal & Suso · @gettastytrivia</p>
+    </footer>
+
+    <button id="backToTop" class="back-to-top">↑</button>
+  </main>
+
+  <!-- Promo Popup -->
+  <div class="popup-overlay" id="promoPopup">
+    <div class="popup">
+      <button class="popup-close" onclick="closePopup()">×</button>
+      <img src="https://i.ibb.co/fzxVK6CY/Tasty-Tote.jpg" alt="Tasty Trivia Tote">
+      <a class="popup-cta" href="https://ig.me/m/gettastytrivia" target="_blank">DM to order now</a>
+    </div>
+  </div>
+
+  <script>
+    function shareEvent(e, city){
+      e.preventDefault();
+      window.open(`https://wa.me/?text=${encodeURIComponent('Trivia night in '+city)}`);
+    }
+
+    const promoPopup = document.getElementById('promoPopup');
+    function openPopup(){ promoPopup.style.display = 'flex'; }
+    function closePopup(){ promoPopup.style.display = 'none'; }
+
+    promoPopup.addEventListener('click', e => {
+      if(e.target === promoPopup) closePopup();
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(openPopup, 1200);
+    });
+  </script>
 
 </body>
 </html>
