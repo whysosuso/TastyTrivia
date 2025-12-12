@@ -108,7 +108,73 @@
     @media (max-width:420px){ .partners-viewport{ overflow-x:auto; -webkit-overflow-scrolling:touch; } .partners-track{ animation:none; gap:0.6rem; } .partner-item{ width:90px; height:60px; padding:6px; } }
 
     @media (prefers-reduced-motion: reduce){ .partners-track, .ticker-content { animation: none !important; } }
+  /* ===== Promo Popup ===== */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+}
+
+.popup {
+  position: relative;
+  width: min(90vw, 540px); /* 1080px square scaled responsively */
+  aspect-ratio: 1 / 1;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  animation: popupIn 0.35s ease;
+}
+
+@keyframes popupIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.popup img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.popup-cta {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg,#db4118,#e55a5a);
+  color: #fff;
+  padding: 0.75rem 1.3rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(219,65,24,0.4);
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+  
+  
+  
   </style>
+
+  
 </head>
 <body>
   <div class="ticker-container" role="region" aria-label="Site notices">
@@ -314,6 +380,46 @@
       window.addEventListener('resize', optimisePartners);
       window.addEventListener('scroll', handleScroll, { passive: true });
     });
+ <!-- Promo Popup -->
+<div class="popup-overlay" id="promoPopup">
+  <div class="popup" role="dialog" aria-modal="true">
+    <button class="popup-close" onclick="closePopup()">×</button>
+
+    <img
+      src="https://i.ibb.co/fzxVK6CY/Tasty-Tote.jpg"
+      alt="Tasty Trivia Tote"
+    >
+
+    <a
+      class="popup-cta"
+      href="https://ig.me/m/gettastytrivia"
+      target="_blank"
+      rel="noopener"
+    >
+      DM to order now
+    </a>
+  </div>
+</div>
+    /* Promo Popup */
+const promoPopup = document.getElementById('promoPopup');
+
+function openPopup() {
+  promoPopup.style.display = 'flex';
+}
+
+function closePopup() {
+  promoPopup.style.display = 'none';
+}
+
+// close on backdrop click
+promoPopup.addEventListener('click', e => {
+  if (e.target === promoPopup) closePopup();
+});
+
+// show once on load (after delay)
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(openPopup, 1200);
+});
   </script>
 </body>
 </html>
