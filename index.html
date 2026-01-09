@@ -320,6 +320,12 @@
       }
     });
 
+    if (backToTop) {
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
     window.addEventListener('load', optimisePartners);
     window.addEventListener('resize', optimisePartners);
   </script>
