@@ -128,24 +128,6 @@
     </section>
 
     <section class="register-buttons" aria-label="Events">
-      <a href="https://sortmyscene.com/event/tasty-trivia-the-bengaluru-starter-pack-jan-10-2026"
-         class="register-button" target="_blank" rel="noopener">
-        <div class="button-content">
-          <span>Sat, Jan 10</span>
-          <span class="button-divider">|</span>
-          <span>Beku Cafe, JP Nagar</span>
-          <span class="button-divider">|</span>
-          <span>All things Bengaluru</span>
-          <span class="button-divider">|</span>
-          <span class="button-price">₹499 onwards</span>
-        </div>
-        <span class="button-cta">Get Tix</span>
-        <button type="button" class="share-icon" aria-label="Share JP Nagar event"
-                onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://sortmyscene.com/event/tasty-trivia-the-bengaluru-starter-pack-jan-10-2026','JP Nagar','Jan 10','8 PM Onwards'); })(event)">
-          <img src="https://i.ibb.co/FkxqqVZw/Arrow.png" alt="Share" />
-        </button>
-      </a>
-
       <a href="https://www.district.in/events/asia-on-a-thali-trivia-game-show-jan16-2026-buy-tickets"
          class="register-button" target="_blank" rel="noopener">
         <div class="button-content">
@@ -288,46 +270,4 @@
       try {
         window.open("https://www.newindianexpress.com/amp/story/cities/bhubaneswar/2025/jun/22/rice-spice-and-quiz-marks-tasty-trivias-debut-in-bhubaneswar", "newsPopup", "width=600,height=700,resizable=yes,scrollbars=yes");
       } catch (e) {
-        window.location.href = "https://www.newindianexpress.com/amp/story/cities/bhubaneswar/2025/jun/22/rice-spice-and-quiz-marks-tasty-trivias-debut-in-bhubaneswar";
-      }
-    }
-
-    const popupOverlay = document.getElementById('popupOverlay');
-    const popupClose = document.getElementById('popupClose');
-    const backToTop = document.getElementById('backToTop');
-
-    function showPopup() {
-      if (sessionStorage.getItem('popupShown')) return;
-      setTimeout(() => {
-        popupOverlay.classList.add('show');
-        sessionStorage.setItem('popupShown', 'true');
-      }, 2000);
-    }
-
-    function closePopup() {
-      popupOverlay.classList.remove('show');
-    }
-
-    if (popupClose) popupClose.addEventListener('click', closePopup);
-    if (popupOverlay) popupOverlay.addEventListener('click', (e) => {
-      if (e.target === popupOverlay) closePopup();
-    });
-
-    window.addEventListener('scroll', () => {
-      if (backToTop) {
-        if (window.pageYOffset > 300) backToTop.style.display = 'flex';
-        else backToTop.style.display = 'none';
-      }
-    });
-
-    if (backToTop) {
-      backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    }
-
-    window.addEventListener('load', optimisePartners);
-    window.addEventListener('resize', optimisePartners);
-  </script>
-</body>
-</html>
+        window.location.href = "https://www.newindianexpress.com/amp/story/cities/bhubaneswar
