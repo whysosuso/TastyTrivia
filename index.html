@@ -322,7 +322,7 @@
       .partners-viewport{ overflow-x:auto; } 
       .partners-track{ animation:none; gap:0.8rem; } 
       .partner-item{ width:90px; height:60px; }
-      .header-text h1{ font-size:1rem; }
+      .header-text h1{ font-size:1rem; font-weight: 900; text-shadow: 2px 2px 0 #1E2A5A; }
       .button-content{ font-size:0.55rem; }
     }
 
@@ -453,11 +453,11 @@
     </section>
 
     <div class="news-link">
-      <a href="#" onclick="openNews(); return false;">▼▼▼ WE GOT FEATURED ▼▼▼</a>
+      <a href="#" onclick="openNews(); return false;">📰 WE GOT FEATURED 📰</a>
     </div>
 
     <section class="partners-section" aria-label="Our past venue partners">
-      <div class="partners-title">◆ POWER-UPS UNLOCKED ◆</div>
+      <div class="partners-title">🏛️ PAST VENUE PARTNERS 🏛️</div>
       <div class="partners-viewport" tabindex="0" aria-hidden="false">
         <div class="partners-track" id="partnersTrack" aria-hidden="false">
           <div class="partner-item"><img src="https://i.ibb.co/gb6m57zt/Whats-App-Image-2025-10-26-at-00-08-30.jpg" alt="Partner 1" onerror="handleImageError(this)"></div>
@@ -480,7 +480,7 @@
 
     <section class="whatsapp-section" aria-label="WhatsApp community">
       <a class="whatsapp-button" href="https://bit.ly/Tasty_Trivia" target="_blank" rel="noopener">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" onerror="this.style.display='none'"> JOIN 500+ PLAYERS
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" onerror="this.style.display='none'"> JOIN 500+ MEMBER COMMUNITY
       </a>
       <div class="whatsapp-benefits">
         <div>★ SPECIAL ITEMS ★</div>
@@ -511,5 +511,97 @@
   <div class="popup-overlay" id="popupOverlay" aria-modal="true" role="dialog" aria-labelledby="popupTitle">
     <div class="popup-container">
       <button class="popup-close" id="popupClose" aria-label="Close popup">X</button>
-      <img src="https://i.ibb.co/fzxVK6CY/Tasty-Tote.jpg" alt="Tasty Trivia Tote Bag" class="popup-image" onerror="this.src='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'1080\' height=\'1080\'><rect width=\'100%\' height=\'100%\' fill=\'%23f0e0c2\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\'
-        
+      <img src="https://i.ibb.co/fzxVK6CY/Tasty-Tote.jpg" alt="Tasty Trivia Tote Bag" class="popup-image" onerror="this.src='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'1080\' height=\'1080\'><rect width=\'100%\' height=\'100%\' fill=\'%23f0e0c2\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23db4118\' font-family=\'Arial\' font-size=\'24\'>Tasty Trivia</text></svg>')">
+      <a href="https://ig.me/m/gettastytrivia" class="popup-cta" target="_blank" rel="noopener" id="popupTitle">DM TO GET YOURS</a>
+    </div>
+  </div>
+
+  <script>
+    function handleImageError(img){
+      img.onerror = null;
+      img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180"><rect width="100%" height="100%" fill="#f0e0c2"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#db4118" font-family="Arial" font-size="14">Image missing</text></svg>');
+      img.alt = 'Image unavailable';
+    }
+    function handleLogoError(img){
+      img.onerror = null;
+      img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70"><rect width="70" height="70" rx="8" fill="#db4118"/><text x="50%" y="50" dominant-baseline="middle" text-anchor="middle" fill="#fff" font-family="Arial" font-size="14">TT</text></svg>');
+      img.alt = 'Tasty Trivia';
+    }
+
+    function shareEvent(link, city, date, time) {
+      try {
+        let message = `🧠 Found this awesome trivia event in ${city} (${date} ${time})! 🎉`;
+        if (link) message += `\n\n${link}`;
+        else message += `\n\nTickets coming soon! Join our WhatsApp community for updates.`;
+        const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+      } catch (err) {
+        console.error('shareEvent error', err);
+        if (navigator.clipboard && link) { navigator.clipboard.writeText(link); alert('Link copied to clipboard!'); }
+      }
+    }
+
+    function optimisePartners() {
+      const track = document.getElementById('partnersTrack');
+      if (!track) return;
+      const viewport = track.parentElement;
+      if (viewport.clientWidth <= 420) {
+        viewport.style.overflowX = 'auto';
+        track.style.animation = 'none';
+      } else {
+        viewport.style.overflowX = 'hidden';
+        track.style.animation = '';
+      }
+      track.querySelectorAll('img').forEach(img => { img.onerror = () => handleImageError(img); });
+    }
+
+    function openNews() {
+      try {
+        window.open("https://www.newindianexpress.com/cities/bhubaneswar/2025/Jun/22/rice-spice-and-quiz-marks-tasty-trivias-debut-in-bhubaneswar", "newsPopup", "width=600,height=700,resizable=yes,scrollbars=yes");
+      } catch (e) {
+        window.location.href = "https://www.newindianexpress.com/cities/bhubaneswar/2025/Jun/22/rice-spice-and-quiz-marks-tasty-trivias-debut-in-bhubaneswar";
+      }
+    }
+
+    const popupOverlay = document.getElementById('popupOverlay');
+    const popupClose = document.getElementById('popupClose');
+    const backToTop = document.getElementById('backToTop');
+
+    function showPopup() {
+      if (sessionStorage.getItem('popupShown')) return;
+      setTimeout(() => {
+        popupOverlay.classList.add('show');
+        sessionStorage.setItem('popupShown', 'true');
+      }, 2000);
+    }
+
+    function closePopup() {
+      popupOverlay.classList.remove('show');
+    }
+
+    if (popupClose) popupClose.addEventListener('click', closePopup);
+    if (popupOverlay) popupOverlay.addEventListener('click', (e) => {
+      if (e.target === popupOverlay) closePopup();
+    });
+
+    window.addEventListener('scroll', () => {
+      if (backToTop) {
+        if (window.pageYOffset > 300) backToTop.style.display = 'flex';
+        else backToTop.style.display = 'none';
+      }
+    });
+
+    if (backToTop) {
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    window.addEventListener('load', () => {
+      optimisePartners();
+      showPopup();
+    });
+    window.addEventListener('resize', optimisePartners);
+  </script>
+</body>
+</html>
