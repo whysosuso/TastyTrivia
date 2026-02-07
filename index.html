@@ -611,14 +611,18 @@
       z-index: 9999; display: none; 
       align-items: center; justify-content: center; 
       opacity: 0; transition: opacity 0.2s;
+      padding: 1rem;
     }
     .popup-overlay.show { display: flex; opacity: 1; }
     .popup-container { 
-      position: relative; width: 90vw; max-width: 540px; 
-      aspect-ratio: 1/1; 
+      position: relative; 
+      width: 90vw; 
+      max-width: 600px; 
+      max-height: 90vh;
       background: #fff; 
       border: 4px solid #db4118;
-      overflow: hidden; 
+      overflow-y: auto;
+      overflow-x: hidden;
       box-shadow: 8px 8px 0 rgba(219,65,24,0.5);
     }
     .popup-close { 
@@ -636,29 +640,66 @@
       background: #e55a5a;
       transform: scale(1.1);
     }
-    .popup-image { width: 100%; height: 100%; object-fit: cover; }
-    .popup-cta { 
-      position: absolute; bottom: 30px; left: 50%; 
-      transform: translateX(-50%); 
-      background: linear-gradient(135deg,#db4118,#e55a5a);
-      color: #fff; 
-      padding: 14px 32px; 
+    .popup-header {
+      background: linear-gradient(135deg, rgba(219,65,24,0.08), rgba(30,42,90,0.05));
+      padding: 2rem 1.5rem 1.5rem;
+      text-align: center;
+      border-bottom: 3px solid #db4118;
+    }
+    .popup-title-text {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1rem;
+      color: #db4118;
+      letter-spacing: 2px;
+      line-height: 1.6;
+    }
+    .popup-image-container {
+      width: 100%;
+      background: #fff;
+    }
+    .popup-image { 
+      width: 100%; 
+      height: auto; 
+      display: block;
+    }
+    .popup-tracker {
+      background: #fff;
+      padding: 1.5rem;
+    }
+    .popup-cta-container {
+      padding: 1.5rem;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(219,65,24,0.03), rgba(30,42,90,0.02));
+      border-top: 3px solid #db4118;
+    }
+    .popup-cta-button { 
+      background: linear-gradient(135deg,#FFD700,#FFA500);
+      color: #1E2A5A; 
+      padding: 1rem 2rem; 
       border: 3px solid #1E2A5A;
-      text-decoration: none; 
       font-weight: 700; 
       font-size: 0.8rem; 
       box-shadow: 5px 5px 0 rgba(0,0,0,0.3);
       font-family: 'Press Start 2P';
       letter-spacing: 2px;
       transition: all 0.1s;
+      cursor: pointer;
+      display: inline-block;
     }
-    .popup-cta:hover { 
-      transform: translateX(-50%) translateY(-3px);
+    .popup-cta-button:hover { 
+      transform: translateY(-3px);
       box-shadow: 8px 8px 0 rgba(0,0,0,0.4);
     }
-    @media (max-width: 600px) { 
-      .popup-container { width: 95vw; } 
-      .popup-cta { font-size: 0.6rem; padding: 12px 24px; bottom: 20px; } 
+    @media (max-width: 768px) { 
+      .popup-container { width: 95vw; max-height: 95vh; } 
+      .popup-title-text { font-size: 0.75rem; letter-spacing: 1px; }
+      .popup-header { padding: 1.5rem 1rem 1rem; }
+      .popup-tracker { padding: 1rem; }
+      .popup-cta-button { font-size: 0.65rem; padding: 0.8rem 1.5rem; } 
+    }
+    @media (max-width: 420px) { 
+      .popup-title-text { font-size: 0.6rem; }
+      .popup-cta-button { font-size: 0.55rem; padding: 0.7rem 1.2rem; } 
     }
   </style>
 </head>
@@ -725,22 +766,15 @@
       </div>
     </section>
 
-    <!-- ============================================ -->
-    <!-- EDINBURGH FRINGE FUND SECTION -->
-    <!-- ============================================ -->
-
     <section class="fringe-fund-section" aria-label="Edinburgh Fringe Fund">
       <div class="fringe-fund-container">
         
-        <!-- Section Heading -->
         <div class="fringe-fund-header">
           <h2 class="fringe-fund-title">TASTY'S EDINBURGH FRINGE FUND</h2>
         </div>
 
-        <!-- Main Content Grid -->
         <div class="fringe-fund-content">
           
-          <!-- Progress Tracker (Left/Top) -->
           <div class="fringe-progress-wrapper">
             <div class="fringe-progress-stats">
               <div class="stat-item">
@@ -757,19 +791,15 @@
               </div>
             </div>
 
-            <!-- Progress Bar -->
             <div class="fringe-progress-bar">
               <div class="fringe-progress-fill" id="fringe-progress-fill" data-progress="23"></div>
             </div>
 
-            <!-- Motivation Text -->
             <p class="fringe-motivation">EVERY TICKET GETS US CLOSER.</p>
           </div>
 
-          <!-- Visual Message Block (Right/Bottom) -->
           <div class="fringe-visual-block">
             <div class="fringe-image-container">
-              <!-- Replace this placeholder with actual image -->
               <div class="fringe-placeholder-image">
                 <span class="fringe-emoji">🎭</span>
               </div>
@@ -840,11 +870,44 @@
     <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
   </main>
 
-  <div class="popup-overlay" id="popupOverlay" aria-modal="true" role="dialog" aria-labelledby="popupTitle">
+  <div class="popup-overlay" id="popupOverlay" aria-modal="true" role="dialog">
     <div class="popup-container">
       <button class="popup-close" id="popupClose" aria-label="Close popup">X</button>
-      <img src="https://i.ibb.co/fzxVK6CY/Tasty-Tote.jpg" alt="Tasty Trivia Tote Bag" class="popup-image" onerror="this.src='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'1080\' height=\'1080\'><rect width=\'100%\' height=\'100%\' fill=\'%23f0e0c2\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23db4118\' font-family=\'Arial\' font-size=\'24\'>Tasty Trivia</text></svg>')">
-      <a href="https://ig.me/m/gettastytrivia" class="popup-cta" target="_blank" rel="noopener" id="popupTitle">DM TO GET YOURS</a>
+      
+      <div class="popup-header">
+        <h2 class="popup-title-text">TASTY'S EDINBURGH FRINGE FUND</h2>
+      </div>
+
+      <div class="popup-image-container">
+        <img src="https://i.ibb.co/5Wcr09YH/Screenshot-2026-02-06-at-8-42-50-PM.png" alt="Edinburgh Fringe" class="popup-image">
+      </div>
+
+      <div class="popup-tracker">
+        <div class="fringe-progress-stats">
+          <div class="stat-item">
+            <span class="stat-label">RAISED</span>
+            <span class="stat-value">₹1.15L</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">GOAL</span>
+            <span class="stat-value">₹5L</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">TARGET</span>
+            <span class="stat-value">MAR 2027</span>
+          </div>
+        </div>
+
+        <div class="fringe-progress-bar">
+          <div class="fringe-progress-fill" id="popup-progress-fill" data-progress="23"></div>
+        </div>
+
+        <p class="fringe-motivation">EVERY TICKET GETS US CLOSER.</p>
+      </div>
+
+      <div class="popup-cta-container">
+        <button class="popup-cta-button" id="popupContinue">CONTINUE &gt;&gt;</button>
+      </div>
     </div>
   </div>
 
@@ -897,13 +960,23 @@
 
     const popupOverlay = document.getElementById('popupOverlay');
     const popupClose = document.getElementById('popupClose');
+    const popupContinue = document.getElementById('popupContinue');
     const backToTop = document.getElementById('backToTop');
 
     function showPopup() {
-      if (sessionStorage.getItem('popupShown')) return;
+      if (sessionStorage.getItem('fringePopupShown')) return;
       setTimeout(() => {
         popupOverlay.classList.add('show');
-        sessionStorage.setItem('popupShown', 'true');
+        sessionStorage.setItem('fringePopupShown', 'true');
+        
+        const popupProgressFill = document.getElementById('popup-progress-fill');
+        if (popupProgressFill) {
+          const progressPercentage = popupProgressFill.getAttribute('data-progress') || 23;
+          setTimeout(() => {
+            popupProgressFill.style.setProperty('--progress-width', progressPercentage + '%');
+            popupProgressFill.classList.add('animated');
+          }, 300);
+        }
       }, 2000);
     }
 
@@ -912,6 +985,7 @@
     }
 
     if (popupClose) popupClose.addEventListener('click', closePopup);
+    if (popupContinue) popupContinue.addEventListener('click', closePopup);
     if (popupOverlay) popupOverlay.addEventListener('click', (e) => {
       if (e.target === popupOverlay) closePopup();
     });
@@ -935,11 +1009,6 @@
     });
     window.addEventListener('resize', optimisePartners);
 
-    // ============================================
-    // EDINBURGH FRINGE FUND ANIMATION
-    // ============================================
-    
-    // Animate progress bar on load
     (function() {
       function animateFringeProgress() {
         const progressFill = document.getElementById('fringe-progress-fill');
@@ -947,38 +1016,18 @@
 
         const progressPercentage = progressFill.getAttribute('data-progress') || 23;
         
-        // Wait a brief moment for the section to be visible, then animate
         setTimeout(() => {
           progressFill.style.setProperty('--progress-width', progressPercentage + '%');
           progressFill.classList.add('animated');
         }, 200);
       }
 
-      // Run on load
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', animateFringeProgress);
       } else {
         animateFringeProgress();
       }
     })();
-
-    /* 
-     * TO UPDATE EDINBURGH FRINGE FUND VALUES:
-     * 
-     * 1. Update raised amount:
-     *    - Change text in element with id="fringe-raised"
-     *    - Example: document.getElementById('fringe-raised').textContent = '₹2.5L';
-     * 
-     * 2. Update progress bar:
-     *    - Change data-progress attribute on element with id="fringe-progress-fill"
-     *    - Example: document.getElementById('fringe-progress-fill').setAttribute('data-progress', '50');
-     *    - Then call the animation function again
-     * 
-     * 3. Calculation: (raised / goal) * 100
-     *    - Current: (115000 / 500000) * 100 = 23%
-     */
   </script>
 </body>
 </html>
-
-Save current code - Claude
