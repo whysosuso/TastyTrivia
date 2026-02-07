@@ -1033,4 +1033,16 @@
         
         setTimeout(() => {
           progressFill.style.setProperty('--progress-width', progressPercentage + '%');
-          progressFill.classList.add('anim
+          progressFill.classList.add('animated');
+        }, 200);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', animateFringeProgress);
+      } else {
+        animateFringeProgress();
+      }
+    })();
+  </script>
+</body>
+</html>
