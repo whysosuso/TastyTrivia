@@ -111,6 +111,15 @@
       box-shadow: 10px 10px 0 rgba(30,42,90,0.4);
       background: linear-gradient(135deg,#6B46C1,#8B5CF6);
     }
+    .register-button.no-link {
+      cursor: default;
+      pointer-events: none;
+    }
+    .register-button.no-link:hover {
+      transform: none;
+      box-shadow: 6px 6px 0 rgba(30,42,90,0.3);
+      background: linear-gradient(135deg,#1E2A5A,#2D3B6B);
+    }
     .button-content{ 
       display:flex; 
       flex-direction: column;
@@ -743,11 +752,11 @@
 
     <section class="register-buttons" aria-label="Events">
 
-      <!-- SAT MAR 14 – Entertainment Entertainment Entertainment -->
-      <a href="https://www.district.in/events/entertainment-entertainment-entertainment-by-tasty-trivia-mar14-2026-buy-tickets" class="register-button" target="_blank" rel="noopener">
+      <!-- WED MAR 25 – Entertainment Entertainment Entertainment – Tix Out Soon -->
+      <div class="register-button no-link">
         <div class="button-content">
           <div class="button-row">
-            <span>SAT, MAR 14</span>
+            <span>WED, MAR 25</span>
             <span class="button-divider">|</span>
             <span>UNDERLINE CENTER, INDIRANAGAR</span>
           </div>
@@ -759,15 +768,11 @@
           <div class="button-row">
             <span class="button-price">₹349 ONWARDS</span>
           </div>
-          <span class="button-cta">[ BOOK TIX ]</span>
+          <span class="button-cta coming-soon">[ TIX OUT SOON ]</span>
         </div>
-        <button type="button" class="share-icon" aria-label="Share Mar 14 event"
-                onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://www.district.in/events/entertainment-entertainment-entertainment-by-tasty-trivia-mar14-2026-buy-tickets','Entertainment Entertainment Entertainment','Mar 14','9:00 PM'); })(event)">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16c-.8 0-1.5.3-2 .8l-7.3-4.2c.1-.2.1-.4.1-.6s0-.4-.1-.6L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .4.1.6L7.8 9.8C7.3 9.3 6.6 9 5.8 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.3 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9S19.6 16 18 16z"/></svg>
-        </button>
-      </a>
+      </div>
 
-      <!-- FRI MAR 28 – Beku, Entertainment -->
+      <!-- SAT MAR 28 – Beku, Entertainment -->
       <a href="https://sortmyscene.com/event/entertainment-entertainment-entertainment-mar-28-2026" class="register-button" target="_blank" rel="noopener">
         <div class="button-content">
           <div class="button-row">
