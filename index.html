@@ -11,9 +11,6 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-    /* ============================================ */
-    /* THEME CSS VARIABLES                          */
-    /* ============================================ */
     :root {
       --bg-main: #F5DEB3;
       --text-main: #111;
@@ -83,9 +80,9 @@
       color: white; z-index: 1200;
       overflow: hidden;
     }
-    .ticker-content { 
-      display:flex; white-space:nowrap; line-height:40px; padding-left:1rem; 
-      animation: tickerScroll 20s linear infinite; 
+    .ticker-content {
+      display:flex; white-space:nowrap; line-height:40px; padding-left:1rem;
+      animation: tickerScroll 20s linear infinite;
       font-size: 0.7rem;
       letter-spacing: 2px;
     }
@@ -93,9 +90,6 @@
     .ticker-text { padding-right: 80px; }
     @keyframes tickerScroll { 0%{transform:translateX(100%);} 100%{transform:translateX(-100%);} }
 
-    /* ============================================ */
-    /* THEME TOGGLE BUTTON                          */
-    /* ============================================ */
     .theme-toggle {
       position: fixed;
       top: 52px;
@@ -125,14 +119,14 @@
     :root:not([data-theme="dark"]) .theme-toggle .icon-moon,
     html:not([data-theme="dark"]) .theme-toggle .icon-moon { display: block; }
 
-    .header-box { 
-      display:flex; gap:1.5rem; align-items:center; justify-content:center; 
-      background: var(--card-bg-alt); 
-      border:4px solid var(--accent-red); 
-      border-radius:0; 
-      padding:1.5rem; 
+    .header-box {
+      display:flex; gap:1.5rem; align-items:center; justify-content:center;
+      background: var(--card-bg-alt);
+      border:4px solid var(--accent-red);
+      border-radius:0;
+      padding:1.5rem;
       box-shadow: 8px 8px 0 var(--shadow-red);
-      margin-bottom:2rem; 
+      margin-bottom:2rem;
       text-align:center;
       position: relative;
       transition: background-color 0.3s, box-shadow 0.3s;
@@ -145,21 +139,21 @@
       pointer-events: none;
     }
     .header-logo{ width:70px; height:70px; object-fit:contain; flex-shrink:0; }
-    .header-text h1{ 
-      font-family:'Press Start 2P'; 
-      font-size:2rem; 
-      color: var(--accent-red); 
-      letter-spacing:4px; 
+    .header-text h1{
+      font-family:'Press Start 2P';
+      font-size:2rem;
+      color: var(--accent-red);
+      letter-spacing:4px;
       text-shadow: 3px 3px 0 var(--accent-navy);
     }
 
-    .promo-section{ 
-      max-width:600px; margin:0 auto 2rem; 
+    .promo-section{
+      max-width:600px; margin:0 auto 2rem;
       background: var(--promo-gradient);
-      color:#fff; 
-      padding:1.5rem; 
-      border:4px solid var(--accent-red); 
-      text-align:center; 
+      color:#fff;
+      padding:1.5rem;
+      border:4px solid var(--accent-red);
+      text-align:center;
       box-shadow: 6px 6px 0 var(--shadow-red);
       position: relative;
     }
@@ -174,16 +168,17 @@
     .promo-title{ font-size:0.9rem; margin-bottom:0.5rem; letter-spacing:2px; }
 
     .register-buttons{ display:flex; flex-direction:column; gap:1.5rem; max-width:900px; margin:2rem auto; }
-    .register-button{ 
-      width:100%; padding:1.5rem; 
-      border:4px solid var(--accent-navy); 
+    .register-button{
+      width:100%; padding:1.5rem;
+      border:4px solid var(--accent-navy);
       background: var(--register-gradient);
-      color:#fff; 
-      position:relative; 
-      text-decoration:none; 
+      color:#fff;
+      position:relative;
+      text-decoration:none;
       box-shadow: 6px 6px 0 var(--shadow-navy);
       transition: all 0.1s;
       font-family: 'Press Start 2P';
+      display: block;
     }
     .register-button::before {
       content: '';
@@ -192,7 +187,7 @@
       border: 2px solid rgba(255,255,255,0.2);
       pointer-events: none;
     }
-    .register-button:hover{ 
+    .register-button:hover{
       transform: translate(-4px, -4px);
       box-shadow: 10px 10px 0 var(--shadow-navy);
       background: var(--register-hover-gradient);
@@ -200,17 +195,18 @@
     .register-button.no-link {
       cursor: default;
       pointer-events: none;
+      opacity: 0.75;
     }
     .register-button.no-link:hover {
       transform: none;
       box-shadow: 6px 6px 0 var(--shadow-navy);
       background: var(--register-gradient);
     }
-    .button-content{ 
-      display:flex; 
+    .button-content{
+      display:flex;
       flex-direction: column;
-      gap:0.8rem; 
-      font-size:0.75rem; 
+      gap:0.8rem;
+      font-size:0.75rem;
       line-height: 1.6;
       text-align: left;
     }
@@ -222,13 +218,13 @@
     }
     .button-divider{ color:rgba(255,255,255,0.4); }
     .button-price{ color:#FFD700; font-weight:700; text-shadow: 2px 2px 0 rgba(0,0,0,0.3); }
-    .button-cta{ 
+    .button-cta{
       background: linear-gradient(135deg,#FFD700,#FFA500);
-      color:#1E2A5A; 
-      padding:0.8rem 1.5rem; 
+      color:#1E2A5A;
+      padding:0.8rem 1.5rem;
       border:3px solid #1E2A5A;
-      font-weight:700; 
-      font-size:0.7rem; 
+      font-weight:700;
+      font-size:0.7rem;
       letter-spacing:2px;
       margin-top: 0.5rem;
       display: inline-block;
@@ -240,10 +236,10 @@
       border-color: #666;
     }
 
-    .share-icon{ 
-      position:absolute; top:12px; right:12px; 
-      padding:8px; 
-      background:rgba(0,0,0,0.6); 
+    .share-icon{
+      position:absolute; top:12px; right:12px;
+      padding:8px;
+      background:rgba(0,0,0,0.6);
       border: 2px solid #FFD700;
       z-index:40; cursor:pointer;
       transition: all 0.2s;
@@ -254,10 +250,6 @@
     }
     .share-icon svg{ width:16px; height:16px; fill:white; }
 
-    /* ============================================ */
-    /* EDINBURGH FRINGE FUND STYLES */
-    /* ============================================ */
-    
     .fringe-fund-section {
       max-width: 900px;
       margin: 3rem auto;
@@ -444,41 +436,41 @@
       color: rgba(255,255,255,0.9);
     }
 
-    .news-link{ 
-      max-width:600px; margin:1rem auto; 
-      background: var(--news-bg); 
-      border:4px solid var(--accent-red); 
-      padding:1rem; 
-      text-align:center; 
+    .news-link{
+      max-width:600px; margin:1rem auto;
+      background: var(--news-bg);
+      border:4px solid var(--accent-red);
+      padding:1rem;
+      text-align:center;
       box-shadow: 5px 5px 0 var(--shadow-red);
       transition: background-color 0.3s;
     }
     .news-link a{ color: var(--accent-red); text-decoration:none; font-size: 0.75rem; letter-spacing: 2px; font-weight: bold; }
 
-    .partners-section{ 
-      margin:2rem auto; 
-      padding:1.5rem; 
+    .partners-section{
+      margin:2rem auto;
+      padding:1.5rem;
       background: var(--fringe-section-bg);
-      border:4px solid var(--accent-navy); 
-      text-align:center; 
-      max-width:900px; 
+      border:4px solid var(--accent-navy);
+      text-align:center;
+      max-width:900px;
       box-shadow: 6px 6px 0 var(--shadow-navy);
       transition: background 0.3s;
     }
     .partners-title{ color: var(--accent-red); margin-bottom:1.5rem; font-size:0.9rem; letter-spacing:2px; }
 
     .partners-viewport{ width:100%; overflow:hidden; padding: 1rem 0; }
-    .partners-track{ 
-      display:flex; gap:1.5rem; align-items:center; 
-      animation: partnersScroll var(--partners-duration,25s) linear infinite; 
+    .partners-track{
+      display:flex; gap:1.5rem; align-items:center;
+      animation: partnersScroll var(--partners-duration,25s) linear infinite;
     }
     @keyframes partnersScroll{ 0%{ transform:translateX(0);} 100%{ transform:translateX(-50%);} }
 
-    .partner-item{ 
-      flex:0 0 auto; width:140px; height:96px; 
-      background: var(--partner-bg); 
-      border:3px solid var(--accent-red); 
-      padding:8px; 
+    .partner-item{
+      flex:0 0 auto; width:140px; height:96px;
+      background: var(--partner-bg);
+      border:3px solid var(--accent-red);
+      padding:8px;
       box-shadow: 4px 4px 0 var(--shadow-red);
       position: relative;
       transition: background-color 0.3s;
@@ -490,21 +482,21 @@
       border: 1px solid var(--border-inner);
       pointer-events: none;
     }
-    .partner-item img{ 
-      max-width:100%; max-height:100%; 
-      object-fit:contain; 
+    .partner-item img{
+      max-width:100%; max-height:100%;
+      object-fit:contain;
     }
 
     .whatsapp-section{ max-width:600px; margin:2rem auto; text-align:center; }
-    .whatsapp-button{ 
-      display:inline-flex; align-items:center; gap:1rem; 
-      width:100%; max-width:500px; 
+    .whatsapp-button{
+      display:inline-flex; align-items:center; gap:1rem;
+      width:100%; max-width:500px;
       background: linear-gradient(135deg,#25D366,#128C7E);
-      color:#fff; 
-      padding:1.2rem 1.5rem; 
+      color:#fff;
+      padding:1.2rem 1.5rem;
       border:4px solid #128C7E;
-      font-weight:700; 
-      text-decoration:none; 
+      font-weight:700;
+      text-decoration:none;
       box-shadow: 6px 6px 0 rgba(37,211,102,0.3);
       font-family: 'Press Start 2P';
       font-size: 0.7rem;
@@ -517,11 +509,11 @@
     }
     .whatsapp-button img{ width:24px; height:24px; }
 
-    .whatsapp-benefits{ 
-      margin-top:1.5rem; 
+    .whatsapp-benefits{
+      margin-top:1.5rem;
       background: var(--whatsapp-benefits-bg);
-      border:3px solid var(--accent-red); 
-      padding:1rem; 
+      border:3px solid var(--accent-red);
+      padding:1rem;
       box-shadow: 4px 4px 0 var(--shadow-red);
       transition: background 0.3s;
     }
@@ -547,29 +539,29 @@
     }
 
     .footer{ margin-top:2rem; text-align:center; }
-    .footer-content{ 
-      max-width:600px; margin:0 auto; 
+    .footer-content{
+      max-width:600px; margin:0 auto;
       background: var(--footer-bg);
-      padding:2rem; 
-      border:4px solid var(--accent-navy); 
+      padding:2rem;
+      border:4px solid var(--accent-navy);
       box-shadow: 6px 6px 0 var(--shadow-navy);
       transition: background 0.3s;
     }
-    .creators-names{ 
-      font-family:'Press Start 2P'; 
-      font-size:1.2rem; 
-      color: var(--accent-navy); 
+    .creators-names{
+      font-family:'Press Start 2P';
+      font-size:1.2rem;
+      color: var(--accent-navy);
       margin:1rem 0;
       letter-spacing: 3px;
     }
     [data-theme="dark"] .creators-names { color: #8ea4d2; }
-    .creators-names a { 
-      color: var(--accent-navy); 
-      text-decoration:none; 
+    .creators-names a {
+      color: var(--accent-navy);
+      text-decoration:none;
       text-shadow: 2px 2px 0 var(--shadow-red);
     }
     [data-theme="dark"] .creators-names a { color: #8ea4d2; }
-    .creators-names a:hover { 
+    .creators-names a:hover {
       color: var(--accent-red);
     }
     .footer-content > div {
@@ -583,16 +575,16 @@
     [data-theme="dark"] .footer-content a { color: #8ea4d2; }
     .footer-content a:hover { color: var(--accent-red); }
 
-    .back-to-top{ 
-      position:fixed; right:20px; bottom:20px; 
-      width:60px; height:60px; 
+    .back-to-top{
+      position:fixed; right:20px; bottom:20px;
+      width:60px; height:60px;
       background: linear-gradient(135deg,#db4118,#e55a5a);
-      color:#fff; 
+      color:#fff;
       border:3px solid var(--accent-navy);
-      font-weight:700; 
-      display:none; 
-      z-index:1000; 
-      cursor:pointer; 
+      font-weight:700;
+      display:none;
+      z-index:1000;
+      cursor:pointer;
       font-family: 'Press Start 2P';
       font-size: 1.2rem;
       box-shadow: 5px 5px 0 var(--shadow-red);
@@ -607,127 +599,65 @@
       .fringe-fund-content {
         grid-template-columns: 1.2fr 1fr;
       }
-
-      .fringe-fund-title {
-        font-size: 1.4rem;
-      }
-
-      .stat-value {
-        font-size: 1.1rem;
-      }
-
-      .fringe-progress-bar {
-        height: 40px;
-      }
-
-      .fringe-message-main {
-        font-size: 1rem;
-      }
-
-      .fringe-message-sub {
-        font-size: 0.75rem;
-      }
+      .fringe-fund-title { font-size: 1.4rem; }
+      .stat-value { font-size: 1.1rem; }
+      .fringe-progress-bar { height: 40px; }
+      .fringe-message-main { font-size: 1rem; }
+      .fringe-message-sub { font-size: 0.75rem; }
     }
 
-    @media (max-width: 900px) { 
-      .page{ padding-left:12px; padding-right:12px; } 
+    @media (max-width: 900px) {
+      .page{ padding-left:12px; padding-right:12px; }
       .header-text h1{ font-size:1.2rem; letter-spacing:2px; }
     }
-    @media (max-width:768px){ 
-      .partner-item{ width:110px; height:72px; } 
-      .partners-track{ gap:1rem; --partners-duration:30s; } 
-      .register-button{ padding:1.2rem; } 
+    @media (max-width:768px){
+      .partner-item{ width:110px; height:72px; }
+      .partners-track{ gap:1rem; --partners-duration:30s; }
+      .register-button{ padding:1.2rem; }
       .button-content{ font-size:0.65rem; gap:0.6rem; }
-      .button-cta{ font-size:0.6rem; padding:0.6rem 1rem; } 
+      .button-cta{ font-size:0.6rem; padding:0.6rem 1rem; }
       .header-logo{ width:50px;height:50px; }
-      
-      .fringe-fund-container {
-        padding: 1.5rem;
-      }
-
-      .fringe-fund-title {
-        font-size: 0.9rem;
-        letter-spacing: 2px;
-      }
-
-      .stat-label {
-        font-size: 0.5rem;
-      }
-
-      .stat-value {
-        font-size: 0.75rem;
-      }
-
-      .fringe-motivation {
-        font-size: 0.55rem;
-      }
-
-      .fringe-message-main {
-        font-size: 0.75rem;
-      }
-
-      .fringe-message-sub {
-        font-size: 0.6rem;
-      }
-
-      .fringe-placeholder-image {
-        width: 100px;
-        height: 100px;
-      }
-
-      .fringe-emoji {
-        font-size: 3rem;
-      }
-
-      .theme-toggle {
-        width: 40px;
-        height: 40px;
-        top: 48px;
-        right: 10px;
-        font-size: 1rem;
-      }
+      .fringe-fund-container { padding: 1.5rem; }
+      .fringe-fund-title { font-size: 0.9rem; letter-spacing: 2px; }
+      .stat-label { font-size: 0.5rem; }
+      .stat-value { font-size: 0.75rem; }
+      .fringe-motivation { font-size: 0.55rem; }
+      .fringe-message-main { font-size: 0.75rem; }
+      .fringe-message-sub { font-size: 0.6rem; }
+      .fringe-placeholder-image { width: 100px; height: 100px; }
+      .fringe-emoji { font-size: 3rem; }
+      .theme-toggle { width: 40px; height: 40px; top: 48px; right: 10px; font-size: 1rem; }
     }
-    @media (max-width:420px){ 
-      .partners-viewport{ overflow-x:auto; } 
-      .partners-track{ animation:none; gap:0.8rem; } 
+    @media (max-width:420px){
+      .partners-viewport{ overflow-x:auto; }
+      .partners-track{ animation:none; gap:0.8rem; }
       .partner-item{ width:90px; height:60px; }
       .header-text h1{ font-size:1rem; font-weight: 900; text-shadow: 2px 2px 0 #1E2A5A; }
       .button-content{ font-size:0.55rem; }
-      
-      .fringe-fund-title {
-        font-size: 0.7rem;
-      }
-
-      .fringe-progress-stats {
-        gap: 0.5rem;
-      }
-
-      .stat-item {
-        gap: 0.3rem;
-      }
+      .fringe-fund-title { font-size: 0.7rem; }
+      .fringe-progress-stats { gap: 0.5rem; }
+      .stat-item { gap: 0.3rem; }
     }
 
-    @media (prefers-reduced-motion: reduce){ 
-      .partners-track, .ticker-content { 
-        animation: none !important; 
-      } 
+    @media (prefers-reduced-motion: reduce){
+      .partners-track, .ticker-content { animation: none !important; }
     }
 
-    .popup-overlay { 
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
-      background: rgba(0,0,0,0.9); 
-      z-index: 9999; display: none; 
-      align-items: center; justify-content: center; 
+    .popup-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 9999; display: none;
+      align-items: center; justify-content: center;
       opacity: 0; transition: opacity 0.2s;
       padding: 1rem;
     }
     .popup-overlay.show { display: flex; opacity: 1; }
-    .popup-container { 
-      position: relative; 
-      width: 90vw; 
-      max-width: 540px; 
+    .popup-container {
+      position: relative;
+      width: 90vw;
+      max-width: 540px;
       max-height: 90vh;
-      background: var(--popup-bg); 
+      background: var(--popup-bg);
       border: 4px solid var(--accent-red);
       overflow: hidden;
       box-shadow: 8px 8px 0 var(--shadow-red);
@@ -735,18 +665,18 @@
       flex-direction: column;
       transition: background-color 0.3s;
     }
-    .popup-close { 
-      position: absolute; top: 12px; right: 12px; 
-      width: 40px; height: 40px; 
+    .popup-close {
+      position: absolute; top: 12px; right: 12px;
+      width: 40px; height: 40px;
       background: #db4118;
-      color: #fff; 
+      color: #fff;
       border: 3px solid #1E2A5A;
-      font-size: 20px; font-weight: bold; 
-      cursor: pointer; z-index: 10; 
+      font-size: 20px; font-weight: bold;
+      cursor: pointer; z-index: 10;
       font-family: 'Press Start 2P';
       box-shadow: 3px 3px 0 rgba(0,0,0,0.3);
     }
-    .popup-close:hover { 
+    .popup-close:hover {
       background: #e55a5a;
       transform: scale(1.1);
     }
@@ -771,9 +701,9 @@
       flex-shrink: 0;
       transition: background-color 0.3s;
     }
-    .popup-image { 
-      width: 100%; 
-      height: auto; 
+    .popup-image {
+      width: 100%;
+      height: auto;
       display: block;
     }
     .popup-tracker {
@@ -790,13 +720,13 @@
       flex-shrink: 0;
       transition: background 0.3s;
     }
-    .popup-cta-button { 
+    .popup-cta-button {
       background: linear-gradient(135deg,#FFD700,#FFA500);
-      color: #1E2A5A; 
-      padding: 0.8rem 1.5rem; 
+      color: #1E2A5A;
+      padding: 0.8rem 1.5rem;
       border: 3px solid #1E2A5A;
-      font-weight: 700; 
-      font-size: 0.7rem; 
+      font-weight: 700;
+      font-size: 0.7rem;
       box-shadow: 5px 5px 0 rgba(0,0,0,0.3);
       font-family: 'Press Start 2P';
       letter-spacing: 2px;
@@ -804,12 +734,12 @@
       cursor: pointer;
       display: inline-block;
     }
-    .popup-cta-button:hover { 
+    .popup-cta-button:hover {
       transform: translateY(-3px);
       box-shadow: 8px 8px 0 rgba(0,0,0,0.4);
     }
-    @media (max-width: 768px) { 
-      .popup-container { width: 95vw; max-height: 95vh; } 
+    @media (max-width: 768px) {
+      .popup-container { width: 95vw; max-height: 95vh; }
       .popup-title-text { font-size: 0.7rem; letter-spacing: 1px; }
       .popup-header { padding: 1.2rem 0.8rem 0.8rem; }
       .popup-tracker { padding: 0.8rem; }
@@ -820,7 +750,7 @@
       .popup-tracker .fringe-progress-bar { height: 24px; margin-bottom: 0.8rem; }
       .popup-tracker .fringe-motivation { font-size: 0.5rem; }
     }
-    @media (max-width: 420px) { 
+    @media (max-width: 420px) {
       .popup-title-text { font-size: 0.55rem; }
       .popup-header { padding: 1rem 0.5rem 0.5rem; }
       .popup-tracker { padding: 0.6rem; }
@@ -842,7 +772,6 @@
     </div>
   </div>
 
-  <!-- THEME TOGGLE -->
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode" title="Toggle theme">
     <span class="icon-moon">🌙</span>
     <span class="icon-sun">☀️</span>
@@ -860,29 +789,33 @@
       <div class="promo-title">▶ BLR'S FAV TRIVIA GAME SHOWS ◀</div>
     </section>
 
-  <a class="register-button no-link" aria-disabled="true">
-  <div class="button-content">
-    <div class="button-row">
-      <span>FRI, APR 17</span>
-      <span class="button-divider">|</span>
-      <span>TINY SUSHI, INDIRANAGAR</span>
-    </div>
-    <div class="button-row">
-      <span>9:00 PM</span>
-      <span class="button-divider">|</span>
-      <span>KNOW IT ALL — ENTERTAINMENT GAME SHOW</span>
-    </div>
-    <div class="button-row">
-      <span class="button-price">₹499 (₹100 Redeemable, FnB)</span>
-    </div>
-    <span class="button-cta coming-soon">[ SOLD OUT ]</span>
-  </div>
-  <button type="button" class="share-icon" aria-label="Share Apr 17 event"
-          onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('','TINY SUSHI INDIRANAGAR','Apr 17','9:00 PM'); })(event)">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16c-.8 0-1.5.3-2 .8l-7.3-4.2c.1-.2.1-.4.1-.6s0-.4-.1-.6L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .4.1.6L7.8 9.8C7.3 9.3 6.6 9 5.8 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.3 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9S19.6 16 18 16z"/></svg>
-  </button>
-</a>
-  
+    <section class="register-buttons" aria-label="Events">
+
+      <!-- SOLD OUT: Tiny Sushi, Indiranagar -->
+      <a class="register-button no-link" aria-disabled="true">
+        <div class="button-content">
+          <div class="button-row">
+            <span>FRI, APR 17</span>
+            <span class="button-divider">|</span>
+            <span>TINY SUSHI, INDIRANAGAR</span>
+          </div>
+          <div class="button-row">
+            <span>9:00 PM</span>
+            <span class="button-divider">|</span>
+            <span>KNOW IT ALL — ENTERTAINMENT GAME SHOW</span>
+          </div>
+          <div class="button-row">
+            <span class="button-price">₹499 (₹100 Redeemable, FnB)</span>
+          </div>
+          <span class="button-cta coming-soon">[ SOLD OUT ]</span>
+        </div>
+        <button type="button" class="share-icon" aria-label="Share Apr 17 event"
+                onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('','TINY SUSHI INDIRANAGAR','Apr 17','9:00 PM'); })(event)" style="pointer-events: auto;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16c-.8 0-1.5.3-2 .8l-7.3-4.2c.1-.2.1-.4.1-.6s0-.4-.1-.6L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .4.1.6L7.8 9.8C7.3 9.3 6.6 9 5.8 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.3 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9S19.6 16 18 16z"/></svg>
+        </button>
+      </a>
+
+      <!-- Beku Cafe, JP Nagar -->
       <a href="https://urbanaut.app/spot/the-hunger-games?srsltid=AfmBOoqJnTLI0k4qA-Gt7ZF2BDMVYfINyHnoYsnq-UwObrel8kGZOsCh" class="register-button" target="_blank" rel="noopener">
         <div class="button-content">
           <div class="button-row">
@@ -906,6 +839,7 @@
         </button>
       </a>
 
+      <!-- Underline Center, Indiranagar -->
       <a href="https://www.district.in/events/the-hunger-games-by-tasty-trivia-apr11-2026-buy-tickets" class="register-button" target="_blank" rel="noopener">
         <div class="button-content">
           <div class="button-row">
@@ -923,22 +857,20 @@
           </div>
           <span class="button-cta">[ BOOK TIX ]</span>
         </div>
-        <button type="button" class="share-icon" aria-label="Share Apr 18 event"
+        <button type="button" class="share-icon" aria-label="Share Apr 24 event"
                 onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://www.district.in/events/the-hunger-games-by-tasty-trivia-apr11-2026-buy-tickets','Underline Center Indiranagar','Apr 24','9:00 PM'); })(event)">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16c-.8 0-1.5.3-2 .8l-7.3-4.2c.1-.2.1-.4.1-.6s0-.4-.1-.6L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .4.1.6L7.8 9.8C7.3 9.3 6.6 9 5.8 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.3 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9S19.6 16 18 16z"/></svg>
         </button>
       </a>
+
     </section>
 
     <section class="fringe-fund-section" aria-label="Edinburgh Fringe Fund">
       <div class="fringe-fund-container">
-        
         <div class="fringe-fund-header">
           <h2 class="fringe-fund-title">TASTY'S EDINBURGH FRINGE FUND</h2>
         </div>
-
         <div class="fringe-fund-content">
-          
           <div class="fringe-progress-wrapper">
             <div class="fringe-progress-stats">
               <div class="stat-item">
@@ -954,14 +886,11 @@
                 <span class="stat-value">MAR 2027</span>
               </div>
             </div>
-
             <div class="fringe-progress-bar">
               <div class="fringe-progress-fill" id="fringe-progress-fill" data-progress="34"></div>
             </div>
-
             <p class="fringe-motivation">EVERY TICKET GETS US CLOSER.</p>
           </div>
-
           <div class="fringe-visual-block">
             <div class="fringe-image-container">
               <img src="https://i.ibb.co/sxBZdsw/Tatsy-Trivia-Fringe.png" alt="Tasty Trivia Edinburgh Fringe" style="width: 100%; height: auto; display: block;">
@@ -971,7 +900,6 @@
               <p class="fringe-message-sub">SUPPORT OUR GOAL!</p>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -1034,15 +962,12 @@
   <div class="popup-overlay" id="popupOverlay" aria-modal="true" role="dialog">
     <div class="popup-container">
       <button class="popup-close" id="popupClose" aria-label="Close popup">X</button>
-      
       <div class="popup-header">
         <h2 class="popup-title-text">TASTY'S EDINBURGH FRINGE FUND</h2>
       </div>
-
       <div class="popup-image-container">
         <img src="https://i.ibb.co/sxBZdsw/Tatsy-Trivia-Fringe.png" alt="Edinburgh Fringe" class="popup-image">
       </div>
-
       <div class="popup-tracker">
         <div class="fringe-progress-stats">
           <div class="stat-item">
@@ -1058,14 +983,11 @@
             <span class="stat-value">MAR 2027</span>
           </div>
         </div>
-
         <div class="fringe-progress-bar">
           <div class="fringe-progress-fill" id="popup-progress-fill" data-progress="34"></div>
         </div>
-
         <p class="fringe-motivation">EVERY TICKET GETS US CLOSER.</p>
       </div>
-
       <div class="popup-cta-container">
         <button class="popup-cta-button" id="popupContinue">CONTINUE &gt;&gt;</button>
       </div>
@@ -1073,9 +995,6 @@
   </div>
 
   <script>
-    /* ============================================ */
-    /* THEME TOGGLE LOGIC                           */
-    /* ============================================ */
     (function() {
       const saved = localStorage.getItem('tasty-theme');
       if (saved === 'dark') {
@@ -1096,9 +1015,6 @@
       }
     });
 
-    /* ============================================ */
-    /* ORIGINAL SCRIPTS                             */
-    /* ============================================ */
     function handleImageError(img){
       img.onerror = null;
       img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180"><rect width="100%" height="100%" fill="#f0e0c2"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#db4118" font-family="Arial" font-size="14">Image missing</text></svg>');
@@ -1112,10 +1028,10 @@
 
     function shareEvent(link, city, date, time) {
       try {
-        let message = `🧠 Found this awesome trivia event in ${city} (${date} ${time})! 🎉`;
-        if (link) message += `\n\n${link}`;
-        else message += `\n\nTickets coming soon! Join our WhatsApp community for updates.`;
-        const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
+        let message = '🧠 Found this awesome trivia event in ' + city + ' (' + date + ' ' + time + ')! 🎉';
+        if (link) message += '\n\n' + link;
+        else message += '\n\nTickets coming soon! Join our WhatsApp community for updates.';
+        var url = 'https://wa.me/?text=' + encodeURIComponent(message);
         window.open(url, '_blank');
       } catch (err) {
         console.error('shareEvent error', err);
@@ -1124,9 +1040,9 @@
     }
 
     function optimisePartners() {
-      const track = document.getElementById('partnersTrack');
+      var track = document.getElementById('partnersTrack');
       if (!track) return;
-      const viewport = track.parentElement;
+      var viewport = track.parentElement;
       if (viewport.clientWidth <= 420) {
         viewport.style.overflowX = 'auto';
         track.style.animation = 'none';
@@ -1134,7 +1050,7 @@
         viewport.style.overflowX = 'hidden';
         track.style.animation = '';
       }
-      track.querySelectorAll('img').forEach(img => { img.onerror = () => handleImageError(img); });
+      track.querySelectorAll('img').forEach(function(img) { img.onerror = function() { handleImageError(img); }; });
     }
 
     function openNews() {
@@ -1145,21 +1061,20 @@
       }
     }
 
-    const popupOverlay = document.getElementById('popupOverlay');
-    const popupClose = document.getElementById('popupClose');
-    const popupContinue = document.getElementById('popupContinue');
-    const backToTop = document.getElementById('backToTop');
+    var popupOverlay = document.getElementById('popupOverlay');
+    var popupClose = document.getElementById('popupClose');
+    var popupContinue = document.getElementById('popupContinue');
+    var backToTop = document.getElementById('backToTop');
 
     function showPopup() {
       if (sessionStorage.getItem('fringePopupShown')) return;
-      setTimeout(() => {
+      setTimeout(function() {
         popupOverlay.classList.add('show');
         sessionStorage.setItem('fringePopupShown', 'true');
-        
-        const popupProgressFill = document.getElementById('popup-progress-fill');
+        var popupProgressFill = document.getElementById('popup-progress-fill');
         if (popupProgressFill) {
-          const progressPercentage = popupProgressFill.getAttribute('data-progress') || 30;
-          setTimeout(() => {
+          var progressPercentage = popupProgressFill.getAttribute('data-progress') || 30;
+          setTimeout(function() {
             popupProgressFill.style.setProperty('--progress-width', progressPercentage + '%');
             popupProgressFill.classList.add('animated');
           }, 300);
@@ -1173,11 +1088,11 @@
 
     if (popupClose) popupClose.addEventListener('click', closePopup);
     if (popupContinue) popupContinue.addEventListener('click', closePopup);
-    if (popupOverlay) popupOverlay.addEventListener('click', (e) => {
+    if (popupOverlay) popupOverlay.addEventListener('click', function(e) {
       if (e.target === popupOverlay) closePopup();
     });
 
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', function() {
       if (backToTop) {
         if (window.pageYOffset > 300) backToTop.style.display = 'flex';
         else backToTop.style.display = 'none';
@@ -1185,12 +1100,12 @@
     });
 
     if (backToTop) {
-      backToTop.addEventListener('click', () => {
+      backToTop.addEventListener('click', function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     }
 
-    window.addEventListener('load', () => {
+    window.addEventListener('load', function() {
       optimisePartners();
       showPopup();
     });
@@ -1198,17 +1113,14 @@
 
     (function() {
       function animateFringeProgress() {
-        const progressFill = document.getElementById('fringe-progress-fill');
+        var progressFill = document.getElementById('fringe-progress-fill');
         if (!progressFill) return;
-
-        const progressPercentage = progressFill.getAttribute('data-progress') || 30;
-        
-        setTimeout(() => {
+        var progressPercentage = progressFill.getAttribute('data-progress') || 30;
+        setTimeout(function() {
           progressFill.style.setProperty('--progress-width', progressPercentage + '%');
           progressFill.classList.add('animated');
         }, 200);
       }
-
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', animateFringeProgress);
       } else {
