@@ -202,6 +202,18 @@
       box-shadow: 6px 6px 0 var(--shadow-navy);
       background: var(--register-gradient);
     }
+    /* Share icon stays tappable on coming-soon cards */
+    .register-button.no-link .share-icon {
+      pointer-events: auto;
+      cursor: pointer;
+    }
+    /* Ended events: fully inert, dimmed */
+    .register-button.ended {
+      opacity: 0.6;
+    }
+    .register-button.ended .share-icon {
+      display: none;
+    }
     .button-content{
       display:flex;
       flex-direction: column;
@@ -234,6 +246,11 @@
       background: linear-gradient(135deg,#95A5A6,#7F8C8D);
       color:#fff;
       border-color: #666;
+    }
+    .button-cta.ended {
+      background: linear-gradient(135deg,#7F8C8D,#5D6D6E);
+      color:#fff;
+      border-color: #444;
     }
 
     .share-icon{
@@ -790,12 +807,9 @@
     </section>
 
     <section class="register-buttons" aria-label="Events">
-    
 
-    
-
-  <!-- Underline Center, Indiranagar - JUN 26 -->
-      <a href="https://www.district.in/events/crime-scene-trivia-game-show-jun13-2026-buy-tickets?srsltid=AfmBOopU-ysyrsb8MzSlnJTXpEdXArdvGbjPG-jSzL5x9eY5rwhMX57k" class="register-button" target="_blank" rel="noopener">
+  <!-- Underline Center, Indiranagar - JUL 18 -->
+      <a href="https://www.district.in/events/crime-scene-trivia-game-show-jun13-2026-buy-tickets?srsltid=AfmBOopU-ysyrsb8MzSlnJTXpEdXArdvGbjPG-jSzL5x9eY5rwhMX57k" class="register-button" data-event-date="2026-07-18" target="_blank" rel="noopener">
         <div class="button-content">
           <div class="button-row">
             <span>SAT, JUL 18</span>
@@ -812,14 +826,14 @@
           </div>
           <span class="button-cta">[ BOOK TIX ]</span>
         </div>
-        <button type="button" class="share-icon" aria-label="Share JUN 26 event"
-                onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://www.district.in/events/crime-scene-trivia-game-show-jun13-2026-buy-tickets','JUN 26','9:00 PM'); })(event)">
+        <button type="button" class="share-icon" aria-label="Share JUL 18 event"
+                onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://www.district.in/events/crime-scene-trivia-game-show-jun13-2026-buy-tickets','JUL 18','9:00 PM'); })(event)">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16c-.8 0-1.5.3-2 .8l-7.3-4.2c.1-.2.1-.4.1-.6s0-.4-.1-.6L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .4.1.6L7.8 9.8C7.3 9.3 6.6 9 5.8 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.3 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9S19.6 16 18 16z"/></svg>
         </button>
       </a>
 
-       <!-- BEKU - JUL 5 -->
-      <a href="" rel="noopener">
+       <!-- BEKU - JUL 25 (coming soon, non-clickable) -->
+      <a class="register-button no-link" data-event-date="2026-07-25" rel="noopener">
         <div class="button-content">
           <div class="button-row">
             <span>SAT, JUL 25</span>
@@ -834,14 +848,16 @@
           <div class="button-row">
             <span class="button-price">₹499/ Person ONLY [₹100 Redeemable at Beku]</span>
           </div>
-          <span class="button-cta">[ BOOK TIX ]</span>
+          <span class="button-cta coming-soon">[ COMING SOON ]</span>
         </div>
-        <button type="button" class="share-icon" aria-label="Share JUL 5 event"
-                onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://urbanaut.app/spot/crime-scene-trivia-night','JUL 5','7:00 PM'); })(event)">
+        <button type="button" class="share-icon" aria-label="Share JUL 25 event"
+                onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('','JUL 25','7:00 PM'); })(event)">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16c-.8 0-1.5.3-2 .8l-7.3-4.2c.1-.2.1-.4.1-.6s0-.4-.1-.6L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .4.1.6L7.8 9.8C7.3 9.3 6.6 9 5.8 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.3 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9S19.6 16 18 16z"/></svg>
         </button>
       </a>
-      
+
+    </section>
+
     <section class="fringe-fund-section" aria-label="Edinburgh Fringe Fund">
       <div class="fringe-fund-container">
         <div class="fringe-fund-header">
@@ -1016,6 +1032,30 @@
       }
     }
 
+    /* Flip event cards to EVENT ENDED once their date has passed.
+       Each card carries data-event-date="YYYY-MM-DD".
+       The card stays live through the end of the event day. */
+    function updateEventStates() {
+      document.querySelectorAll('.register-button[data-event-date]').forEach(function(card) {
+        var dateStr = card.getAttribute('data-event-date');
+        if (!dateStr) return;
+        var eventEnd = new Date(dateStr + 'T23:59:59');
+        if (isNaN(eventEnd.getTime())) return;
+        if (new Date() > eventEnd) {
+          card.classList.add('no-link', 'ended');
+          card.removeAttribute('href');
+          card.removeAttribute('target');
+          card.setAttribute('aria-disabled', 'true');
+          var cta = card.querySelector('.button-cta');
+          if (cta) {
+            cta.textContent = '[ EVENT ENDED ]';
+            cta.classList.remove('coming-soon');
+            cta.classList.add('ended');
+          }
+        }
+      });
+    }
+
     function optimisePartners() {
       var track = document.getElementById('partnersTrack');
       if (!track) return;
@@ -1083,6 +1123,7 @@
     }
 
     window.addEventListener('load', function() {
+      updateEventStates();
       optimisePartners();
       showPopup();
     });
