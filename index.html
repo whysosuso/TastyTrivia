@@ -796,8 +796,8 @@
       flex: 1 1 auto;
       position: relative;
       height: 430px;
-      perspective: 1400px;
-      overflow: hidden;
+      perspective: 2200px;
+      overflow: visible;
     }
 
     .carousel-card {
@@ -1303,8 +1303,9 @@
     function layoutCarousel3D() {
       var stage = document.getElementById('carouselStage');
       if (!stage || !carouselState.cards.length) return;
-      var stageWidth = stage.clientWidth || 700;
-      var spacing = Math.min(stageWidth * 0.34, 260);
+      var cardWidth = carouselState.cards[0].offsetWidth || 280;
+      var gap = cardWidth * 0.22;
+      var spacing = cardWidth + gap;
       var total = carouselState.total;
 
       carouselState.cards.forEach(function(card, i) {
@@ -1314,11 +1315,11 @@
         if (offset < -total / 2) offset += total;
 
         var translateX = offset * spacing;
-        var rotateY = offset * -32;
-        var translateZ = -Math.abs(offset) * 140;
-        var scale = offset === 0 ? 1 : 0.78;
+        var rotateY = offset * -22;
+        var translateZ = -Math.abs(offset) * 20;
+        var scale = offset === 0 ? 1 : 0.82;
         var visible = Math.abs(offset) <= 1;
-        var opacity = offset === 0 ? 1 : (visible ? 0.55 : 0);
+        var opacity = offset === 0 ? 1 : (visible ? 0.85 : 0);
         var zIndex = 10 - Math.abs(offset);
 
         card.style.transform = 'translateX(' + translateX + 'px) translateZ(' + translateZ + 'px) rotateY(' + rotateY + 'deg) scale(' + scale + ')';
