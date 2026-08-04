@@ -778,6 +778,119 @@
       .popup-tracker .fringe-progress-bar { height: 20px; }
       .popup-tracker .fringe-motivation { font-size: 0.45rem; }
     }
+
+    /* ===== 3D Revolving Carousel ===== */
+    .events-carousel-section {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .carousel-3d-viewport {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .carousel-3d-stage {
+      flex: 1 1 auto;
+      position: relative;
+      height: 430px;
+      perspective: 1400px;
+      overflow: hidden;
+    }
+
+    .carousel-card {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 280px;
+      margin-left: -140px;
+      transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.6s ease, box-shadow 0.3s ease;
+      will-change: transform, opacity;
+      cursor: pointer;
+    }
+
+    .carousel-card.register-button {
+      display: block;
+    }
+
+    .carousel-card.is-center {
+      cursor: default;
+      box-shadow: 8px 8px 0 var(--shadow-red), 0 0 0 4px rgba(255,215,0,0.55);
+    }
+
+    .carousel-card.is-center.no-link {
+      box-shadow: 6px 6px 0 var(--shadow-navy), 0 0 0 4px rgba(255,215,0,0.55);
+    }
+
+    .card-emoji {
+      font-size: 2.4rem;
+      text-align: center;
+      line-height: 1;
+      filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.25));
+      margin-bottom: 0.2rem;
+    }
+
+    .carousel-nav {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      background: var(--register-gradient);
+      border: 3px solid var(--accent-red);
+      color: #FFD700;
+      font-size: 1.6rem;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--shadow-navy);
+      font-family: 'Press Start 2P';
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .carousel-nav:hover {
+      transform: translateY(-2px);
+      box-shadow: 6px 6px 0 var(--shadow-navy);
+    }
+    .carousel-nav:active {
+      transform: translateY(0);
+      box-shadow: 2px 2px 0 var(--shadow-navy);
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 1.25rem;
+    }
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--accent-navy);
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    .carousel-dot.active {
+      background: var(--accent-red);
+      border-color: var(--accent-red);
+      transform: scale(1.2);
+    }
+
+    @media (max-width: 768px) {
+      .carousel-3d-stage { height: 380px; }
+      .carousel-card { width: 220px; margin-left: -110px; }
+      .carousel-nav { width: 38px; height: 38px; font-size: 1.2rem; }
+      .card-emoji { font-size: 1.9rem; }
+    }
+    @media (max-width: 420px) {
+      .carousel-3d-stage { height: 340px; }
+      .carousel-card { width: 180px; margin-left: -90px; }
+      .carousel-nav { width: 32px; height: 32px; font-size: 1rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .carousel-card { transition: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -806,35 +919,118 @@
       <div class="promo-title">▶ BLR'S FAV TRIVIA GAME SHOWS ◀</div>
     </section>
 
-    <section class="register-buttons" aria-label="Events">
+    <section class="events-carousel-section" aria-label="Events">
+      <div class="carousel-3d-viewport">
+        <button type="button" class="carousel-nav carousel-nav-prev" id="carouselPrev" aria-label="Previous event">‹</button>
 
+        <div class="carousel-3d-stage" id="carouselStage">
 
-   
-      
-  <!-- Underline Center, Indiranagar - JUL 29 -->
-      <a href="https://www.district.in/events/the-hunger-games-by-tasty-trivia-apr11-2026-buy-tickets" class="register-button" data-event-date="2026-07-29" target="_blank" rel="noopener">
-        <div class="button-content">
-          <div class="button-row">
-            <span>WED, JUL 29</span>
-            <span class="button-divider">|</span>
-            <span>UNDERLINE CENTER, INDIRANAGAR</span>
+          <!-- Underline Center, Indiranagar - AUG 21 - tix out soon -->
+          <div class="carousel-card register-button no-link" data-event-date="2026-08-21" data-index="0">
+            <div class="button-content">
+              <div class="card-emoji">🌆</div>
+              <div class="button-row">
+                <span>FRI, AUG 21</span>
+                <span class="button-divider">|</span>
+                <span>UNDERLINE CENTER, INDIRANAGAR</span>
+              </div>
+              <div class="button-row">
+                <span>9:00 PM</span>
+                <span class="button-divider">|</span>
+                <span>BANGALORE STARTER PACK</span>
+              </div>
+              <div class="button-row">
+                <span class="button-price">₹449 onwards/ Person</span>
+              </div>
+              <span class="button-cta coming-soon">[ TIX OUT SOON ]</span>
+            </div>
+            <button type="button" class="share-icon" aria-label="Share AUG 21 event"
+                    onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('','AUG 21','9:00 PM'); })(event)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16c-.8 0-1.5.3-2 .8l-7.3-4.2c.1-.2.1-.4.1-.6s0-.4-.1-.6L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .4.1.6L7.8 9.8C7.3 9.3 6.6 9 5.8 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.3 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9S19.6 16 18 16z"/></svg>
+            </button>
           </div>
-          <div class="button-row">
-            <span>8:30 PM</span>
-            <span class="button-divider">|</span>
-            <span>HUNGER GAMES</span>
+
+          <!-- Beku Cafe - SEP 12 (4PM) - tix out soon -->
+          <div class="carousel-card register-button no-link" data-event-date="2026-09-12" data-index="1">
+            <div class="button-content">
+              <div class="card-emoji">🎭</div>
+              <div class="button-row">
+                <span>SAT, SEP 12</span>
+                <span class="button-divider">|</span>
+                <span>BEKU CAFE</span>
+              </div>
+              <div class="button-row">
+                <span>4:00 PM</span>
+                <span class="button-divider">|</span>
+                <span>ENTERTAINMENT</span>
+              </div>
+              <div class="button-row">
+                <span class="button-price">₹499 onwards/ Person (₹100 redeemable against F&B)</span>
+              </div>
+              <span class="button-cta coming-soon">[ TIX OUT SOON ]</span>
+            </div>
+            <button type="button" class="share-icon" aria-label="Share SEP 12 Entertainment event"
+                    onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('','SEP 12','4:00 PM'); })(event)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16c-.8 0-1.5.3-2 .8l-7.3-4.2c.1-.2.1-.4.1-.6s0-.4-.1-.6L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .4.1.6L7.8 9.8C7.3 9.3 6.6 9 5.8 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.3 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9S19.6 16 18 16z"/></svg>
+            </button>
           </div>
-          <div class="button-row">
-            <span class="button-price">₹399/ Person ONLY</span>
+
+          <!-- Underline Center, Indiranagar - SEP 12 (9PM) - GOSSIP - live -->
+          <a href="https://www.district.in/events/gossip-the-gameshow-with-tasty-trivia-sep12-2026-buy-tickets" class="carousel-card register-button" data-event-date="2026-09-12" data-index="2" target="_blank" rel="noopener">
+            <div class="button-content">
+              <div class="card-emoji">🗣️💬</div>
+              <div class="button-row">
+                <span>SAT, SEP 12</span>
+                <span class="button-divider">|</span>
+                <span>UNDERLINE CENTER, INDIRANAGAR</span>
+              </div>
+              <div class="button-row">
+                <span>9:00 PM</span>
+                <span class="button-divider">|</span>
+                <span>GOSSIP</span>
+              </div>
+              <div class="button-row">
+                <span class="button-price">₹449 onwards/ Person</span>
+              </div>
+              <span class="button-cta">[ BOOK TIX ]</span>
+            </div>
+            <button type="button" class="share-icon" aria-label="Share SEP 12 Gossip event"
+                    onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://www.district.in/events/gossip-the-gameshow-with-tasty-trivia-sep12-2026-buy-tickets','SEP 12','9:00 PM'); })(event)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16c-.8 0-1.5.3-2 .8l-7.3-4.2c.1-.2.1-.4.1-.6s0-.4-.1-.6L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .4.1.6L7.8 9.8C7.3 9.3 6.6 9 5.8 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.3 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9S19.6 16 18 16z"/></svg>
+            </button>
+          </a>
+
+          <!-- Turning Pages - SEP 13 - tix out soon -->
+          <div class="carousel-card register-button no-link" data-event-date="2026-09-13" data-index="3">
+            <div class="button-content">
+              <div class="card-emoji">🎒</div>
+              <div class="button-row">
+                <span>SUN, SEP 13</span>
+                <span class="button-divider">|</span>
+                <span>TURNING PAGES</span>
+              </div>
+              <div class="button-row">
+                <span>11:00 AM</span>
+                <span class="button-divider">|</span>
+                <span>ANNUAL FUNCTION</span>
+              </div>
+              <div class="button-row">
+                <span class="button-price">₹499 onwards/ Person (₹100 redeemable against F&B)</span>
+              </div>
+              <span class="button-cta coming-soon">[ TIX OUT SOON ]</span>
+            </div>
+            <button type="button" class="share-icon" aria-label="Share SEP 13 event"
+                    onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('','SEP 13','11:00 AM'); })(event)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16c-.8 0-1.5.3-2 .8l-7.3-4.2c.1-.2.1-.4.1-.6s0-.4-.1-.6L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .4.1.6L7.8 9.8C7.3 9.3 6.6 9 5.8 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.3 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9S19.6 16 18 16z"/></svg>
+            </button>
           </div>
-          <span class="button-cta">[ BOOK TIX ]</span>
+
         </div>
-        <button type="button" class="share-icon" aria-label="Share JUL 29 event"
-                onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://www.district.in/events/the-hunger-games-by-tasty-trivia-apr11-2026-buy-tickets?','JUL 29','8:30 PM'); })(event)">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16c-.8 0-1.5.3-2 .8l-7.3-4.2c.1-.2.1-.4.1-.6s0-.4-.1-.6L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .4.1.6L7.8 9.8C7.3 9.3 6.6 9 5.8 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.3 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9S19.6 16 18 16z"/></svg>
-        </button>
-      </a>
 
+        <button type="button" class="carousel-nav carousel-nav-next" id="carouselNext" aria-label="Next event">›</button>
+      </div>
+
+      <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Select event"></div>
     </section>
 
     <section class="fringe-fund-section" aria-label="Edinburgh Fringe Fund">
@@ -1101,12 +1297,131 @@
       });
     }
 
+    /* ===== 3D Revolving Carousel ===== */
+    var carouselState = { current: 0, cards: [], total: 0, autoplayTimer: null };
+
+    function layoutCarousel3D() {
+      var stage = document.getElementById('carouselStage');
+      if (!stage || !carouselState.cards.length) return;
+      var stageWidth = stage.clientWidth || 700;
+      var spacing = Math.min(stageWidth * 0.34, 260);
+      var total = carouselState.total;
+
+      carouselState.cards.forEach(function(card, i) {
+        var offset = i - carouselState.current;
+        // normalize offset to shortest circular distance
+        if (offset > total / 2) offset -= total;
+        if (offset < -total / 2) offset += total;
+
+        var translateX = offset * spacing;
+        var rotateY = offset * -32;
+        var translateZ = -Math.abs(offset) * 140;
+        var scale = offset === 0 ? 1 : 0.78;
+        var visible = Math.abs(offset) <= 1;
+        var opacity = offset === 0 ? 1 : (visible ? 0.55 : 0);
+        var zIndex = 10 - Math.abs(offset);
+
+        card.style.transform = 'translateX(' + translateX + 'px) translateZ(' + translateZ + 'px) rotateY(' + rotateY + 'deg) scale(' + scale + ')';
+        card.style.opacity = opacity;
+        card.style.zIndex = zIndex;
+        card.style.pointerEvents = visible ? 'auto' : 'none';
+        card.classList.toggle('is-center', offset === 0);
+      });
+
+      var dots = document.querySelectorAll('.carousel-dot');
+      dots.forEach(function(dot, i) {
+        dot.classList.toggle('active', i === carouselState.current);
+      });
+    }
+
+    function goToCarouselSlide(index) {
+      var total = carouselState.total;
+      carouselState.current = ((index % total) + total) % total;
+      layoutCarousel3D();
+    }
+
+    function initCarousel3D() {
+      var stage = document.getElementById('carouselStage');
+      var dotsWrap = document.getElementById('carouselDots');
+      var prevBtn = document.getElementById('carouselPrev');
+      var nextBtn = document.getElementById('carouselNext');
+      if (!stage) return;
+
+      carouselState.cards = Array.prototype.slice.call(stage.querySelectorAll('.carousel-card'));
+      carouselState.total = carouselState.cards.length;
+      // Start centered on the middle-ish card (Gossip, the live one) if present, else first.
+      var liveIndex = carouselState.cards.findIndex(function(c) { return c.tagName === 'A'; });
+      carouselState.current = liveIndex >= 0 ? liveIndex : 0;
+
+      if (dotsWrap) {
+        dotsWrap.innerHTML = '';
+        carouselState.cards.forEach(function(_, i) {
+          var dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'carousel-dot';
+          dot.setAttribute('aria-label', 'Go to event ' + (i + 1));
+          dot.addEventListener('click', function() { stopCarouselAutoplay(); goToCarouselSlide(i); });
+          dotsWrap.appendChild(dot);
+        });
+      }
+
+      carouselState.cards.forEach(function(card, i) {
+        card.addEventListener('click', function(e) {
+          if (i !== carouselState.current) {
+            e.preventDefault();
+            stopCarouselAutoplay();
+            goToCarouselSlide(i);
+          }
+        });
+      });
+
+      if (prevBtn) prevBtn.addEventListener('click', function() { stopCarouselAutoplay(); goToCarouselSlide(carouselState.current - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function() { stopCarouselAutoplay(); goToCarouselSlide(carouselState.current + 1); });
+
+      // basic touch swipe support
+      var touchStartX = null;
+      stage.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+      stage.addEventListener('touchend', function(e) {
+        if (touchStartX === null) return;
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) {
+          stopCarouselAutoplay();
+          goToCarouselSlide(carouselState.current + (dx < 0 ? 1 : -1));
+        }
+        touchStartX = null;
+      }, { passive: true });
+
+      layoutCarousel3D();
+      startCarouselAutoplay();
+
+      var viewport = document.querySelector('.carousel-3d-viewport');
+      if (viewport) {
+        viewport.addEventListener('mouseenter', stopCarouselAutoplay);
+        viewport.addEventListener('mouseleave', startCarouselAutoplay);
+      }
+    }
+
+    function startCarouselAutoplay() {
+      stopCarouselAutoplay();
+      carouselState.autoplayTimer = setInterval(function() {
+        goToCarouselSlide(carouselState.current + 1);
+      }, 6000);
+    }
+    function stopCarouselAutoplay() {
+      if (carouselState.autoplayTimer) {
+        clearInterval(carouselState.autoplayTimer);
+        carouselState.autoplayTimer = null;
+      }
+    }
+
     window.addEventListener('load', function() {
       updateEventStates();
       optimisePartners();
+      initCarousel3D();
       showPopup();
     });
     window.addEventListener('resize', optimisePartners);
+    window.addEventListener('resize', layoutCarousel3D);
 
     (function() {
       function animateFringeProgress() {
