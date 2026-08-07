@@ -6,44 +6,44 @@
   <title>TASTY TRIVIA – Trivia Game Shows</title>
   <link rel="icon" href="https://emoji.gg/assets/emoji/7699-pepperoni-pizza.png" />
   <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js" async></script>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Kalam:wght@400;700&display=swap');
 
     :root {
-      --bg-main: #F5DEB3;
-      --text-main: #111;
-      --accent-red: #db4118;
-      --accent-navy: #1E2A5A;
-      --accent-purple: #6B46C1;
+      --bg-main: #FFF9F2;
+      --text-main: #161616;
+      --accent-red: #FF4433;
+      --accent-navy: #1B3BFF;
+      --accent-purple: #7B2FF7;
       --card-bg: #fff;
-      --card-bg-alt: #F5DEB3;
-      --shadow-red: rgba(219,65,24,0.3);
-      --shadow-navy: rgba(30,42,90,0.3);
-      --border-inner: rgba(219,65,24,0.3);
-      --text-muted: #666;
-      --progress-bg: #E0E0E0;
+      --card-bg-alt: #FFF3D6;
+      --shadow-red: #161616;
+      --shadow-navy: #161616;
+      --border-inner: rgba(0,0,0,0.08);
+      --text-muted: #555;
+      --progress-bg: #EFEAE2;
       --benefit-bg: #fff;
-      --footer-bg: rgba(219,65,24,0.03);
+      --footer-bg: #FFF3D6;
       --partner-bg: #fff;
       --popup-bg: #fff;
-      --whatsapp-benefits-bg: rgba(219,65,24,0.03);
-      --news-bg: #F5DEB3;
-      --promo-gradient: linear-gradient(45deg,#db4118,#e55a5a);
-      --register-gradient: linear-gradient(135deg,#1E2A5A,#2D3B6B);
-      --register-hover-gradient: linear-gradient(135deg,#6B46C1,#8B5CF6);
-      --fringe-section-bg: linear-gradient(135deg, rgba(219,65,24,0.08), rgba(30,42,90,0.05));
-      --fringe-visual-bg: linear-gradient(135deg, #1E2A5A, #2D3B6B);
+      --whatsapp-benefits-bg: #FFF3D6;
+      --news-bg: #FFE066;
+      --promo-gradient: #FF4433;
+      --register-gradient: #1B3BFF;
+      --register-hover-gradient: #7B2FF7;
+      --fringe-section-bg: #FFE066;
+      --fringe-visual-bg: #1B3BFF;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
-      font-family: 'Press Start 2P', monospace;
+      font-family: 'Kalam', cursive;
       background-color: var(--bg-main);
       color: var(--text-main);
       min-height: 100%;
-      image-rendering: pixelated;
+      
       transition: background-color 0.3s, color 0.3s;
     }
 
@@ -52,16 +52,18 @@
 
     .ticker-container {
       position: fixed; top: 0; left: 0; right: 0; height: 40px;
-      background: linear-gradient(90deg,#db4118,#1E2A5A,#6B46C1);
-      border-bottom: 4px solid #db4118;
+      background: var(--accent-red);
+      border-bottom: 4px solid var(--text-main);
       color: white; z-index: 1200;
       overflow: hidden;
     }
     .ticker-content {
       display:flex; white-space:nowrap; line-height:40px; padding-left:1rem;
       animation: tickerScroll 20s linear infinite;
-      font-size: 0.7rem;
-      letter-spacing: 2px;
+      font-family: 'Kalam', cursive;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
     }
     .ticker-content:hover{ animation-play-state: paused; }
     .ticker-text { padding-right: 80px; }
@@ -75,12 +77,13 @@
       width: 48px;
       height: 48px;
       background: var(--register-gradient);
-      border: 3px solid var(--accent-red);
-      color: #FFD700;
+      border: 3px solid var(--text-main);
+      border-radius: 50%;
+      color: #FFE066;
       font-size: 1.1rem;
       cursor: pointer;
       box-shadow: 4px 4px 0 var(--shadow-navy);
-      font-family: 'Press Start 2P';
+      font-family: 'Kalam', cursive;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -97,8 +100,8 @@
     .header-box {
       display:flex; gap:1.5rem; align-items:center; justify-content:center;
       background: var(--card-bg-alt);
-      border:4px solid var(--accent-red);
-      border-radius:0;
+      border:4px solid var(--text-main);
+      border-radius:20px 8px 20px 8px;
       padding:1.5rem;
       box-shadow: 8px 8px 0 var(--shadow-red);
       margin-bottom:2rem;
@@ -106,16 +109,9 @@
       position: relative;
       transition: background-color 0.3s, box-shadow 0.3s;
     }
-    .header-box::before {
-      content: '';
-      position: absolute;
-      top: 8px; left: 8px; right: 8px; bottom: 8px;
-      border: 2px solid var(--accent-red);
-      pointer-events: none;
-    }
-    .header-logo{ width:70px; height:70px; object-fit:contain; flex-shrink:0; }
+    .header-logo{ width:70px; height:70px; object-fit:contain; flex-shrink:0; border-radius: 50%; border: 3px solid var(--text-main); background: #fff; padding: 4px; }
     .header-text h1{
-      font-family:'Press Start 2P';
+      font-family: 'Bangers', cursive;
       font-size:2rem;
       color: var(--accent-red);
       letter-spacing:4px;
@@ -127,40 +123,27 @@
       background: var(--promo-gradient);
       color:#fff;
       padding:1.5rem;
-      border:4px solid var(--accent-red);
+      border:4px solid var(--text-main);
+      border-radius: 8px 24px 8px 24px;
       text-align:center;
       box-shadow: 6px 6px 0 var(--shadow-red);
       position: relative;
     }
-    .promo-section::before {
-      content: '▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲';
-      position: absolute;
-      top: -2px; left: 0; right: 0;
-      font-size: 0.5rem;
-      letter-spacing: 6px;
-      color: #fff;
-    }
-    .promo-title{ font-size:0.9rem; margin-bottom:0.5rem; letter-spacing:2px; }
+    .promo-title{ font-family:'Bangers',cursive; font-size:0.9rem; margin-bottom:0.5rem; letter-spacing:2px; }
 
     .register-buttons{ display:flex; flex-direction:column; gap:1.5rem; max-width:900px; margin:2rem auto; }
     .register-button{
       width:100%; padding:1.5rem;
-      border:4px solid var(--accent-navy);
+      border:4px solid var(--text-main);
+      border-radius: 8px 20px 8px 20px;
       background: var(--register-gradient);
       color:#fff;
       position:relative;
       text-decoration:none;
       box-shadow: 6px 6px 0 var(--shadow-navy);
       transition: all 0.1s;
-      font-family: 'Press Start 2P';
+      font-family: 'Kalam', cursive;
       display: block;
-    }
-    .register-button::before {
-      content: '';
-      position: absolute;
-      top: 8px; left: 8px; right: 8px; bottom: 8px;
-      border: 2px solid rgba(255,255,255,0.2);
-      pointer-events: none;
     }
     .register-button:hover{
       transform: translate(-4px, -4px);
@@ -204,24 +187,25 @@
       flex-wrap: wrap;
     }
     .button-divider{ color:rgba(255,255,255,0.4); }
-    .button-price{ color:#FFD700; font-weight:700; text-shadow: 2px 2px 0 rgba(0,0,0,0.3); }
+    .button-price{ color:#FFE066; font-weight:700; text-shadow: 2px 2px 0 rgba(0,0,0,0.5); }
     .button-cta{
-      background: linear-gradient(135deg,#FFD700,#FFA500);
-      color:#1E2A5A;
+      background: #FFE066;
+      color:#161616;
       padding:0.7rem 1.1rem;
-      border:3px solid #1E2A5A;
+      border:3px solid #161616;
+      border-radius: 20px;
       font-weight:700;
       font-size:0.6rem;
       letter-spacing:1.5px;
       margin-top: 0.5rem;
       display: inline-block;
       white-space: nowrap;
-      box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+      box-shadow: 3px 3px 0 #161616;
     }
     .button-cta.coming-soon {
-      background: linear-gradient(135deg,#95A5A6,#7F8C8D);
-      color:#fff;
-      border-color: #666;
+      background: #C9C9C9;
+      color:#333;
+      border-color: #333;
     }
     .button-cta.ended {
       background: linear-gradient(135deg,#7F8C8D,#5D6D6E);
@@ -233,7 +217,7 @@
       position:absolute; top:12px; right:12px;
       padding:8px;
       background:rgba(0,0,0,0.6);
-      border: 2px solid #FFD700;
+      border: 2px solid #FFE066;
       z-index:40; cursor:pointer;
       transition: all 0.2s;
     }
@@ -251,19 +235,12 @@
 
     .fringe-fund-container {
       background: var(--fringe-section-bg);
-      border: 4px solid var(--accent-red);
+      border: 4px solid var(--text-main);
+      border-radius: 24px 8px 24px 8px;
       box-shadow: 8px 8px 0 var(--shadow-red);
       padding: 2rem;
       position: relative;
       transition: background 0.3s;
-    }
-
-    .fringe-fund-container::before {
-      content: '';
-      position: absolute;
-      top: 8px; left: 8px; right: 8px; bottom: 8px;
-      border: 2px solid var(--border-inner);
-      pointer-events: none;
     }
 
     .fringe-fund-header {
@@ -272,7 +249,7 @@
     }
 
     .fringe-fund-title {
-      font-family: 'Press Start 2P', monospace;
+      font-family: 'Bangers', cursive;
       font-size: 1.2rem;
       color: var(--accent-red);
       letter-spacing: 3px;
@@ -288,7 +265,8 @@
 
     .fringe-progress-wrapper {
       background: var(--card-bg);
-      border: 3px solid var(--accent-navy);
+      border: 3px solid var(--text-main);
+      border-radius: 16px;
       padding: 1.5rem;
       box-shadow: 5px 5px 0 var(--shadow-navy);
       transition: background-color 0.3s;
@@ -310,14 +288,14 @@
     }
 
     .stat-label {
-      font-family: 'Press Start 2P', monospace;
+      font-family: 'Kalam', cursive;
       font-size: 0.55rem;
       color: var(--text-muted);
       letter-spacing: 1px;
     }
 
     .stat-value {
-      font-family: 'Press Start 2P', monospace;
+      font-family: 'Kalam', cursive;
       font-size: 0.9rem;
       color: var(--accent-navy);
       font-weight: 700;
@@ -327,7 +305,8 @@
       width: 100%;
       height: 32px;
       background: var(--progress-bg);
-      border: 3px solid var(--accent-navy);
+      border: 3px solid var(--text-main);
+      border-radius: 20px;
       position: relative;
       overflow: hidden;
       margin-bottom: 1rem;
@@ -336,7 +315,7 @@
 
     .fringe-progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, #FFD700, #FFA500);
+      background: #FFE066;
       width: 0;
       transition: width 1.5s cubic-bezier(0.65, 0, 0.35, 1);
       position: relative;
@@ -360,7 +339,7 @@
     }
 
     .fringe-motivation {
-      font-family: 'Press Start 2P', monospace;
+      font-family: 'Kalam', cursive;
       font-size: 0.65rem;
       color: var(--accent-red);
       text-align: center;
@@ -370,19 +349,12 @@
 
     .fringe-visual-block {
       background: var(--fringe-visual-bg);
-      border: 4px solid var(--accent-navy);
+      border: 4px solid var(--text-main);
+      border-radius: 8px 24px 8px 24px;
       padding: 2rem;
       text-align: center;
       box-shadow: 6px 6px 0 var(--shadow-navy);
       position: relative;
-    }
-
-    .fringe-visual-block::before {
-      content: '';
-      position: absolute;
-      top: 8px; left: 8px; right: 8px; bottom: 8px;
-      border: 2px solid rgba(255,255,255,0.1);
-      pointer-events: none;
     }
 
     .fringe-image-container {
@@ -394,7 +366,7 @@
       height: 120px;
       margin: 0 auto;
       background: rgba(255,215,0,0.2);
-      border: 3px solid #FFD700;
+      border: 3px solid #FFE066;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -410,16 +382,16 @@
     }
 
     .fringe-message-main {
-      font-family: 'Press Start 2P', monospace;
+      font-family: 'Bangers', cursive;
       font-size: 0.9rem;
       margin-bottom: 0.8rem;
       letter-spacing: 2px;
       line-height: 1.6;
-      color: #FFD700;
+      color: #FFE066;
     }
 
     .fringe-message-sub {
-      font-family: 'Press Start 2P', monospace;
+      font-family: 'Kalam', cursive;
       font-size: 0.7rem;
       letter-spacing: 2px;
       line-height: 1.6;
@@ -429,13 +401,14 @@
     .news-link{
       max-width:600px; margin:1rem auto;
       background: var(--news-bg);
-      border:4px solid var(--accent-red);
+      border:4px solid var(--text-main);
+      border-radius: 16px 6px 16px 6px;
       padding:1rem;
       text-align:center;
       box-shadow: 5px 5px 0 var(--shadow-red);
       transition: background-color 0.3s;
     }
-    .news-link a{ color: var(--accent-red); text-decoration:none; font-size: 0.75rem; letter-spacing: 2px; font-weight: bold; }
+    .news-link a{ color: var(--text-main); text-decoration:none; font-size: 0.75rem; letter-spacing: 2px; font-weight: bold; }
 
     .partners-section{
       margin:2rem auto;
@@ -447,7 +420,7 @@
       box-shadow: 6px 6px 0 var(--shadow-navy);
       transition: background 0.3s;
     }
-    .partners-title{ color: var(--accent-red); margin-bottom:1.5rem; font-size:0.9rem; letter-spacing:2px; }
+    .partners-title{ color: var(--accent-red); font-family:'Bangers',cursive; margin-bottom:1.5rem; font-size:0.9rem; letter-spacing:2px; }
 
     .partners-viewport{ width:100%; overflow:hidden; padding: 1rem 0; }
     .partners-track{
@@ -459,18 +432,12 @@
     .partner-item{
       flex:0 0 auto; width:140px; height:96px;
       background: var(--partner-bg);
-      border:3px solid var(--accent-red);
+      border:3px solid var(--text-main);
+      border-radius: 10px;
       padding:8px;
       box-shadow: 4px 4px 0 var(--shadow-red);
       position: relative;
       transition: background-color 0.3s;
-    }
-    .partner-item::before {
-      content: '';
-      position: absolute;
-      top: 4px; left: 4px; right: 4px; bottom: 4px;
-      border: 1px solid var(--border-inner);
-      pointer-events: none;
     }
     .partner-item img{
       max-width:100%; max-height:100%;
@@ -478,7 +445,7 @@
       filter: blur(9px) saturate(1.5);
       opacity: 0.7;
       transition: filter 0.5s ease, opacity 0.5s ease;
-      image-rendering: pixelated;
+      
     }
     .partner-item img.loaded{
       filter: none;
@@ -489,28 +456,30 @@
     .whatsapp-button{
       display:inline-flex; align-items:center; gap:1rem;
       width:100%; max-width:500px;
-      background: linear-gradient(135deg,#25D366,#128C7E);
+      background: #25D366;
       color:#fff;
       padding:1.2rem 1.5rem;
-      border:4px solid #128C7E;
+      border:4px solid var(--text-main);
+      border-radius: 30px;
       font-weight:700;
       text-decoration:none;
-      box-shadow: 6px 6px 0 rgba(37,211,102,0.3);
-      font-family: 'Press Start 2P';
+      box-shadow: 6px 6px 0 var(--text-main);
+      font-family: 'Kalam', cursive;
       font-size: 0.7rem;
       line-height: 1.6;
       transition: all 0.1s;
     }
     .whatsapp-button:hover {
       transform: translate(-3px, -3px);
-      box-shadow: 9px 9px 0 rgba(37,211,102,0.4);
+      box-shadow: 9px 9px 0 var(--text-main);
     }
     .whatsapp-button img{ width:24px; height:24px; }
 
     .whatsapp-benefits{
       margin-top:1.5rem;
       background: var(--whatsapp-benefits-bg);
-      border:3px solid var(--accent-red);
+      border:3px solid var(--text-main);
+      border-radius: 14px;
       padding:1rem;
       box-shadow: 4px 4px 0 var(--shadow-red);
       transition: background 0.3s;
@@ -524,11 +493,12 @@
     .benefits-grid{ display:flex; gap:0.8rem; justify-content:center; flex-wrap:wrap; }
     .benefit-item {
       background: var(--benefit-bg);
-      border: 2px solid var(--accent-navy);
+      border: 2px solid var(--text-main);
+      border-radius: 16px;
       padding:0.6rem 1rem;
       font-size:0.6rem;
       color: var(--accent-navy);
-      box-shadow: 3px 3px 0 var(--shadow-navy);
+      box-shadow: 3px 3px 0 var(--text-main);
       letter-spacing: 1px;
       transition: background-color 0.3s, color 0.3s;
     }
@@ -538,13 +508,14 @@
       max-width:600px; margin:0 auto;
       background: var(--footer-bg);
       padding:2rem;
-      border:4px solid var(--accent-navy);
+      border:4px solid var(--text-main);
+      border-radius: 24px 8px 24px 8px;
       box-shadow: 6px 6px 0 var(--shadow-navy);
       transition: background 0.3s;
     }
     .creators-names{
-      font-family:'Press Start 2P';
-      font-size:1.2rem;
+      font-family:'Bangers', cursive;
+      font-size:1.6rem;
       color: var(--accent-navy);
       margin:1rem 0;
       letter-spacing: 3px;
@@ -570,14 +541,15 @@
     .back-to-top{
       position:fixed; right:20px; bottom:20px;
       width:60px; height:60px;
-      background: linear-gradient(135deg,#db4118,#e55a5a);
+      background: var(--accent-red);
       color:#fff;
-      border:3px solid var(--accent-navy);
+      border:3px solid var(--text-main);
+      border-radius: 50%;
       font-weight:700;
       display:none;
       z-index:1000;
       cursor:pointer;
-      font-family: 'Press Start 2P';
+      font-family: 'Kalam', cursive;
       font-size: 1.2rem;
       box-shadow: 5px 5px 0 var(--shadow-red);
       transition: all 0.1s;
@@ -625,7 +597,7 @@
       .partners-viewport{ overflow-x:auto; }
       .partners-track{ animation:none; gap:0.8rem; }
       .partner-item{ width:90px; height:60px; }
-      .header-text h1{ font-size:1rem; font-weight: 900; text-shadow: 2px 2px 0 #1E2A5A; }
+      .header-text h1{ font-size:1rem; font-weight: 900; text-shadow: 2px 2px 0 #1B3BFF; }
       .button-content{ font-size:0.55rem; }
       .button-cta{ font-size:0.4rem; letter-spacing:0.5px; padding:0.5rem 0.6rem; white-space: nowrap; }
       .fringe-fund-title { font-size: 0.7rem; }
@@ -652,7 +624,8 @@
       max-width: 540px;
       max-height: 90vh;
       background: var(--popup-bg);
-      border: 4px solid var(--accent-red);
+      border: 4px solid var(--text-main);
+      border-radius: 24px 8px 24px 8px;
       overflow: hidden;
       box-shadow: 8px 8px 0 var(--shadow-red);
       display: flex;
@@ -662,13 +635,14 @@
     .popup-close {
       position: absolute; top: 12px; right: 12px;
       width: 40px; height: 40px;
-      background: #db4118;
+      background: var(--accent-red);
       color: #fff;
-      border: 3px solid #1E2A5A;
+      border: 3px solid var(--text-main);
+      border-radius: 50%;
       font-size: 20px; font-weight: bold;
       cursor: pointer; z-index: 10;
-      font-family: 'Press Start 2P';
-      box-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+      font-family: 'Kalam', cursive;
+      box-shadow: 3px 3px 0 var(--text-main);
     }
     .popup-close:hover {
       background: #e55a5a;
@@ -678,12 +652,12 @@
       background: var(--fringe-section-bg);
       padding: 1.5rem 1rem 1rem;
       text-align: center;
-      border-bottom: 3px solid var(--accent-red);
+      border-bottom: 3px solid var(--text-main);
       flex-shrink: 0;
       transition: background 0.3s;
     }
     .popup-title-text {
-      font-family: 'Press Start 2P', monospace;
+      font-family: 'Bangers', cursive;
       font-size: 0.85rem;
       color: var(--accent-red);
       letter-spacing: 2px;
@@ -710,19 +684,20 @@
       padding: 1rem;
       text-align: center;
       background: var(--footer-bg);
-      border-top: 3px solid var(--accent-red);
+      border-top: 3px solid var(--text-main);
       flex-shrink: 0;
       transition: background 0.3s;
     }
     .popup-cta-button {
-      background: linear-gradient(135deg,#FFD700,#FFA500);
-      color: #1E2A5A;
+      background: #FFE066;
+      color: var(--text-main);
       padding: 0.8rem 1.5rem;
-      border: 3px solid #1E2A5A;
+      border: 3px solid var(--text-main);
+      border-radius: 24px;
       font-weight: 700;
       font-size: 0.7rem;
-      box-shadow: 5px 5px 0 rgba(0,0,0,0.3);
-      font-family: 'Press Start 2P';
+      box-shadow: 5px 5px 0 var(--text-main);
+      font-family: 'Kalam', cursive;
       letter-spacing: 2px;
       transition: all 0.1s;
       cursor: pointer;
@@ -783,6 +758,8 @@
       left: 50%;
       width: 280px;
       margin-left: -140px;
+      opacity: 0;
+      border-radius: 8px 20px 8px 20px;
       transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.6s ease, box-shadow 0.3s ease;
       will-change: transform, opacity;
       cursor: pointer;
@@ -794,11 +771,11 @@
 
     .carousel-card.is-center {
       cursor: default;
-      box-shadow: 8px 8px 0 var(--shadow-red), 0 0 0 4px rgba(255,215,0,0.55);
+      box-shadow: 8px 8px 0 var(--text-main), 0 0 0 4px #FFE066;
     }
 
     .carousel-card.is-center.no-link {
-      box-shadow: 6px 6px 0 var(--shadow-navy), 0 0 0 4px rgba(255,215,0,0.55);
+      box-shadow: 6px 6px 0 var(--text-main), 0 0 0 4px #FFE066;
     }
 
     .card-emoji {
@@ -813,14 +790,15 @@
       flex-shrink: 0;
       width: 48px;
       height: 48px;
+      border-radius: 50%;
       background: var(--register-gradient);
-      border: 3px solid var(--accent-red);
-      color: #FFD700;
+      border: 3px solid var(--text-main);
+      color: #FFE066;
       font-size: 1.6rem;
       line-height: 1;
       cursor: pointer;
       box-shadow: 4px 4px 0 var(--shadow-navy);
-      font-family: 'Press Start 2P';
+      font-family: 'Kalam', cursive;
       transition: transform 0.1s, box-shadow 0.1s;
     }
     .carousel-nav:hover {
@@ -841,7 +819,8 @@
     .carousel-dot {
       width: 12px;
       height: 12px;
-      border: 2px solid var(--accent-navy);
+      border-radius: 50%;
+      border: 2px solid var(--text-main);
       background: transparent;
       padding: 0;
       cursor: pointer;
@@ -849,7 +828,7 @@
     }
     .carousel-dot.active {
       background: var(--accent-red);
-      border-color: var(--accent-red);
+      border-color: var(--text-main);
       transform: scale(1.2);
     }
 
@@ -862,14 +841,15 @@
       margin-bottom: 1.25rem;
     }
     .city-chip {
-      font-family: 'Press Start 2P', monospace;
+      font-family: 'Kalam', cursive;
       font-size: 0.6rem;
       letter-spacing: 1px;
       padding: 0.6rem 1rem;
       background: var(--card-bg);
       color: var(--accent-navy);
-      border: 3px solid var(--accent-navy);
-      box-shadow: 3px 3px 0 var(--shadow-navy);
+      border: 3px solid var(--text-main);
+      border-radius: 20px;
+      box-shadow: 3px 3px 0 var(--text-main);
       cursor: pointer;
       transition: all 0.15s;
       display: inline-flex;
@@ -878,21 +858,22 @@
     }
     .city-chip:hover {
       transform: translate(-1px, -1px);
-      box-shadow: 4px 4px 0 var(--shadow-navy);
+      box-shadow: 4px 4px 0 var(--text-main);
     }
     .city-chip.active {
       background: var(--accent-red);
       color: #fff;
-      border-color: var(--accent-red);
-      box-shadow: 3px 3px 0 var(--shadow-red);
+      border-color: var(--text-main);
+      box-shadow: 3px 3px 0 var(--text-main);
     }
     .city-chip-soon {
       opacity: 0.75;
     }
     .chip-soon-tag {
       font-size: 0.45rem;
-      background: #FFD700;
-      color: #1E2A5A;
+      background: #FFE066;
+      color: var(--text-main);
+      border-radius: 8px;
       padding: 0.15rem 0.35rem;
       letter-spacing: 0.5px;
     }
@@ -937,9 +918,9 @@
       left: 0; right: 0; bottom: 0;
       z-index: 900;
       background: var(--register-gradient);
-      border-top: 4px solid var(--accent-red);
+      border-top: 4px solid var(--text-main);
       color: #fff;
-      font-family: 'Press Start 2P', monospace;
+      font-family: 'Kalam', cursive;
       font-size: 0.6rem;
       letter-spacing: 1px;
       padding: 0.9rem 1rem;
@@ -949,7 +930,7 @@
       box-shadow: 0 -4px 0 var(--shadow-navy);
     }
     .sticky-mobile-nav-label {
-      color: #FFD700;
+      color: #FFE066;
       flex-shrink: 0;
     }
     .sticky-mobile-nav-text {
@@ -990,12 +971,12 @@
       padding: 0 1rem;
     }
     .vibe-title {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 1rem;
+      font-family: 'Bangers', cursive;
+      font-size: 1.4rem;
       color: var(--accent-red);
       letter-spacing: 2px;
       text-align: center;
-      line-height: 1.7;
+      line-height: 1.4;
       margin-bottom: 1.75rem;
     }
     .photo-card {
@@ -1004,8 +985,10 @@
       left: 50%;
       width: 280px;
       margin-left: -140px;
+      opacity: 0;
       background: var(--card-bg);
-      border: 4px solid var(--accent-navy);
+      border: 4px solid var(--text-main);
+      border-radius: 20px 8px 20px 8px;
       box-shadow: 6px 6px 0 var(--shadow-navy);
       padding: 10px 10px 14px;
       transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.6s ease, box-shadow 0.3s ease;
@@ -1014,7 +997,7 @@
     }
     .photo-card.is-center {
       cursor: default;
-      box-shadow: 8px 8px 0 var(--shadow-red), 0 0 0 4px rgba(255,215,0,0.55);
+      box-shadow: 8px 8px 0 var(--text-main), 0 0 0 4px #FFE066;
     }
     .photo-card img {
       width: 100%;
@@ -1031,7 +1014,7 @@
       opacity: 1;
     }
     .photo-caption {
-      font-family: 'Press Start 2P', monospace;
+      font-family: 'Kalam', cursive;
       font-size: 0.55rem;
       letter-spacing: 0.5px;
       line-height: 1.7;
@@ -1333,11 +1316,11 @@
 
     <footer class="footer" aria-label="Footer">
       <div class="footer-content">
-        <div style="color:#db4118; font-weight: bold;">★ GAME MASTERS ★</div>
+        <div style="color:#FF4433; font-weight: bold;">★ GAME MASTERS ★</div>
         <div class="creators-names"><a href="https://in.linkedin.com/in/reach-saloni" target="_blank" rel="noopener">SAL</a> & <a href="https://in.linkedin.com/in/whysosuso" target="_blank" rel="noopener">SUSO</a></div>
         <div style="margin-top:1.5rem;">MAKING TRIVIA FUN</div>
         <div>POWERED BY OUR FRIENDS</div>
-        <div style="color:#db4118; margin-top:1.5rem; font-weight: bold;">▼ CONTACT ▼</div>
+        <div style="color:#FF4433; margin-top:1.5rem; font-weight: bold;">▼ CONTACT ▼</div>
         <div>IG: @GETTASTYTRIVIA</div>
         <div>X: @GETTASTYTRIVIA</div>
       </div>
@@ -1384,12 +1367,12 @@
   <script>
     function handleImageError(img){
       img.onerror = null;
-      img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180"><rect width="100%" height="100%" fill="#f0e0c2"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#db4118" font-family="Arial" font-size="14">Image missing</text></svg>');
+      img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180"><rect width="100%" height="100%" fill="#f0e0c2"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#FF4433" font-family="Arial" font-size="14">Image missing</text></svg>');
       img.alt = 'Image unavailable';
     }
     function handleLogoError(img){
       img.onerror = null;
-      img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70"><rect width="70" height="70" rx="8" fill="#db4118"/><text x="50%" y="50" dominant-baseline="middle" text-anchor="middle" fill="#fff" font-family="Arial" font-size="14">TT</text></svg>');
+      img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70"><rect width="70" height="70" rx="8" fill="#FF4433"/><text x="50%" y="50" dominant-baseline="middle" text-anchor="middle" fill="#fff" font-family="Arial" font-size="14">TT</text></svg>');
       img.alt = 'Tasty Trivia';
     }
 
@@ -1634,7 +1617,7 @@
       stopCarouselAutoplay();
       carouselState.autoplayTimer = setInterval(function() {
         goToCarouselSlide(carouselState.current + 1);
-      }, 6000);
+      }, 5000);
     }
     function stopCarouselAutoplay() {
       if (carouselState.autoplayTimer) {
@@ -1691,7 +1674,7 @@
     }
 
     /* ===== Confetti burst ===== */
-    var confettiColors = ['#db4118', '#1E2A5A', '#6B46C1', '#FFD700', '#FFA500'];
+    var confettiColors = ['#FF4433', '#1B3BFF', '#7B2FF7', '#FFE066', '#FFE066'];
     function fireConfetti() {
       var layer = document.getElementById('confettiLayer');
       if (!layer) return;
@@ -1850,7 +1833,7 @@
 
     function vibeStartAutoplay() {
       vibeStopAutoplay();
-      vibeState.autoplayTimer = setInterval(function() { vibeGoTo(vibeState.current + 1); }, 6000);
+      vibeState.autoplayTimer = setInterval(function() { vibeGoTo(vibeState.current + 1); }, 5000);
     }
     function vibeStopAutoplay() {
       if (vibeState.autoplayTimer) { clearInterval(vibeState.autoplayTimer); vibeState.autoplayTimer = null; }
