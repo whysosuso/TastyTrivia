@@ -37,29 +37,6 @@
       --fringe-visual-bg: linear-gradient(135deg, #1E2A5A, #2D3B6B);
     }
 
-    [data-theme="dark"] {
-      --bg-main: #1a1a2e;
-      --text-main: #e0e0e0;
-      --card-bg: #16213e;
-      --card-bg-alt: #1a1a2e;
-      --shadow-red: rgba(219,65,24,0.4);
-      --shadow-navy: rgba(0,0,0,0.5);
-      --border-inner: rgba(219,65,24,0.4);
-      --text-muted: #999;
-      --progress-bg: #2a2a4a;
-      --benefit-bg: #16213e;
-      --footer-bg: rgba(22,33,62,0.8);
-      --partner-bg: #16213e;
-      --popup-bg: #16213e;
-      --whatsapp-benefits-bg: rgba(22,33,62,0.8);
-      --news-bg: #16213e;
-      --promo-gradient: linear-gradient(45deg,#b8340f,#c44a4a);
-      --register-gradient: linear-gradient(135deg,#0f1a3a,#1a2a5a);
-      --register-hover-gradient: linear-gradient(135deg,#5a3aa0,#7a4ce0);
-      --fringe-section-bg: linear-gradient(135deg, rgba(219,65,24,0.12), rgba(30,42,90,0.15));
-      --fringe-visual-bg: linear-gradient(135deg, #0f1a3a, #1a2a5a);
-    }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       font-family: 'Press Start 2P', monospace;
@@ -90,38 +67,9 @@
     .ticker-text { padding-right: 80px; }
     @keyframes tickerScroll { 0%{transform:translateX(100%);} 100%{transform:translateX(-100%);} }
 
-    .theme-toggle {
-      position: fixed;
-      top: 52px;
-      right: 16px;
-      z-index: 1100;
-      width: 48px;
-      height: 48px;
-      background: var(--register-gradient);
-      border: 3px solid var(--accent-red);
-      color: #FFD700;
-      font-size: 1.2rem;
-      cursor: pointer;
-      box-shadow: 4px 4px 0 var(--shadow-navy);
-      font-family: 'Press Start 2P';
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.1s, box-shadow 0.1s, background 0.3s;
-    }
-    .theme-toggle:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0 var(--shadow-navy);
-    }
-    .theme-toggle .icon-sun,
-    .theme-toggle .icon-moon { display: none; }
-    [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
-    :root:not([data-theme="dark"]) .theme-toggle .icon-moon,
-    html:not([data-theme="dark"]) .theme-toggle .icon-moon { display: block; }
-
     .sound-toggle {
       position: fixed;
-      top: 108px;
+      top: 52px;
       right: 16px;
       z-index: 1100;
       width: 48px;
@@ -374,9 +322,6 @@
       color: var(--accent-navy);
       font-weight: 700;
     }
-    [data-theme="dark"] .stat-value {
-      color: #8ea4d2;
-    }
 
     .fringe-progress-bar {
       width: 100%;
@@ -587,9 +532,6 @@
       letter-spacing: 1px;
       transition: background-color 0.3s, color 0.3s;
     }
-    [data-theme="dark"] .benefit-item {
-      color: #8ea4d2;
-    }
 
     .footer{ margin-top:2rem; text-align:center; }
     .footer-content{
@@ -607,13 +549,11 @@
       margin:1rem 0;
       letter-spacing: 3px;
     }
-    [data-theme="dark"] .creators-names { color: #8ea4d2; }
     .creators-names a {
       color: var(--accent-navy);
       text-decoration:none;
       text-shadow: 2px 2px 0 var(--shadow-red);
     }
-    [data-theme="dark"] .creators-names a { color: #8ea4d2; }
     .creators-names a:hover {
       color: var(--accent-red);
     }
@@ -625,7 +565,6 @@
       color: var(--text-muted);
     }
     .footer-content a { color: var(--accent-navy); text-decoration: none; }
-    [data-theme="dark"] .footer-content a { color: #8ea4d2; }
     .footer-content a:hover { color: var(--accent-red); }
 
     .back-to-top{
@@ -664,6 +603,7 @@
       .header-text h1{ font-size:1.2rem; letter-spacing:2px; }
     }
     @media (max-width:768px){
+      .promo-title{ font-size:0.7rem; letter-spacing:1px; }
       .partner-item{ width:110px; height:72px; }
       .partners-track{ gap:1rem; --partners-duration:30s; }
       .register-button{ padding:1.2rem; }
@@ -679,8 +619,7 @@
       .fringe-message-sub { font-size: 0.6rem; }
       .fringe-placeholder-image { width: 100px; height: 100px; }
       .fringe-emoji { font-size: 3rem; }
-      .theme-toggle { width: 40px; height: 40px; top: 48px; right: 10px; font-size: 1rem; }
-      .sound-toggle { width: 34px; height: 34px; top: 92px; right: 12px; font-size: 0.9rem; }
+      .sound-toggle { width: 40px; height: 40px; top: 48px; right: 10px; font-size: 1rem; }
     }
     @media (max-width:420px){
       .partners-viewport{ overflow-x:auto; }
@@ -937,7 +876,6 @@
       align-items: center;
       gap: 0.4rem;
     }
-    [data-theme="dark"] .city-chip { color: #8ea4d2; }
     .city-chip:hover {
       transform: translate(-1px, -1px);
       box-shadow: 4px 4px 0 var(--shadow-navy);
@@ -1044,6 +982,75 @@
     @media (prefers-reduced-motion: reduce) {
       .carousel-card { transition: none !important; }
     }
+
+    /* ===== "What's it like?" photo carousel ===== */
+    .vibe-section {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+    .vibe-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1rem;
+      color: var(--accent-red);
+      letter-spacing: 2px;
+      text-align: center;
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+    .photo-card {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 280px;
+      margin-left: -140px;
+      background: var(--card-bg);
+      border: 4px solid var(--accent-navy);
+      box-shadow: 6px 6px 0 var(--shadow-navy);
+      padding: 10px 10px 14px;
+      transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.6s ease, box-shadow 0.3s ease;
+      will-change: transform, opacity;
+      cursor: pointer;
+    }
+    .photo-card.is-center {
+      cursor: default;
+      box-shadow: 8px 8px 0 var(--shadow-red), 0 0 0 4px rgba(255,215,0,0.55);
+    }
+    .photo-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      border: 2px solid var(--accent-navy);
+      filter: blur(9px) saturate(1.5);
+      opacity: 0.7;
+      transition: filter 0.5s ease, opacity 0.5s ease;
+    }
+    .photo-card img.loaded {
+      filter: none;
+      opacity: 1;
+    }
+    .photo-caption {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.5px;
+      line-height: 1.7;
+      color: var(--text-main);
+      text-align: center;
+      margin-top: 0.7rem;
+      min-height: 3.4em;
+    }
+    @media (max-width: 768px) {
+      .vibe-title { font-size: 0.75rem; }
+      .photo-card { width: 220px; margin-left: -110px; }
+      .photo-card img { height: 200px; }
+      .photo-caption { font-size: 0.5rem; }
+    }
+    @media (max-width: 420px) {
+      .photo-card { width: 180px; margin-left: -90px; }
+      .photo-card img { height: 160px; }
+      .photo-caption { font-size: 0.45rem; }
+    }
   </style>
 </head>
 <body>
@@ -1054,11 +1061,6 @@
       <span class="ticker-text">★★★ 6 CITIES ★ 1500+ PLAYERS ★ 100% FUN ★ JOIN NOW ★★★</span>
     </div>
   </div>
-
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode" title="Toggle theme">
-    <span class="icon-moon">🌙</span>
-    <span class="icon-sun">☀️</span>
-  </button>
 
   <button class="sound-toggle" id="soundToggle" aria-label="Toggle sound" title="Toggle sound">🔊</button>
 
@@ -1071,7 +1073,7 @@
     </header>
 
     <section class="promo-section" aria-hidden="false">
-      <div class="promo-title">▶ BLR'S FAV TRIVIA GAME SHOWS ◀</div>
+      <div class="promo-title">▶ SILLIEST &amp; MOST FUN TRIVIA GAMESHOWS ◀</div>
     </section>
 
     <section class="events-carousel-section" aria-label="Events">
@@ -1243,6 +1245,52 @@
       </div>
     </section>
 
+    <section class="vibe-section" aria-label="What's it like to be in a Tasty Show?">
+      <h2 class="vibe-title">WHAT'S IT LIKE TO BE<br>IN A TASTY SHOW?</h2>
+
+      <div class="carousel-3d-viewport">
+        <button type="button" class="carousel-nav carousel-nav-prev" id="vibePrev" aria-label="Previous photo">‹</button>
+
+        <div class="carousel-3d-stage" id="vibeStage">
+
+          <div class="photo-card" data-index="0">
+            <img src="https://drive.google.com/thumbnail?id=1Ib5ZdUVvDh9qpMKMfmnV4RIU0zd-75om&sz=w1600" alt="Saloni hosting a Tasty Trivia show, mic in hand" loading="lazy" decoding="async">
+            <p class="photo-caption">Saloni mid-question, tea break on deck.</p>
+          </div>
+
+          <div class="photo-card" data-index="1">
+            <img src="https://drive.google.com/thumbnail?id=19GD6IpbH9y6t7NXShmJP1ysYxZuYtspU&sz=w1600" alt="Two players whispering a mid-round strategy" loading="lazy" decoding="async">
+            <p class="photo-caption">Definitely not cheating. Probably cheating.</p>
+          </div>
+
+          <div class="photo-card" data-index="2">
+            <img src="https://drive.google.com/thumbnail?id=1kfVQNYYM2HbxzSaIeCuGuyOHXu2ejpGD&sz=w1600" alt="Players debating the best crime content ever on a whiteboard" loading="lazy" decoding="async">
+            <p class="photo-caption">The debate that decided "Best Crime Content Ever."</p>
+          </div>
+
+          <div class="photo-card" data-index="3">
+            <img src="https://drive.google.com/thumbnail?id=1v4hXWwkE_nyY5lVMlf9XBPKIhkYmlrxf&sz=w1600" alt="Two players arm wrestling mid-round" loading="lazy" decoding="async">
+            <p class="photo-caption">Somehow this round settled the tiebreaker.</p>
+          </div>
+
+          <div class="photo-card" data-index="4">
+            <img src="https://drive.google.com/thumbnail?id=1JMUzfTEDiJgqMHayIT3Vp3WX9bWNG6B2&sz=w1600" alt="Full room posing together with the winners screen behind them" loading="lazy" decoding="async">
+            <p class="photo-caption">Team 6 takes it home. Everyone else takes the chai.</p>
+          </div>
+
+          <div class="photo-card" data-index="5">
+            <img src="https://drive.google.com/thumbnail?id=15AJ_oXXIHG9jYAIlYG8R7JFFVpAw4WaU&sz=w1600" alt="Winning team holding their tote bag and snacks" loading="lazy" decoding="async">
+            <p class="photo-caption">Chips, tote bag, bragging rights. In that order.</p>
+          </div>
+
+        </div>
+
+        <button type="button" class="carousel-nav carousel-nav-next" id="vibeNext" aria-label="Next photo">›</button>
+      </div>
+
+      <div class="carousel-dots" id="vibeDots" role="tablist" aria-label="Select photo"></div>
+    </section>
+
     <div class="news-link">
       <a href="#" onclick="openNews(); return false;">📰 WE GOT FEATURED 📰</a>
     </div>
@@ -1334,26 +1382,6 @@
   </div>
 
   <script>
-    (function() {
-      const saved = localStorage.getItem('tasty-theme');
-      if (saved === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      } else if (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    })();
-
-    document.getElementById('themeToggle').addEventListener('click', function() {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      if (isDark) {
-        document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('tasty-theme', 'light');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('tasty-theme', 'dark');
-      }
-    });
-
     function handleImageError(img){
       img.onerror = null;
       img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180"><rect width="100%" height="100%" fill="#f0e0c2"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#db4118" font-family="Arial" font-size="14">Image missing</text></svg>');
@@ -1508,7 +1536,7 @@
         card.classList.toggle('is-center', offset === 0);
       });
 
-      var dots = document.querySelectorAll('.carousel-dot');
+      var dots = document.querySelectorAll('#carouselDots .carousel-dot');
       dots.forEach(function(dot, i) {
         dot.classList.toggle('active', i === carouselState.current);
       });
@@ -1578,7 +1606,7 @@
       layoutCarousel3D();
       startCarouselAutoplay();
 
-      var viewport = document.querySelector('.carousel-3d-viewport');
+      var viewport = stage.closest('.carousel-3d-viewport');
       if (viewport) {
         viewport.addEventListener('mouseenter', stopCarouselAutoplay);
         viewport.addEventListener('mouseleave', startCarouselAutoplay);
@@ -1776,15 +1804,126 @@
       };
     }
 
+    /* ===== "What's it like?" photo carousel (independent instance) ===== */
+    var vibeState = { current: 0, cards: [], total: 0, autoplayTimer: null };
+
+    function vibeLayout() {
+      var stage = document.getElementById('vibeStage');
+      if (!stage || !vibeState.cards.length) return;
+      var cardWidth = vibeState.cards[0].offsetWidth || 280;
+      var gap = cardWidth * 0.22;
+      var spacing = cardWidth + gap;
+      var total = vibeState.total;
+
+      vibeState.cards.forEach(function(card, i) {
+        var offset = i - vibeState.current;
+        if (offset > total / 2) offset -= total;
+        if (offset < -total / 2) offset += total;
+
+        var translateX = offset * spacing;
+        var rotateY = offset * -22;
+        var translateZ = -Math.abs(offset) * 20;
+        var scale = offset === 0 ? 1 : 0.82;
+        var visible = Math.abs(offset) <= 1;
+        var opacity = offset === 0 ? 1 : (visible ? 0.85 : 0);
+        var zIndex = 10 - Math.abs(offset);
+
+        card.style.transform = 'translateX(' + translateX + 'px) translateZ(' + translateZ + 'px) rotateY(' + rotateY + 'deg) scale(' + scale + ')';
+        card.style.opacity = opacity;
+        card.style.zIndex = zIndex;
+        card.style.pointerEvents = visible ? 'auto' : 'none';
+        card.classList.toggle('is-center', offset === 0);
+      });
+
+      var dots = document.querySelectorAll('#vibeDots .carousel-dot');
+      dots.forEach(function(dot, i) {
+        dot.classList.toggle('active', i === vibeState.current);
+      });
+    }
+
+    function vibeGoTo(index) {
+      var total = vibeState.total;
+      if (!total) return;
+      vibeState.current = ((index % total) + total) % total;
+      vibeLayout();
+    }
+
+    function vibeStartAutoplay() {
+      vibeStopAutoplay();
+      vibeState.autoplayTimer = setInterval(function() { vibeGoTo(vibeState.current + 1); }, 6000);
+    }
+    function vibeStopAutoplay() {
+      if (vibeState.autoplayTimer) { clearInterval(vibeState.autoplayTimer); vibeState.autoplayTimer = null; }
+    }
+
+    function initVibeCarousel() {
+      var stage = document.getElementById('vibeStage');
+      var dotsWrap = document.getElementById('vibeDots');
+      var prevBtn = document.getElementById('vibePrev');
+      var nextBtn = document.getElementById('vibeNext');
+      if (!stage) return;
+
+      vibeState.cards = Array.prototype.slice.call(stage.querySelectorAll('.photo-card'));
+      vibeState.total = vibeState.cards.length;
+      vibeState.current = 0;
+
+      if (dotsWrap) {
+        dotsWrap.innerHTML = '';
+        vibeState.cards.forEach(function(_, i) {
+          var dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'carousel-dot';
+          dot.setAttribute('aria-label', 'Go to photo ' + (i + 1));
+          dot.addEventListener('click', function() { vibeStopAutoplay(); vibeGoTo(i); vibeStartAutoplay(); });
+          dotsWrap.appendChild(dot);
+        });
+      }
+
+      vibeState.cards.forEach(function(card, i) {
+        card.addEventListener('click', function() {
+          if (i !== vibeState.current) { vibeStopAutoplay(); vibeGoTo(i); vibeStartAutoplay(); }
+        });
+        var img = card.querySelector('img');
+        if (img) {
+          var markLoaded = function() { img.classList.add('loaded'); };
+          if (img.complete && img.naturalWidth > 0) markLoaded();
+          else img.addEventListener('load', markLoaded, { once: true });
+        }
+      });
+
+      if (prevBtn) prevBtn.addEventListener('click', function() { vibeStopAutoplay(); vibeGoTo(vibeState.current - 1); vibeStartAutoplay(); });
+      if (nextBtn) nextBtn.addEventListener('click', function() { vibeStopAutoplay(); vibeGoTo(vibeState.current + 1); vibeStartAutoplay(); });
+
+      var touchStartX = null;
+      stage.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+      stage.addEventListener('touchend', function(e) {
+        if (touchStartX === null) return;
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) { vibeStopAutoplay(); vibeGoTo(vibeState.current + (dx < 0 ? 1 : -1)); vibeStartAutoplay(); }
+        touchStartX = null;
+      }, { passive: true });
+
+      vibeLayout();
+      vibeStartAutoplay();
+
+      var viewport = stage.closest('.carousel-3d-viewport');
+      if (viewport) {
+        viewport.addEventListener('mouseenter', vibeStopAutoplay);
+        viewport.addEventListener('mouseleave', vibeStartAutoplay);
+      }
+    }
+
     window.addEventListener('load', function() {
       updateEventStates();
       optimisePartners();
       initCarousel3D();
+      initVibeCarousel();
       initSoundToggle();
       showPopup();
     });
     window.addEventListener('resize', optimisePartners);
     window.addEventListener('resize', layoutCarousel3D);
+    window.addEventListener('resize', vibeLayout);
 
     (function() {
       function animateFringeProgress() {
