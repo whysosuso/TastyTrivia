@@ -28,7 +28,6 @@
       --footer-bg: #F4E2C6;
       --partner-bg: #fff;
       --popup-bg: #fff;
-      --whatsapp-benefits-bg: #F4E2C6;
       --news-bg: #CDA665;
       --promo-gradient: #D05837;
       --register-gradient: #1D2951;
@@ -463,56 +462,46 @@
       opacity: 1;
     }
 
-    .whatsapp-section{ max-width:600px; margin:2rem auto; text-align:center; }
-    .whatsapp-button{
-      display:inline-flex; align-items:center; gap:1rem;
-      width:100%; max-width:500px;
-      background: #25D366;
-      color:#fff;
-      padding:1.2rem 1.5rem;
-      border:4px solid var(--text-main);
-      border-radius: 30px;
-      font-weight:700;
-      text-decoration:none;
-      box-shadow: 6px 6px 0 var(--text-main);
+    .social-section{ max-width:600px; margin:2rem auto; text-align:center; padding: 0 1rem; }
+    .social-intro {
       font-family: 'Oswald', sans-serif;
-      font-size: 0.91rem;
-      line-height: 1.6;
+      font-size: 1.17rem;
+      line-height: 1.5;
+      color: var(--text-main);
+      margin-bottom: 1.5rem;
+    }
+    .social-intro-accent {
+      font-style: italic;
+      font-weight: 500;
+      color: var(--accent-red);
+    }
+    .social-link{
+      display:flex; align-items:center; justify-content: space-between; gap:1rem;
+      width:100%; max-width:500px; margin: 0 auto 1rem;
+      background: var(--card-bg);
+      color: var(--text-main);
+      padding:1.1rem 1.4rem;
+      border:3px solid var(--text-main);
+      border-radius: 16px 40px 16px 40px;
+      font-weight:600;
+      text-decoration:none;
+      box-shadow: 5px 5px 0 var(--text-main);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.98rem;
+      line-height: 1.4;
+      text-align: left;
       transition: all 0.1s;
     }
-    .whatsapp-button:hover {
+    .social-link:hover {
       transform: translate(-3px, -3px);
-      box-shadow: 9px 9px 0 var(--text-main);
+      box-shadow: 8px 8px 0 var(--text-main);
     }
-    .whatsapp-button img{ width:24px; height:24px; }
-
-    .whatsapp-benefits{
-      margin-top:1.5rem;
-      background: var(--whatsapp-benefits-bg);
-      border:3px solid var(--text-main);
-      border-radius: 14px;
-      padding:1rem;
-      box-shadow: 4px 4px 0 var(--shadow-red);
-      transition: background 0.3s;
-    }
-    .whatsapp-benefits > div:first-child {
-      font-size: 1.04rem;
-      color: var(--accent-red);
-      margin-bottom: 1rem;
-      letter-spacing: 2px;
-    }
-    .benefits-grid{ display:flex; gap:0.8rem; justify-content:center; flex-wrap:wrap; }
-    .benefit-item {
-      background: var(--benefit-bg);
-      border: 2px solid var(--text-main);
-      border-radius: 16px;
-      padding:0.6rem 1rem;
-      font-size:0.78rem;
-      color: var(--accent-navy);
-      box-shadow: 3px 3px 0 var(--text-main);
-      letter-spacing: 1px;
-      transition: background-color 0.3s, color 0.3s;
-    }
+    .social-link:last-child { margin-bottom: 0; }
+    .social-link.whatsapp-link:hover { background: #DFF5E1; }
+    .social-link.instagram-link:hover { background: #FDE8F0; }
+    .social-icon { width:26px; height:26px; flex-shrink:0; fill: currentColor; stroke: none; }
+    .social-link.whatsapp-link .social-icon { color: #25D366; }
+    .social-link.instagram-link .social-icon { color: #C13584; }
 
     .footer{ margin-top:2rem; text-align:center; }
     .footer-content{
@@ -1291,18 +1280,25 @@
       </div>
     </section>
 
-    <section class="whatsapp-section" aria-label="WhatsApp community">
-      <a class="whatsapp-button" href="https://bit.ly/Tasty_Trivia" target="_blank" rel="noopener">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" onerror="this.style.display='none'"> JOIN 500+ MEMBER COMMUNITY
+    <section class="social-section" aria-label="Follow Tasty Trivia">
+      <p class="social-intro">You'll find out about the next show eventually.<br><span class="social-intro-accent">or just join the group chat :)</span></p>
+
+      <a class="social-link whatsapp-link" href="https://bit.ly/Tasty_Trivia" target="_blank" rel="noopener">
+        <span>Get first dibs on new shows via WhatsApp</span>
+        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.06L2 22l5.06-1.36A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.6 0-3.09-.46-4.35-1.26l-.31-.19-2.99.8.8-2.92-.2-.3A7.94 7.94 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/>
+          <path d="M16.5 14.2c-.25-.12-1.47-.72-1.7-.8-.23-.08-.4-.12-.57.12-.17.25-.65.8-.8.97-.15.17-.3.19-.55.06-.25-.12-1.06-.39-2.02-1.24-.75-.67-1.25-1.5-1.4-1.75-.15-.25-.02-.38.11-.5.11-.11.25-.3.37-.44.12-.15.16-.25.25-.42.08-.17.04-.32-.02-.44-.06-.12-.57-1.37-.78-1.87-.2-.5-.41-.42-.57-.43h-.48c-.17 0-.44.06-.67.32-.23.25-.87.85-.87 2.08 0 1.23.9 2.42 1.02 2.58.12.17 1.78 2.72 4.32 3.81.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/>
+        </svg>
       </a>
-      <div class="whatsapp-benefits">
-        <div>★ SPECIAL ITEMS ★</div>
-        <div class="benefits-grid">
-          <div class="benefit-item">EVENT UPDATES</div>
-          <div class="benefit-item">SPECIAL PRICES</div>
-          <div class="benefit-item">EXCLUSIVE CONTESTS</div>
-        </div>
-      </div>
+
+      <a class="social-link instagram-link" href="https://www.instagram.com/gettastytrivia/" target="_blank" rel="noopener">
+        <span>Watch the chaos unfold on Instagram</span>
+        <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="6"/>
+          <circle cx="12" cy="12" r="4.2"/>
+          <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
     </section>
 
     <footer class="footer" aria-label="Footer">
