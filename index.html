@@ -565,10 +565,13 @@
       border-radius: 50%;
       font-weight:700;
       display:none;
+      align-items:center;
+      justify-content:center;
       z-index:1000;
       cursor:pointer;
       font-family: 'Oswald', sans-serif;
       font-size: 1.56rem;
+      line-height: 1;
       box-shadow: 5px 5px 0 var(--shadow-red);
       transition: all 0.1s;
     }
@@ -681,21 +684,26 @@
       letter-spacing: 2px;
       line-height: 1.6;
     }
+    .popup-scroll-body {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
     .popup-image-container {
       width: 100%;
       background: var(--popup-bg);
-      flex-shrink: 0;
       transition: background-color 0.3s;
     }
     .popup-image {
       width: 100%;
-      height: auto;
+      max-height: 38vh;
+      object-fit: cover;
       display: block;
     }
     .popup-tracker {
       background: var(--popup-bg);
       padding: 1rem;
-      flex-shrink: 0;
       transition: background-color 0.3s;
     }
     .popup-cta-container {
@@ -1450,28 +1458,30 @@
       <div class="popup-header">
         <h2 class="popup-title-text">TASTY'S EDINBURGH FRINGE FUND</h2>
       </div>
-      <div class="popup-image-container">
-        <img src="https://i.ibb.co/sxBZdsw/Tatsy-Trivia-Fringe.png" alt="Edinburgh Fringe" class="popup-image">
-      </div>
-      <div class="popup-tracker">
-        <div class="fringe-progress-stats">
-          <div class="stat-item">
-            <span class="stat-label">RAISED</span>
-            <span class="stat-value">₹3L</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-label">GOAL</span>
-            <span class="stat-value">₹5L</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-label">TARGET</span>
-            <span class="stat-value">MAR 2027</span>
-          </div>
+      <div class="popup-scroll-body">
+        <div class="popup-image-container">
+          <img src="https://i.ibb.co/sxBZdsw/Tatsy-Trivia-Fringe.png" alt="Edinburgh Fringe" class="popup-image">
         </div>
-        <div class="fringe-progress-bar">
-          <div class="fringe-progress-fill" id="popup-progress-fill" data-progress="60"></div>
+        <div class="popup-tracker">
+          <div class="fringe-progress-stats">
+            <div class="stat-item">
+              <span class="stat-label">RAISED</span>
+              <span class="stat-value">₹3L</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">GOAL</span>
+              <span class="stat-value">₹5L</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">TARGET</span>
+              <span class="stat-value">MAR 2027</span>
+            </div>
+          </div>
+          <div class="fringe-progress-bar">
+            <div class="fringe-progress-fill" id="popup-progress-fill" data-progress="60"></div>
+          </div>
+          <p class="fringe-motivation">EVERY TICKET GETS US CLOSER.</p>
         </div>
-        <p class="fringe-motivation">EVERY TICKET GETS US CLOSER.</p>
       </div>
       <div class="popup-cta-container">
         <button class="popup-cta-button" id="popupContinue">CONTINUE &gt;&gt;</button>
