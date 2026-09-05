@@ -499,9 +499,8 @@
     .social-link:last-child { margin-bottom: 0; }
     .social-link.whatsapp-link:hover { background: #DFF5E1; }
     .social-link.instagram-link:hover { background: #FDE8F0; }
-    .social-icon { width:26px; height:26px; flex-shrink:0; fill: currentColor; stroke: none; }
-    .social-link.whatsapp-link .social-icon { color: #25D366; }
-    .social-link.instagram-link .social-icon { color: #C13584; }
+    .social-icon { width:26px; height:26px; flex-shrink:0; }
+    .whatsapp-link .social-icon { fill: currentColor; stroke: none; color: #25D366; }
 
     .footer{ margin-top:2rem; text-align:center; }
     .footer-content{
@@ -738,6 +737,34 @@
       padding: 0 1rem;
     }
 
+    .events-list {
+      position: relative;
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      padding: 0.5rem 0.25rem 1.5rem;
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+    }
+    .events-list::-webkit-scrollbar { height: 8px; }
+    .events-list::-webkit-scrollbar-track { background: var(--progress-bg); border-radius: 8px; }
+    .events-list::-webkit-scrollbar-thumb { background: var(--text-main); border-radius: 8px; }
+
+    .event-list-card {
+      flex: 0 0 280px;
+      scroll-snap-align: start;
+      border-radius: 8px 20px 8px 20px;
+      cursor: pointer;
+    }
+
+    .card-emoji {
+      font-size: 3.12rem;
+      text-align: center;
+      line-height: 1;
+      filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.25));
+      margin-bottom: 0.2rem;
+    }
+
     .carousel-3d-viewport {
       display: flex;
       align-items: center;
@@ -750,40 +777,6 @@
       height: 430px;
       perspective: 2200px;
       overflow: visible;
-    }
-
-    .carousel-card {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 280px;
-      margin-left: -140px;
-      opacity: 0;
-      border-radius: 8px 20px 8px 20px;
-      transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.6s ease, box-shadow 0.3s ease;
-      will-change: transform, opacity;
-      cursor: pointer;
-    }
-
-    .carousel-card.register-button {
-      display: block;
-    }
-
-    .carousel-card.is-center {
-      cursor: default;
-      box-shadow: 8px 8px 0 var(--text-main), 0 0 0 4px #CDA665;
-    }
-
-    .carousel-card.is-center.no-link {
-      box-shadow: 6px 6px 0 var(--text-main), 0 0 0 4px #CDA665;
-    }
-
-    .card-emoji {
-      font-size: 3.12rem;
-      text-align: center;
-      line-height: 1;
-      filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.25));
-      margin-bottom: 0.2rem;
     }
 
     .carousel-nav {
@@ -953,18 +946,18 @@
 
     @media (max-width: 768px) {
       .carousel-3d-stage { height: 380px; }
-      .carousel-card { width: 220px; margin-left: -110px; }
+      .event-list-card { flex-basis: 220px; }
       .carousel-nav { width: 38px; height: 38px; font-size: 1.56rem; }
       .card-emoji { font-size: 2.47rem; }
     }
     @media (max-width: 420px) {
       .carousel-3d-stage { height: 340px; }
-      .carousel-card { width: 180px; margin-left: -90px; }
+      .event-list-card { flex-basis: 180px; }
       .carousel-nav { width: 32px; height: 32px; font-size: 1.3rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .carousel-card { transition: none !important; }
+      .event-list-card { transition: none !important; }
     }
 
     /* ===== "What's it like?" photo carousel ===== */
@@ -1039,6 +1032,67 @@
       .photo-card img { height: 160px; }
       .photo-caption { font-size: 0.585rem; }
     }
+
+    /* ===== FAQ ===== */
+    .faq-section {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+    .faq-title {
+      font-family: 'Oswald', sans-serif; font-weight: 700; text-transform: uppercase;
+      font-size: 1.82rem;
+      color: var(--accent-red);
+      letter-spacing: 2px;
+      text-align: center;
+      line-height: 1.4;
+      margin-bottom: 1.75rem;
+    }
+    .faq-item {
+      background: var(--card-bg);
+      border: 3px solid var(--text-main);
+      border-radius: 14px 4px 14px 4px;
+      box-shadow: 4px 4px 0 var(--text-main);
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 1rem 1.2rem;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: var(--accent-navy);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent-red);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .faq-item[open] summary::after {
+      transform: rotate(45deg);
+    }
+    .faq-item p {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.91rem;
+      line-height: 1.6;
+      color: var(--text-main);
+      padding: 0 1.2rem 1.1rem;
+    }
+    @media (max-width: 768px) {
+      .faq-title { font-size: 0.975rem; }
+      .faq-item summary { font-size: 0.845rem; padding: 0.85rem 1rem; }
+      .faq-item p { font-size: 0.78rem; padding: 0 1rem 0.9rem; }
+    }
   </style>
 </head>
 <body>
@@ -1073,93 +1127,85 @@
       </div>
       <p class="city-filter-note" id="cityFilterNote"></p>
 
-      <div class="carousel-3d-viewport">
-        <button type="button" class="carousel-nav carousel-nav-prev" id="carouselPrev" aria-label="Previous event">‹</button>
+      <div class="events-list" id="eventsList">
+        <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
 
-        <div class="carousel-3d-stage" id="carouselStage">
-          <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
-
-          <!-- Beku Cafe - SEP 12 (4PM) - live -->
-          <a href="https://urbanaut.app/spot/entertainment-by-tasty-trivia" class="carousel-card register-button" data-event-date="2026-09-12" data-index="1" data-city="Bangalore" data-show-name="ENTERTAINMENT" target="_blank" rel="noopener">
-            <div class="button-content">
-              <div class="card-emoji">🎭</div>
-              <div class="button-row">
-                <span>SAT, SEP 12</span>
-                <span class="button-divider">|</span>
-                <span>BEKU CAFE</span>
-              </div>
-              <div class="button-row">
-                <span>4:00 PM</span>
-                <span class="button-divider">|</span>
-                <span>ENTERTAINMENT</span>
-              </div>
-              <div class="button-row">
-                <span class="button-price">₹499 onwards/ Person (₹100 redeemable against F&B)</span>
-              </div>
-              <span class="button-cta">[ BOOK TIX ]</span>
+        <!-- Beku Cafe - SEP 12 (4PM) - live -->
+        <a href="https://urbanaut.app/spot/entertainment-by-tasty-trivia" class="event-list-card register-button" data-event-date="2026-09-12" data-index="1" data-city="Bangalore" data-show-name="ENTERTAINMENT" target="_blank" rel="noopener">
+          <div class="button-content">
+            <div class="card-emoji">🎭</div>
+            <div class="button-row">
+              <span>SAT, SEP 12</span>
+              <span class="button-divider">|</span>
+              <span>BEKU CAFE</span>
             </div>
-            <button type="button" class="share-icon" aria-label="Share SEP 12 Entertainment event"
-                    onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://urbanaut.app/spot/entertainment-by-tasty-trivia','SEP 12','4:00 PM'); })(event)">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16c-.8 0-1.5.3-2 .8l-7.3-4.2c.1-.2.1-.4.1-.6s0-.4-.1-.6L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .4.1.6L7.8 9.8C7.3 9.3 6.6 9 5.8 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.3 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9S19.6 16 18 16z"/></svg>
-            </button>
-          </a>
-
-          <!-- Underline Center, Indiranagar - SEP 12 (9PM) - GOSSIP - live -->
-          <a href="https://www.district.in/events/gossip-the-gameshow-with-tasty-trivia-sep12-2026-buy-tickets" class="carousel-card register-button" data-event-date="2026-09-12" data-index="2" data-city="Bangalore" data-show-name="GOSSIP" target="_blank" rel="noopener">
-            <div class="button-content">
-              <div class="card-emoji">🗣️💬</div>
-              <div class="button-row">
-                <span>SAT, SEP 12</span>
-                <span class="button-divider">|</span>
-                <span>UNDERLINE CENTER, INDIRANAGAR</span>
-              </div>
-              <div class="button-row">
-                <span>9:00 PM</span>
-                <span class="button-divider">|</span>
-                <span>GOSSIP</span>
-              </div>
-              <div class="button-row">
-                <span class="button-price">₹449 onwards/ Person</span>
-              </div>
-              <span class="button-cta">[ BOOK TIX ]</span>
+            <div class="button-row">
+              <span>4:00 PM</span>
+              <span class="button-divider">|</span>
+              <span>ENTERTAINMENT</span>
             </div>
-            <button type="button" class="share-icon" aria-label="Share SEP 12 Gossip event"
-                    onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://www.district.in/events/gossip-the-gameshow-with-tasty-trivia-sep12-2026-buy-tickets','SEP 12','9:00 PM'); })(event)">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16c-.8 0-1.5.3-2 .8l-7.3-4.2c.1-.2.1-.4.1-.6s0-.4-.1-.6L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .4.1.6L7.8 9.8C7.3 9.3 6.6 9 5.8 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.3 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9S19.6 16 18 16z"/></svg>
-            </button>
-          </a>
-
-          <!-- Turning Pages - SEP 13 - live -->
-          <a href="https://app.turningpages.space/events/annual-function-2000s-nostalgia-trivia-gameshow" class="carousel-card register-button" data-event-date="2026-09-13" data-index="3" data-city="Bangalore" data-show-name="ANNUAL FUNCTION" target="_blank" rel="noopener">
-            <div class="button-content">
-              <div class="card-emoji">🎒</div>
-              <div class="button-row">
-                <span>SUN, SEP 13</span>
-                <span class="button-divider">|</span>
-                <span>TURNING PAGES, JAKKUR</span>
-              </div>
-              <div class="button-row">
-                <span>11:00 AM</span>
-                <span class="button-divider">|</span>
-                <span>ANNUAL FUNCTION</span>
-              </div>
-              <div class="button-row">
-                <span class="button-price">₹499 onwards/ Person</span>
-              </div>
-              <span class="button-cta">[ BOOK TIX ]</span>
+            <div class="button-row">
+              <span class="button-price">₹499 onwards/ Person (₹100 redeemable against F&B)</span>
             </div>
-            <button type="button" class="share-icon" aria-label="Share SEP 13 event"
-                    onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://app.turningpages.space/events/annual-function-2000s-nostalgia-trivia-gameshow','SEP 13','11:00 AM'); })(event)">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16c-.8 0-1.5.3-2 .8l-7.3-4.2c.1-.2.1-.4.1-.6s0-.4-.1-.6L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .4.1.6L7.8 9.8C7.3 9.3 6.6 9 5.8 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.3 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9S19.6 16 18 16z"/></svg>
-            </button>
-          </a>
+            <span class="button-cta">[ BOOK TIX ]</span>
+          </div>
+          <button type="button" class="share-icon" aria-label="Share SEP 12 Entertainment event"
+                  onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://urbanaut.app/spot/entertainment-by-tasty-trivia','SEP 12','4:00 PM'); })(event)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16c-.8 0-1.5.3-2 .8l-7.3-4.2c.1-.2.1-.4.1-.6s0-.4-.1-.6L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .4.1.6L7.8 9.8C7.3 9.3 6.6 9 5.8 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.3 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9S19.6 16 18 16z"/></svg>
+          </button>
+        </a>
 
-        </div>
+        <!-- Underline Center, Indiranagar - SEP 12 (9PM) - GOSSIP - live -->
+        <a href="https://www.district.in/events/gossip-the-gameshow-with-tasty-trivia-sep12-2026-buy-tickets" class="event-list-card register-button" data-event-date="2026-09-12" data-index="2" data-city="Bangalore" data-show-name="GOSSIP" target="_blank" rel="noopener">
+          <div class="button-content">
+            <div class="card-emoji">🗣️💬</div>
+            <div class="button-row">
+              <span>SAT, SEP 12</span>
+              <span class="button-divider">|</span>
+              <span>UNDERLINE CENTER, INDIRANAGAR</span>
+            </div>
+            <div class="button-row">
+              <span>9:00 PM</span>
+              <span class="button-divider">|</span>
+              <span>GOSSIP</span>
+            </div>
+            <div class="button-row">
+              <span class="button-price">₹449 onwards/ Person</span>
+            </div>
+            <span class="button-cta">[ BOOK TIX ]</span>
+          </div>
+          <button type="button" class="share-icon" aria-label="Share SEP 12 Gossip event"
+                  onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://www.district.in/events/gossip-the-gameshow-with-tasty-trivia-sep12-2026-buy-tickets','SEP 12','9:00 PM'); })(event)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16c-.8 0-1.5.3-2 .8l-7.3-4.2c.1-.2.1-.4.1-.6s0-.4-.1-.6L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .4.1.6L7.8 9.8C7.3 9.3 6.6 9 5.8 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.3 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9S19.6 16 18 16z"/></svg>
+          </button>
+        </a>
 
-        <button type="button" class="carousel-nav carousel-nav-next" id="carouselNext" aria-label="Next event">›</button>
+        <!-- Turning Pages - SEP 13 - live -->
+        <a href="https://app.turningpages.space/events/annual-function-2000s-nostalgia-trivia-gameshow" class="event-list-card register-button" data-event-date="2026-09-13" data-index="3" data-city="Bangalore" data-show-name="ANNUAL FUNCTION" target="_blank" rel="noopener">
+          <div class="button-content">
+            <div class="card-emoji">🎒</div>
+            <div class="button-row">
+              <span>SUN, SEP 13</span>
+              <span class="button-divider">|</span>
+              <span>TURNING PAGES, JAKKUR</span>
+            </div>
+            <div class="button-row">
+              <span>11:00 AM</span>
+              <span class="button-divider">|</span>
+              <span>ANNUAL FUNCTION</span>
+            </div>
+            <div class="button-row">
+              <span class="button-price">₹499 onwards/ Person</span>
+            </div>
+            <span class="button-cta">[ BOOK TIX ]</span>
+          </div>
+          <button type="button" class="share-icon" aria-label="Share SEP 13 event"
+                  onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://app.turningpages.space/events/annual-function-2000s-nostalgia-trivia-gameshow','SEP 13','11:00 AM'); })(event)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16c-.8 0-1.5.3-2 .8l-7.3-4.2c.1-.2.1-.4.1-.6s0-.4-.1-.6L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .4.1.6L7.8 9.8C7.3 9.3 6.6 9 5.8 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.3 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9S19.6 16 18 16z"/></svg>
+          </button>
+        </a>
+
       </div>
-
-      <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Select event"></div>
     </section>
 
     <div class="sticky-mobile-nav" id="stickyMobileNav" aria-live="polite">
@@ -1280,6 +1326,61 @@
       </div>
     </section>
 
+    <section class="faq-section" aria-label="Frequently asked questions">
+      <h2 class="faq-title">GOT QUESTIONS?<br>WE'VE GOT ANSWERS</h2>
+
+      <details class="faq-item">
+        <summary>How many people are on a team?</summary>
+        <p>Teams run 2 to 4 players. Bring your whole crew, or show up with just one friend. Either way, you're playing.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is the ticket price per person or per team?</summary>
+        <p>Per person. One ticket gets you one seat at the table, whether you're rolling solo or bringing a full squad of 4.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>What if I show up alone?</summary>
+        <p>Come solo and we'll pair you up with other players before the first round starts. Half the room usually walks in without a team.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do I need to already know a lot of trivia?</summary>
+        <p>Not even a little. Every show is built to be work-outable, so clues, patterns and teamwork get you there, not memorised facts. Beginners regularly beat the regulars.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is this only for hardcore quiz people?</summary>
+        <p>No hardcore quizzer energy required. Every show is designed to be beginner-friendly first, so first-timers and veterans play on the same footing.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>How long does a show run?</summary>
+        <p>Roughly 2 hours. Expect a warm-up round, the main rounds, a face-off between top teams, and a surprise twist near the end.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>How are the rounds structured?</summary>
+        <p>Honestly, you kind of have to play one to know. They're silly, they're fun, and the rules keep changing from show to show. That's part of the point.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>What happens if my team doesn't win?</summary>
+        <p>You're still part of the whole show. Every team has a role to play from start to finish, whether you're topping the leaderboard or not.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Are there prizes for anyone?</summary>
+        <p>Sometimes we throw in a few fun goodies for winners. But don't come for the prizes. Come because you want a good time at a cozy trivia show that's one of a kind.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>What's this about taking the show to Edinburgh Fringe?</summary>
+        <p>The Edinburgh Festival Fringe is the world's largest arts festival, held every August in Edinburgh, where thousands of live shows run side by side for weeks. Saloni and Susovan want to build a tight, festival-ready version of Tasty Trivia and take it there in 2027. Every ticket you buy for a show right now goes straight into the fund that's making that happen.</p>
+      </details>
+
+    </section>
+
     <section class="social-section" aria-label="Follow Tasty Trivia">
       <p class="social-intro">You'll find out about the next show eventually.<br><span class="social-intro-accent">or just join the group chat :)</span></p>
 
@@ -1293,10 +1394,19 @@
 
       <a class="social-link instagram-link" href="https://www.instagram.com/gettastytrivia/" target="_blank" rel="noopener">
         <span>Watch the chaos unfold on Instagram</span>
-        <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <rect x="2" y="2" width="20" height="20" rx="6"/>
-          <circle cx="12" cy="12" r="4.2"/>
-          <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/>
+        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <defs>
+            <linearGradient id="igGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#FFDD55"/>
+              <stop offset="35%" stop-color="#FF543E"/>
+              <stop offset="65%" stop-color="#C837AB"/>
+              <stop offset="100%" stop-color="#5851DB"/>
+            </linearGradient>
+          </defs>
+          <rect x="1" y="1" width="22" height="22" rx="6.5" fill="url(#igGradient)"/>
+          <rect x="5.2" y="5.2" width="13.6" height="13.6" rx="4" fill="none" stroke="#fff" stroke-width="1.6"/>
+          <circle cx="12" cy="12" r="3.6" fill="none" stroke="#fff" stroke-width="1.6"/>
+          <circle cx="17.1" cy="6.9" r="1.1" fill="#fff"/>
         </svg>
       </a>
     </section>
@@ -1474,149 +1584,36 @@
       });
     }
 
-    /* ===== 3D Revolving Carousel ===== */
-    var carouselState = { current: 0, cards: [], allCards: [], total: 0, autoplayTimer: null, activeCity: 'all' };
+    /* ===== Horizontal Events List ===== */
+    var eventsState = { cards: [], allCards: [], activeCity: 'all' };
 
-    function layoutCarousel3D() {
-      var stage = document.getElementById('carouselStage');
-      if (!stage || !carouselState.cards.length) return;
-      var cardWidth = carouselState.cards[0].offsetWidth || 280;
-      var gap = cardWidth * 0.22;
-      var spacing = cardWidth + gap;
-      var total = carouselState.total;
+    function initEventsList() {
+      var list = document.getElementById('eventsList');
+      if (!list) return;
 
-      carouselState.cards.forEach(function(card, i) {
-        var offset = i - carouselState.current;
-        // normalize offset to shortest circular distance
-        if (offset > total / 2) offset -= total;
-        if (offset < -total / 2) offset += total;
-
-        var translateX = offset * spacing;
-        var rotateY = offset * -22;
-        var translateZ = -Math.abs(offset) * 20;
-        var scale = offset === 0 ? 1 : 0.82;
-        var visible = Math.abs(offset) <= 1;
-        var opacity = offset === 0 ? 1 : (visible ? 0.85 : 0);
-        var zIndex = 10 - Math.abs(offset);
-
-        card.style.transform = 'translateX(' + translateX + 'px) translateZ(' + translateZ + 'px) rotateY(' + rotateY + 'deg) scale(' + scale + ')';
-        card.style.opacity = opacity;
-        card.style.zIndex = zIndex;
-        card.style.pointerEvents = visible ? 'auto' : 'none';
-        card.classList.toggle('is-center', offset === 0);
-      });
-
-      var dots = document.querySelectorAll('#carouselDots .carousel-dot');
-      dots.forEach(function(dot, i) {
-        dot.classList.toggle('active', i === carouselState.current);
-      });
-    }
-
-    function goToCarouselSlide(index, opts) {
-      opts = opts || {};
-      var total = carouselState.total;
-      if (!total) return;
-      var newIndex = ((index % total) + total) % total;
-      var changed = newIndex !== carouselState.current;
-      carouselState.current = newIndex;
-      layoutCarousel3D();
-      if (changed && !opts.silent) {
-        playBlip();
-        var card = carouselState.cards[carouselState.current];
-        if (card && card.tagName === 'A') {
-          fireConfetti();
-        }
-      }
-    }
-
-    function initCarousel3D() {
-      var stage = document.getElementById('carouselStage');
-      var dotsWrap = document.getElementById('carouselDots');
-      var prevBtn = document.getElementById('carouselPrev');
-      var nextBtn = document.getElementById('carouselNext');
-      if (!stage) return;
-
-      carouselState.allCards = Array.prototype.slice.call(stage.querySelectorAll('.carousel-card'));
+      eventsState.allCards = Array.prototype.slice.call(list.querySelectorAll('.event-list-card'));
 
       // Only show cards that have a real ticket link (an <a> tag). "Coming soon"
       // cards stay hidden until they're converted to a live link.
-      var linkedCards = carouselState.allCards.filter(function(c) { return c.tagName === 'A'; });
-      carouselState.cards = linkedCards.length ? linkedCards : carouselState.allCards.slice();
-      carouselState.allCards.forEach(function(c) {
-        c.style.display = (carouselState.cards.indexOf(c) !== -1) ? '' : 'none';
+      var linkedCards = eventsState.allCards.filter(function(c) { return c.tagName === 'A'; });
+      eventsState.cards = linkedCards.length ? linkedCards : eventsState.allCards.slice();
+      eventsState.allCards.forEach(function(c) {
+        c.style.display = (eventsState.cards.indexOf(c) !== -1) ? '' : 'none';
       });
 
-      carouselState.total = carouselState.cards.length;
-      carouselState.current = 0;
-
-      rebuildCarouselDots();
-
-      carouselState.allCards.forEach(function(card) {
-        card.addEventListener('click', function(e) {
-          var i = carouselState.cards.indexOf(card);
-          if (i === -1) return; // filtered out
-          if (i !== carouselState.current) {
-            e.preventDefault();
-            stopCarouselAutoplay();
-            goToCarouselSlide(i);
+      // Little celebratory blip + confetti on tap, since the card opens in a
+      // new tab this page stays put and visible to enjoy it.
+      eventsState.allCards.forEach(function(card) {
+        card.addEventListener('click', function() {
+          if (card.tagName === 'A' && card.style.display !== 'none') {
+            playBlip();
+            fireConfetti();
           }
         });
       });
 
-      if (prevBtn) prevBtn.addEventListener('click', function() { stopCarouselAutoplay(); goToCarouselSlide(carouselState.current - 1); });
-      if (nextBtn) nextBtn.addEventListener('click', function() { stopCarouselAutoplay(); goToCarouselSlide(carouselState.current + 1); });
-
-      // basic touch swipe support
-      var touchStartX = null;
-      stage.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-      stage.addEventListener('touchend', function(e) {
-        if (touchStartX === null) return;
-        var dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) > 40) {
-          stopCarouselAutoplay();
-          goToCarouselSlide(carouselState.current + (dx < 0 ? 1 : -1));
-        }
-        touchStartX = null;
-      }, { passive: true });
-
-      layoutCarousel3D();
-      startCarouselAutoplay();
-
-      var viewport = stage.closest('.carousel-3d-viewport');
-      if (viewport) {
-        viewport.addEventListener('mouseenter', stopCarouselAutoplay);
-        viewport.addEventListener('mouseleave', startCarouselAutoplay);
-      }
-
       initCityFilterChips();
       initStickyMobileNav();
-    }
-
-    function rebuildCarouselDots() {
-      var dotsWrap = document.getElementById('carouselDots');
-      if (!dotsWrap) return;
-      dotsWrap.innerHTML = '';
-      carouselState.cards.forEach(function(_, i) {
-        var dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'carousel-dot';
-        dot.setAttribute('aria-label', 'Go to event ' + (i + 1));
-        dot.addEventListener('click', function() { stopCarouselAutoplay(); goToCarouselSlide(i); });
-        dotsWrap.appendChild(dot);
-      });
-    }
-
-    function startCarouselAutoplay() {
-      stopCarouselAutoplay();
-      carouselState.autoplayTimer = setInterval(function() {
-        goToCarouselSlide(carouselState.current + 1);
-      }, 5000);
-    }
-    function stopCarouselAutoplay() {
-      if (carouselState.autoplayTimer) {
-        clearInterval(carouselState.autoplayTimer);
-        carouselState.autoplayTimer = null;
-      }
     }
 
     /* ===== 8-bit blip sound ===== */
@@ -1706,28 +1703,20 @@
     }
 
     function applyCityFilter(city) {
-      carouselState.activeCity = city;
+      eventsState.activeCity = city;
       var cityMatched = (city === 'all')
-        ? carouselState.allCards.slice()
-        : carouselState.allCards.filter(function(c) { return c.getAttribute('data-city') === city; });
+        ? eventsState.allCards.slice()
+        : eventsState.allCards.filter(function(c) { return c.getAttribute('data-city') === city; });
 
       // Within the city-matched set, prefer cards with a real ticket link;
       // fall back to showing all city-matched cards if none are linked yet.
       var linkedCards = cityMatched.filter(function(c) { return c.tagName === 'A'; });
-      carouselState.cards = linkedCards.length ? linkedCards : cityMatched;
+      eventsState.cards = linkedCards.length ? linkedCards : cityMatched;
 
-      carouselState.allCards.forEach(function(c) {
-        var included = carouselState.cards.indexOf(c) !== -1;
+      eventsState.allCards.forEach(function(c) {
+        var included = eventsState.cards.indexOf(c) !== -1;
         c.style.display = included ? '' : 'none';
       });
-
-      carouselState.total = carouselState.cards.length;
-      carouselState.current = 0;
-
-      rebuildCarouselDots();
-      layoutCarousel3D();
-      stopCarouselAutoplay();
-      startCarouselAutoplay();
     }
 
     /* ===== Sticky mobile "next up" nav ===== */
@@ -1735,7 +1724,7 @@
 
     function findNextUpEvent() {
       var now = new Date();
-      var candidates = carouselState.allCards
+      var candidates = eventsState.allCards
         .map(function(card) {
           var dateStr = card.getAttribute('data-event-date');
           var d = dateStr ? new Date(dateStr + 'T23:59:59') : null;
@@ -1768,16 +1757,10 @@
         } else {
           var chips = document.querySelectorAll('.city-chip');
           var allChip = document.querySelector('.city-chip[data-city-filter="all"]');
-          if (carouselState.activeCity !== 'all' && allChip) {
+          if (eventsState.activeCity !== 'all' && allChip) {
             chips.forEach(function(c) { c.classList.remove('active'); });
             allChip.classList.add('active');
             applyCityFilter('all');
-          }
-          var idx = carouselState.cards.indexOf(next.card);
-          if (idx !== -1) {
-            stopCarouselAutoplay();
-            goToCarouselSlide(idx, { silent: true });
-            startCarouselAutoplay();
           }
           document.querySelector('.events-carousel-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
@@ -1896,13 +1879,12 @@
     window.addEventListener('load', function() {
       updateEventStates();
       optimisePartners();
-      initCarousel3D();
+      initEventsList();
       initVibeCarousel();
       initSoundToggle();
       showPopup();
     });
     window.addEventListener('resize', optimisePartners);
-    window.addEventListener('resize', layoutCarousel3D);
     window.addEventListener('resize', vibeLayout);
 
     (function() {
