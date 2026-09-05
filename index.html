@@ -108,14 +108,14 @@
       background: var(--card-bg-alt);
       border:4px solid var(--text-main);
       border-radius:20px 8px 20px 8px;
-      padding:1.5rem;
+      padding:1rem;
       box-shadow: 8px 8px 0 var(--shadow-red);
-      margin-bottom:2rem;
+      margin-bottom:1rem;
       text-align:center;
       position: relative;
       transition: background-color 0.3s, box-shadow 0.3s;
     }
-    .header-logo{ width:70px; height:70px; object-fit:contain; flex-shrink:0; border-radius: 50%; border: 3px solid var(--text-main); background: #fff; padding: 4px; }
+    .header-logo{ width:56px; height:56px; object-fit:contain; flex-shrink:0; border-radius: 50%; border: 3px solid var(--text-main); background: #fff; padding: 4px; }
     .header-text h1{
       font-family: 'Oswald', sans-serif; font-weight: 700; text-transform: uppercase;
       font-size:2.6rem;
@@ -125,10 +125,10 @@
     }
 
     .promo-section{
-      max-width:600px; margin:0 auto 2rem;
+      max-width:600px; margin:0 auto 1rem;
       background: var(--promo-gradient);
       color:#fff;
-      padding:1.5rem;
+      padding:1rem;
       border:4px solid var(--text-main);
       border-radius: 8px 24px 8px 24px;
       text-align:center;
@@ -139,7 +139,7 @@
 
     .register-buttons{ display:flex; flex-direction:column; gap:1.5rem; max-width:900px; margin:2rem auto; }
     .register-button{
-      width:100%; padding:1.5rem;
+      width:100%; padding:0.8rem 1.1rem;
       border:4px solid var(--text-main);
       border-radius: 8px 20px 8px 20px;
       background: var(--register-gradient);
@@ -181,10 +181,29 @@
     .button-content{
       display:flex;
       flex-direction: column;
-      gap:0.8rem;
-      font-size:0.975rem;
-      line-height: 1.6;
+      gap:0.4rem;
+      font-size:0.845rem;
+      line-height: 1.4;
       text-align: left;
+    }
+    .event-top-row {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .event-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      flex: 1;
+      min-width: 0;
+    }
+    .event-bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
     }
     .button-row {
       display: flex;
@@ -193,20 +212,20 @@
       flex-wrap: wrap;
     }
     .button-divider{ color:rgba(255,255,255,0.4); }
-    .button-price{ color:#CDA665; font-weight:700; text-shadow: 2px 2px 0 rgba(0,0,0,0.5); }
+    .button-price{ color:#CDA665; font-weight:700; text-shadow: 2px 2px 0 rgba(0,0,0,0.5); font-size: 0.85em; }
     .button-cta{
       background: #CDA665;
       color:#161616;
-      padding:0.7rem 1.1rem;
+      padding:0.5rem 0.9rem;
       border:3px solid #161616;
       border-radius: 20px;
       font-weight:700;
-      font-size:0.78rem;
+      font-size:0.72rem;
       letter-spacing:1.5px;
-      margin-top: 0.5rem;
       display: inline-block;
       white-space: nowrap;
       box-shadow: 3px 3px 0 #161616;
+      flex-shrink: 0;
     }
     .button-cta.coming-soon {
       background: #C9C9C9;
@@ -733,36 +752,29 @@
     /* ===== 3D Revolving Carousel ===== */
     .events-carousel-section {
       max-width: 1000px;
-      margin: 2rem auto;
+      margin: 1rem auto;
       padding: 0 1rem;
     }
 
     .events-list {
       position: relative;
       display: flex;
-      gap: 1.5rem;
-      overflow-x: auto;
-      padding: 0.5rem 0.25rem 1.5rem;
-      scroll-snap-type: x proximity;
-      -webkit-overflow-scrolling: touch;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0.25rem;
     }
-    .events-list::-webkit-scrollbar { height: 8px; }
-    .events-list::-webkit-scrollbar-track { background: var(--progress-bg); border-radius: 8px; }
-    .events-list::-webkit-scrollbar-thumb { background: var(--text-main); border-radius: 8px; }
 
     .event-list-card {
-      flex: 0 0 280px;
-      scroll-snap-align: start;
+      width: 100%;
       border-radius: 8px 20px 8px 20px;
       cursor: pointer;
     }
 
     .card-emoji {
-      font-size: 3.12rem;
-      text-align: center;
+      font-size: 1.9rem;
       line-height: 1;
+      flex-shrink: 0;
       filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.25));
-      margin-bottom: 0.2rem;
     }
 
     .carousel-3d-viewport {
@@ -831,7 +843,7 @@
       justify-content: center;
       gap: 0.6rem;
       flex-wrap: wrap;
-      margin-bottom: 1.25rem;
+      margin-bottom: 0.75rem;
     }
     .city-chip {
       font-family: 'Oswald', sans-serif;
@@ -946,13 +958,10 @@
 
     @media (max-width: 768px) {
       .carousel-3d-stage { height: 380px; }
-      .event-list-card { flex-basis: 220px; }
       .carousel-nav { width: 38px; height: 38px; font-size: 1.56rem; }
-      .card-emoji { font-size: 2.47rem; }
     }
     @media (max-width: 420px) {
       .carousel-3d-stage { height: 340px; }
-      .event-list-card { flex-basis: 180px; }
       .carousel-nav { width: 32px; height: 32px; font-size: 1.3rem; }
     }
 
@@ -1133,21 +1142,25 @@
         <!-- Beku Cafe - SEP 12 (4PM) - live -->
         <a href="https://urbanaut.app/spot/entertainment-by-tasty-trivia" class="event-list-card register-button" data-event-date="2026-09-12" data-index="1" data-city="Bangalore" data-show-name="ENTERTAINMENT" target="_blank" rel="noopener">
           <div class="button-content">
-            <div class="card-emoji">🎭</div>
-            <div class="button-row">
-              <span>SAT, SEP 12</span>
-              <span class="button-divider">|</span>
-              <span>BEKU CAFE</span>
+            <div class="event-top-row">
+              <div class="card-emoji">🎭</div>
+              <div class="event-meta">
+                <div class="button-row">
+                  <span>SAT, SEP 12</span>
+                  <span class="button-divider">|</span>
+                  <span>BEKU CAFE</span>
+                </div>
+                <div class="button-row">
+                  <span>4:00 PM</span>
+                  <span class="button-divider">|</span>
+                  <span>ENTERTAINMENT</span>
+                </div>
+              </div>
             </div>
-            <div class="button-row">
-              <span>4:00 PM</span>
-              <span class="button-divider">|</span>
-              <span>ENTERTAINMENT</span>
-            </div>
-            <div class="button-row">
+            <div class="event-bottom-row">
               <span class="button-price">₹499 onwards/ Person (₹100 redeemable against F&B)</span>
+              <span class="button-cta">[ BOOK TIX ]</span>
             </div>
-            <span class="button-cta">[ BOOK TIX ]</span>
           </div>
           <button type="button" class="share-icon" aria-label="Share SEP 12 Entertainment event"
                   onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://urbanaut.app/spot/entertainment-by-tasty-trivia','SEP 12','4:00 PM'); })(event)">
@@ -1158,21 +1171,25 @@
         <!-- Underline Center, Indiranagar - SEP 12 (9PM) - GOSSIP - live -->
         <a href="https://www.district.in/events/gossip-the-gameshow-with-tasty-trivia-sep12-2026-buy-tickets" class="event-list-card register-button" data-event-date="2026-09-12" data-index="2" data-city="Bangalore" data-show-name="GOSSIP" target="_blank" rel="noopener">
           <div class="button-content">
-            <div class="card-emoji">🗣️💬</div>
-            <div class="button-row">
-              <span>SAT, SEP 12</span>
-              <span class="button-divider">|</span>
-              <span>UNDERLINE CENTER, INDIRANAGAR</span>
+            <div class="event-top-row">
+              <div class="card-emoji">🗣️💬</div>
+              <div class="event-meta">
+                <div class="button-row">
+                  <span>SAT, SEP 12</span>
+                  <span class="button-divider">|</span>
+                  <span>UNDERLINE CENTER, INDIRANAGAR</span>
+                </div>
+                <div class="button-row">
+                  <span>9:00 PM</span>
+                  <span class="button-divider">|</span>
+                  <span>GOSSIP</span>
+                </div>
+              </div>
             </div>
-            <div class="button-row">
-              <span>9:00 PM</span>
-              <span class="button-divider">|</span>
-              <span>GOSSIP</span>
-            </div>
-            <div class="button-row">
+            <div class="event-bottom-row">
               <span class="button-price">₹449 onwards/ Person</span>
+              <span class="button-cta">[ BOOK TIX ]</span>
             </div>
-            <span class="button-cta">[ BOOK TIX ]</span>
           </div>
           <button type="button" class="share-icon" aria-label="Share SEP 12 Gossip event"
                   onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://www.district.in/events/gossip-the-gameshow-with-tasty-trivia-sep12-2026-buy-tickets','SEP 12','9:00 PM'); })(event)">
@@ -1183,21 +1200,25 @@
         <!-- Turning Pages - SEP 13 - live -->
         <a href="https://app.turningpages.space/events/annual-function-2000s-nostalgia-trivia-gameshow" class="event-list-card register-button" data-event-date="2026-09-13" data-index="3" data-city="Bangalore" data-show-name="ANNUAL FUNCTION" target="_blank" rel="noopener">
           <div class="button-content">
-            <div class="card-emoji">🎒</div>
-            <div class="button-row">
-              <span>SUN, SEP 13</span>
-              <span class="button-divider">|</span>
-              <span>TURNING PAGES, JAKKUR</span>
+            <div class="event-top-row">
+              <div class="card-emoji">🎒</div>
+              <div class="event-meta">
+                <div class="button-row">
+                  <span>SUN, SEP 13</span>
+                  <span class="button-divider">|</span>
+                  <span>TURNING PAGES, JAKKUR</span>
+                </div>
+                <div class="button-row">
+                  <span>11:00 AM</span>
+                  <span class="button-divider">|</span>
+                  <span>ANNUAL FUNCTION</span>
+                </div>
+              </div>
             </div>
-            <div class="button-row">
-              <span>11:00 AM</span>
-              <span class="button-divider">|</span>
-              <span>ANNUAL FUNCTION</span>
-            </div>
-            <div class="button-row">
+            <div class="event-bottom-row">
               <span class="button-price">₹499 onwards/ Person</span>
+              <span class="button-cta">[ BOOK TIX ]</span>
             </div>
-            <span class="button-cta">[ BOOK TIX ]</span>
           </div>
           <button type="button" class="share-icon" aria-label="Share SEP 13 event"
                   onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://app.turningpages.space/events/annual-function-2000s-nostalgia-trivia-gameshow','SEP 13','11:00 AM'); })(event)">
