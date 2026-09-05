@@ -98,6 +98,114 @@
       justify-content: center;
       transition: transform 0.1s, box-shadow 0.1s, background 0.3s, opacity 0.2s;
     }
+
+    /* ===== Hamburger menu ===== */
+    .menu-toggle {
+      position: fixed;
+      top: 52px;
+      left: 16px;
+      z-index: 1210;
+      width: 48px;
+      height: 48px;
+      background: var(--accent-red);
+      border: 3px solid var(--text-main);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .menu-toggle:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--text-main);
+    }
+    .menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.2s;
+    }
+    .menu-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    .nav-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 1190;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s;
+    }
+    .nav-drawer-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    .nav-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 260px;
+      max-width: 78vw;
+      background: var(--bg-main);
+      border-right: 4px solid var(--text-main);
+      box-shadow: 8px 0 0 rgba(0,0,0,0.15);
+      z-index: 1200;
+      padding: 6.5rem 1.25rem 2rem;
+      transform: translateX(-104%);
+      transition: transform 0.28s ease;
+      overflow-y: auto;
+    }
+    .nav-drawer.open {
+      transform: translateX(0);
+    }
+    .nav-drawer-title {
+      font-family: 'Oswald', sans-serif; font-weight: 700; text-transform: uppercase;
+      font-size: 0.98rem;
+      color: var(--accent-red);
+      letter-spacing: 2px;
+      margin-bottom: 1.25rem;
+    }
+    .nav-drawer-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .nav-drawer-list a {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      color: var(--text-main);
+      text-decoration: none;
+      background: var(--card-bg);
+      border: 2px solid var(--text-main);
+      border-radius: 12px 4px 12px 4px;
+      padding: 0.7rem 0.9rem;
+      box-shadow: 3px 3px 0 var(--text-main);
+      transition: all 0.12s;
+    }
+    .nav-drawer-list a:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 var(--text-main);
+      background: var(--accent-red);
+      color: #fff;
+    }
+    @media (max-width: 768px) {
+      .menu-toggle { width: 40px; height: 40px; top: 48px; left: 10px; }
+      .menu-toggle span { width: 18px; }
+      .nav-drawer { padding-top: 5.5rem; }
+    }
     .sound-toggle:hover {
       transform: translate(-2px, -2px);
       box-shadow: 6px 6px 0 var(--shadow-navy);
@@ -1133,10 +1241,28 @@
     </div>
   </div>
 
+  <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="nav-drawer-overlay" id="navDrawerOverlay"></div>
+  <nav class="nav-drawer" id="navDrawer" aria-label="Section navigation">
+    <div class="nav-drawer-title">JUMP TO</div>
+    <ul class="nav-drawer-list">
+      <li><a href="#home" class="nav-drawer-link">🏠 HOME</a></li>
+      <li><a href="#shows" class="nav-drawer-link">🎟️ SHOWS</a></li>
+      <li><a href="#fringe-fund" class="nav-drawer-link">✈️ FRINGE FUND</a></li>
+      <li><a href="#the-vibe" class="nav-drawer-link">📸 THE VIBE</a></li>
+      <li><a href="#venues" class="nav-drawer-link">🏛️ VENUES</a></li>
+      <li><a href="#faqs" class="nav-drawer-link">❓ FAQS</a></li>
+      <li><a href="#follow-us" class="nav-drawer-link">💬 FOLLOW US</a></li>
+    </ul>
+  </nav>
+
   <button class="sound-toggle" id="soundToggle" aria-label="Toggle sound" title="Toggle sound">🔊</button>
 
   <main class="page" id="main">
-    <header class="header-box">
+    <header class="header-box" id="home">
       <img src="https://i.ibb.co/1fwSfgcK/8-bit-purple-logo-2x-removebg-preview.png" alt="Tasty Trivia logo" class="header-logo" onerror="handleLogoError(this)">
       <div class="header-text">
         <h1>TASTY TRIVIA</h1>
@@ -1147,7 +1273,7 @@
       <div class="promo-title">🎮 SILLIEST &amp; MOST FUN TRIVIA GAMESHOWS</div>
     </section>
 
-    <section class="events-carousel-section" aria-label="Events">
+    <section class="events-carousel-section" id="shows" aria-label="Events">
 
       <div class="city-filter-chips" id="cityFilterChips" role="tablist" aria-label="Filter events by city">
         <button type="button" class="city-chip active" data-city-filter="all">ALL CITIES</button>
@@ -1256,7 +1382,7 @@
     </div>
 
 
-    <section class="fringe-fund-section" aria-label="Edinburgh Fringe Fund">
+    <section class="fringe-fund-section" id="fringe-fund" aria-label="Edinburgh Fringe Fund">
       <div class="fringe-fund-container">
         <div class="fringe-fund-header">
           <h2 class="fringe-fund-title">TASTY'S EDINBURGH FRINGE FUND</h2>
@@ -1295,7 +1421,7 @@
       </div>
     </section>
 
-    <section class="vibe-section" aria-label="What's it like to be in a Tasty Show?">
+    <section class="vibe-section" id="the-vibe" aria-label="What's it like to be in a Tasty Show?">
       <h2 class="vibe-title">WHAT'S IT LIKE TO BE<br>IN A TASTY SHOW?</h2>
 
       <div class="carousel-3d-viewport">
@@ -1345,7 +1471,7 @@
       <a href="#" onclick="openNews(); return false;">📰 WE GOT FEATURED 📰</a>
     </div>
 
-    <section class="partners-section" aria-label="Our past venue partners">
+    <section class="partners-section" id="venues" aria-label="Our past venue partners">
       <div class="partners-title">🏛️ PAST VENUE PARTNERS 🏛️</div>
       <div class="partners-viewport" tabindex="0" aria-hidden="false">
         <div class="partners-track" id="partnersTrack" aria-hidden="false">
@@ -1367,7 +1493,7 @@
       </div>
     </section>
 
-    <section class="faq-section" aria-label="Frequently asked questions">
+    <section class="faq-section" id="faqs" aria-label="Frequently asked questions">
       <h2 class="faq-title">GOT QUESTIONS?<br>WE'VE GOT ANSWERS</h2>
 
       <details class="faq-item">
@@ -1422,7 +1548,7 @@
 
     </section>
 
-    <section class="social-section" aria-label="Follow Tasty Trivia">
+    <section class="social-section" id="follow-us" aria-label="Follow Tasty Trivia">
       <p class="social-intro">You'll find out about the next show eventually.<br><span class="social-intro-accent">or just join the group chat :)</span></p>
 
       <a class="social-link whatsapp-link" href="https://bit.ly/Tasty_Trivia" target="_blank" rel="noopener">
@@ -1703,6 +1829,48 @@
       });
     }
 
+    /* ===== Hamburger menu ===== */
+    function initNavDrawer() {
+      var toggle = document.getElementById('menuToggle');
+      var drawer = document.getElementById('navDrawer');
+      var overlay = document.getElementById('navDrawerOverlay');
+      if (!toggle || !drawer || !overlay) return;
+
+      function openMenu() {
+        drawer.classList.add('open');
+        overlay.classList.add('show');
+        toggle.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+      function closeMenu() {
+        drawer.classList.remove('open');
+        overlay.classList.remove('show');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+
+      toggle.addEventListener('click', function() {
+        if (drawer.classList.contains('open')) closeMenu(); else openMenu();
+      });
+      overlay.addEventListener('click', closeMenu);
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+
+      document.querySelectorAll('.nav-drawer-link').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          closeMenu();
+          var target = document.querySelector(link.getAttribute('href'));
+          if (target) {
+            setTimeout(function() {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 200);
+          }
+        });
+      });
+    }
+
     /* ===== Confetti burst ===== */
     var confettiColors = ['#db4118', '#1D2951', '#6F4795', '#CDA665', '#CDA665'];
     function fireConfetti() {
@@ -1922,6 +2090,7 @@
       initEventsList();
       initVibeCarousel();
       initSoundToggle();
+      initNavDrawer();
       showPopup();
     });
     window.addEventListener('resize', optimisePartners);
