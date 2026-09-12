@@ -65,28 +65,6 @@
       },
       {
         "@type": "Event",
-        "name": "Gossip: The Gameshow by Tasty Trivia",
-        "startDate": "2026-09-12T21:00:00+05:30",
-        "endDate": "2026-09-12T23:00:00+05:30",
-        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "location": {
-          "@type": "Place",
-          "name": "Underline Center, Indiranagar",
-          "address": { "@type": "PostalAddress", "addressLocality": "Bangalore", "addressCountry": "IN" }
-        },
-        "organizer": { "@type": "Organization", "name": "Tasty Trivia", "url": "https://gettastytrivia.com/" },
-        "offers": {
-          "@type": "Offer",
-          "price": "449",
-          "priceCurrency": "INR",
-          "availability": "https://schema.org/InStock",
-          "url": "https://www.district.in/events/gossip-the-gameshow-with-tasty-trivia-sep12-2026-buy-tickets"
-        },
-        "url": "https://www.district.in/events/gossip-the-gameshow-with-tasty-trivia-sep12-2026-buy-tickets"
-      },
-      {
-        "@type": "Event",
         "name": "Annual Function: 2000s Nostalgia Trivia Gameshow (Bhubaneswar)",
         "startDate": "2026-09-19T11:30:00+05:30",
         "endDate": "2026-09-19T13:30:00+05:30",
@@ -1447,7 +1425,7 @@
 
       <div class="city-filter-chips" id="cityFilterChips" role="tablist" aria-label="Filter events by city">
         <button type="button" class="city-chip active" data-city-filter="all">ALL CITIES</button>
-        <button type="button" class="city-chip" data-city-filter="Bangalore">BANGALORE</button>
+        <button type="button" class="city-chip city-chip-soon" data-city-filter="Bangalore">BANGALORE <span class="chip-soon-tag">SOON</span></button>
         <button type="button" class="city-chip" data-city-filter="Bhubaneswar">BHUBANESWAR</button>
         <button type="button" class="city-chip" data-city-filter="Delhi NCR">DELHI NCR</button>
       </div>
@@ -1455,35 +1433,6 @@
 
       <div class="events-list" id="eventsList">
         <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
-
-        <!-- Underline Center, Indiranagar - SEP 12 (9PM) - GOSSIP - live -->
-        <a href="https://www.district.in/events/gossip-the-gameshow-with-tasty-trivia-sep12-2026-buy-tickets" class="event-list-card register-button" data-event-date="2026-09-12" data-index="2" data-city="Bangalore" data-show-name="GOSSIP" target="_blank" rel="noopener">
-          <div class="button-content">
-            <div class="event-top-row">
-              <div class="card-emoji">🗣️💬</div>
-              <div class="event-meta">
-                <div class="button-row">
-                  <span>SAT, SEP 12</span>
-                  <span class="button-divider">|</span>
-                  <span>UNDERLINE CENTER, INDIRANAGAR</span>
-                </div>
-                <div class="button-row">
-                  <span>9:00 PM - 11:00 PM</span>
-                  <span class="button-divider">|</span>
-                  <span>GOSSIP</span>
-                </div>
-              </div>
-            </div>
-            <div class="event-bottom-row">
-              <span class="button-price">₹449 onwards/ Person</span>
-              <span class="button-cta">[ KNOW MORE ]</span>
-            </div>
-          </div>
-          <button type="button" class="share-icon" aria-label="Share SEP 12 Gossip event"
-                  onclick="(function(e){ e.preventDefault(); e.stopImmediatePropagation(); shareEvent('https://www.district.in/events/gossip-the-gameshow-with-tasty-trivia-sep12-2026-buy-tickets','SEP 12','9:00 PM - 11:00 PM'); })(event)">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16c-.8 0-1.5.3-2 .8l-7.3-4.2c.1-.2.1-.4.1-.6s0-.4-.1-.6L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .4.1.6L7.8 9.8C7.3 9.3 6.6 9 5.8 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.3 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9S19.6 16 18 16z"/></svg>
-          </button>
-        </a>
 
         <!-- Three Chariots Coffee, Bhubaneswar - SEP 19 - live -->
         <a href="https://offlyn.life/e/u8AIj3C" class="event-list-card register-button" data-event-date="2026-09-19" data-index="4" data-city="Bhubaneswar" data-show-name="ANNUAL FUNCTION" target="_blank" rel="noopener">
@@ -1548,7 +1497,7 @@
 
     <div class="sticky-mobile-nav" id="stickyMobileNav" aria-live="polite">
       <span class="sticky-mobile-nav-label">NEXT UP</span>
-      <span class="sticky-mobile-nav-text" id="stickyMobileNavText">GOSSIP – SEP 12</span>
+      <span class="sticky-mobile-nav-text" id="stickyMobileNavText">ANNUAL FUNCTION – SEP 19</span>
       <span class="sticky-mobile-nav-arrow">›</span>
     </div>
 
@@ -2090,7 +2039,7 @@
           var val = chip.getAttribute('data-city-filter');
           if (chip.classList.contains('city-chip-soon')) {
             if (note) {
-              note.textContent = "Delhi NCR shows are launching soon — join our WhatsApp community to be first in line!";
+              note.textContent = val + " shows are to be announced soon — join our WhatsApp community to be first in line!";
               note.classList.add('show');
             }
             return;
